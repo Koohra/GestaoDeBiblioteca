@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceUsuario", "InterfaceUsuario\InterfaceUsuario.csproj", "{7E1C55E6-E755-48B1-A29A-8FFD75F3C4B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosBiblioteca", "UsuariosBiblioteca\UsuariosBiblioteca.csproj", "{4B9B6723-F0FD-4045-B546-DF26923982B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcervoLivro", "AcervoLivro\AcervoLivro.csproj", "{DC555890-7815-4E06-8C2F-F047B8824DDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7E1C55E6-E755-48B1-A29A-8FFD75F3C4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E1C55E6-E755-48B1-A29A-8FFD75F3C4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E1C55E6-E755-48B1-A29A-8FFD75F3C4B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B9B6723-F0FD-4045-B546-DF26923982B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B9B6723-F0FD-4045-B546-DF26923982B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B9B6723-F0FD-4045-B546-DF26923982B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B9B6723-F0FD-4045-B546-DF26923982B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC555890-7815-4E06-8C2F-F047B8824DDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC555890-7815-4E06-8C2F-F047B8824DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC555890-7815-4E06-8C2F-F047B8824DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC555890-7815-4E06-8C2F-F047B8824DDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
