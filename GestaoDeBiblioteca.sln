@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceUsuario", "Interfa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosBiblioteca", "UsuariosBiblioteca\UsuariosBiblioteca.csproj", "{4B9B6723-F0FD-4045-B546-DF26923982B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcervoLivro", "AcervoLivro\AcervoLivro.csproj", "{DC555890-7815-4E06-8C2F-F047B8824DDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleDoAcervo", "AcervoLivro\ControleDoAcervo.csproj", "{DC555890-7815-4E06-8C2F-F047B8824DDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
