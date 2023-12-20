@@ -1,0 +1,130 @@
+[
+  {
+    "titulo": "Aventuras na Floresta",
+    "autor": "Maria Silva",
+    "anoPublicacao": 2010,
+    "exemplares": 5,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Mistérios da Cidade",
+    "autor": "João Pereira",
+    "anoPublicacao": 2015,
+    "exemplares": 0,
+    "setor": "Fora de estoque",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Segredos do Espaço",
+    "autor": "Carlos Souza",
+    "anoPublicacao": 2020,
+    "exemplares": 1,
+    "setor": "Restrito",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Romance Inesquecível",
+    "autor": "Ana Oliveira",
+    "anoPublicacao": 2018,
+    "exemplares": 3,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Ciência em Foco",
+    "autor": "Fernando Santos",
+    "anoPublicacao": 2022,
+    "exemplares": 0,
+    "setor": "Fora de estoque",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "A Arte da Guerra",
+    "autor": "Sun Tzu",
+    "anoPublicacao": -500,
+    "exemplares": 2,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Ficção Científica Incrível",
+    "autor": "Paulo Lima",
+    "anoPublicacao": 2019,
+    "exemplares": 1,
+    "setor": "Restrito",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Histórias de Fantasia",
+    "autor": "Mariana Costa",
+    "anoPublicacao": 2017,
+    "exemplares": 4,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Poesias Contemporâneas",
+    "autor": "Ricardo Oliveira",
+    "anoPublicacao": 2021,
+    "exemplares": 0,
+    "setor": "Fora de estoque",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "O Mundo dos Insetos",
+    "autor": "Luciana Fernandes",
+    "anoPublicacao": 2016,
+    "exemplares": 2,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Clean Code: Código Limpo",
+    "autor": "Robert C. Martin",
+    "anoPublicacao": 2008,
+    "exemplares": 3,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Aprendendo Python",
+    "autor": "Mark Lutz",
+    "anoPublicacao": 2013,
+    "exemplares": 2,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Inteligência Artificial: Uma Abordagem Moderna",
+    "autor": "Stuart Russell, Peter Norvig",
+    "anoPublicacao": 2015,
+    "exemplares": 1,
+    "setor": "Restrito",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "O Senhor dos Anéis",
+    "autor": "J.R.R. Tolkien",
+    "anoPublicacao": 1954,
+    "exemplares": 5,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "As Crônicas de Nárnia",
+    "autor": "C.S. Lewis",
+    "anoPublicacao": 1950,
+    "exemplares": 3,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "Harry Potter e a Pedra Filosofal",
+    "autor": "J.K. Rowling",
+    "anoPublicacao": 1997,
+    "exemplares": 4,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  }
+]
