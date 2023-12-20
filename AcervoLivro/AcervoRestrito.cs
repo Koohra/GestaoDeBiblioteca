@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ControleDoAcervo.Livros;
 
 namespace ControleDoAcervo
 {
-    internal class AcervoRestrito
+    internal static class AcervoRestrito
     {
+        public static List<Livro> Livros { get; private set; }
+        internal static void AdicionarLivro(Livro livro) { }
+
+        internal static void RemoverLivro(Livro livro) { }
     }
 }
