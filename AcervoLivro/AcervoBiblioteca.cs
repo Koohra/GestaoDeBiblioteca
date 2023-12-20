@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ControleDoAcervo.Livros;
+﻿using ControleDoAcervo.Livros;
 
 namespace ControleDoAcervo
 {
-    internal class AcervoBiblioteca
+    public static class AcervoBiblioteca
     {
-        public List<Livro> Livros {  get; private set; }
+        public static List<Livro> Livros {  get; private set; } = new();
 
-        public void AdicionarLivro(Livro livro)
+        public static void AdicionarLivro(Livro livro)
         {
             Livros.Add(livro);
             if (livro.SetorLocal == Acervo.Publico)
@@ -22,7 +17,7 @@ namespace ControleDoAcervo
                 ForaDeEstoque.AdicionarLivro(livro);
         }
 
-        public void RemoverLivro(Livro livro)
+        public static void RemoverLivro(Livro livro)
         {
             Livros.Remove(livro);
             if (livro.SetorLocal == Acervo.Publico)
@@ -33,12 +28,12 @@ namespace ControleDoAcervo
                 ForaDeEstoque.RemoverLivro(livro);
         }
 
-        public List<Livro> BuscarLivroPorTitulo (string titulo)
+        public static List<Livro> BuscarLivroPorTitulo (string titulo)
         {
             return Livros.Where(livro => livro.Titulo == titulo).ToList();
         }
 
-        public void VerificarDisponibilidade(Livro livro)
+        public static void VerificarDisponibilidade(Livro livro)
         {
             // não sei como implementar ainda
         }

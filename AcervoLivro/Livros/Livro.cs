@@ -30,18 +30,25 @@ namespace ControleDoAcervo.Livros
 
         public void VerificarSetor(Dictionary<EstadoExemplar, int> exemplares)
         {
-            int quantidadeTotalLivros = exemplares.Values.Count;
+            int quantidadeTotalLivros = exemplares.Values.Sum();
             foreach (var (estado, quantidade) in exemplares)
             {
                 if (estado == EstadoExemplar.Conservado && quantidade > 2)
+                {
                     SetorLocal = Acervo.Publico;
-                else if (estado == EstadoExemplar.Conservado && quantidade == 0)
-                    SetorLocal = Acervo.ForaDeEstoque;
+                    break;
+                }
                 else if (estado == EstadoExemplar.Conservado && quantidade == 1 ||
                          estado == EstadoExemplar.MalConservado && quantidade == quantidadeTotalLivros)
+                {
                     SetorLocal = Acervo.Restrito;
-                else
-                    throw new ArgumentException("Não foi possível definir um acervo para o livro.");
+                    break;
+                }
+                else if (estado == EstadoExemplar.Conservado && quantidade == 0)
+                {
+                    SetorLocal = Acervo.ForaDeEstoque;
+                    break;
+                }
             }
         }
 
