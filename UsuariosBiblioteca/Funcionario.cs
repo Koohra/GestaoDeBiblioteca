@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ControleDoAcervo;
+using ControleDoAcervo.Livros;
 
 namespace UsuariosBiblioteca
 {
@@ -17,31 +19,14 @@ namespace UsuariosBiblioteca
             Senha = senha;
         }
 
-        public void VerificarStatusLivro()
+        public void VerificarStatusLivro(Livro livro)
         {
-            Console.WriteLine("Digite nome do livro desejado:");
-            string busca = Console.ReadLine();
-            //essas coisas ainda não existem então editar para nomes certos quando existirem. Isso fica aqui ou em livros e só é puxado?
-            //bool encontrado = false;
-            //foreach (Livro livro in acervo)
-            //{
-            //    if (livro.nome.Contains(busca) == true)
-            //    {
-            //        Console.WriteLine($"{livro.nome} - {livro.status}");
-            //        encontrado = true;
-            //    }
-            //}
-            //if (encontrado == false)
-            //{
-            //    Console.WriteLine("Livro não encontrado.");
-            //}
-            //tratar para ser aceito tanto letras maiusculas quanto minusculas.
-
+            AcervoBiblioteca.VerificarDisponibilidade(livro);
         }
 
-        public void CadastrarLivro()
+        public void CadastrarLivro(string titulo, string autor, int anoPublicacao, Dictionary<ControleDoAcervo.Livros.EstadoExemplar, int> exemplares, ControleDoAcervo.Livros.Acervo setor)
         {
-            //chama função de livro
+            AcervoBiblioteca.AdicionarLivro(new ControleDoAcervo.Livros.Livro(titulo, autor, anoPublicacao, exemplares, setor));
         }
 
         public void AtualizarNumeroLivros()
