@@ -5,7 +5,7 @@
         "email": "joao.silva@example.com",
         "curso": "Engenharia da Computação",
         "anoDeIngresso": 2019,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20191022,
@@ -13,7 +13,7 @@
         "email": "maria.oliveira@example.com",
         "curso": "Administração",
         "anoDeIngresso": 2019,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20192103,
@@ -21,7 +21,7 @@
         "email": "pedro.santos@example.com",
         "curso": "Engenharia Elétrica",
         "anoDeIngresso": 2019,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20192216,
@@ -29,7 +29,7 @@
         "email": "ana.pereira@example.com",
         "curso": "Economia",
         "anoDeIngresso": 2019,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20201042,
@@ -37,7 +37,7 @@
         "email": "luiza.carvalho@example.com",
         "curso": "Ciência da Computação",
         "anoDeIngresso": 2020,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20201098,
@@ -45,7 +45,7 @@
         "email": "gabriel.martins@example.com",
         "curso": "Engenharia de Software",
         "anoDeIngresso": 2020,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20202057,
@@ -53,7 +53,7 @@
         "email": "julia.rodrigues@example.com",
         "curso": "Administração",
         "anoDeIngresso": 2020,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20202342,
@@ -61,7 +61,7 @@
         "email": "felipe.costa@example.com",
         "curso": "Economia",
         "anoDeIngresso": 2020,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20211104,
@@ -69,7 +69,7 @@
         "email": "rafaela.fernandes@example.com",
         "curso": "Ciência da Computação",
         "anoDeIngresso": 2021,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20211265,
@@ -77,7 +77,7 @@
         "email": "amanda.almeida@example.com",
         "curso": "Engenharia Elétrica",
         "anoDeIngresso": 2021,
-        "livroEmorestado": false
+        "livroEmprestado": false
     },
     {
         "matricula": 20212265,
@@ -85,6 +85,6 @@
         "email": "gustavo.gomes@example.com",
         "curso": "Engenharia da Computação",
         "anoDeIngresso": 2021,
-        "livroEmorestado": false
+        "livroEmprestado": false
     }
 ]

@@ -1,0 +1,92 @@
+[
+    {
+        "codigoCadastro": "p1001",
+        "nome": "Fernanda Santos",
+        "email": "fernanda.santos@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "18/12/2023",
+        "dataNovaAlteracaoSenha": "18/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1002",
+        "nome": "Ricardo Silva",
+        "email": "ricardo.silva@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "19/12/2023",
+        "dataNovaAlteracaoSenha": "19/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1003",
+        "nome": "Thiago Oliveira",
+        "email": "thiago.oliveira@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "20/12/2023",
+        "dataNovaAlteracaoSenha": "20/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1004",
+        "nome": "Eduarda Carvalho",
+        "email": "eduarda.carvalho@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "17/12/2023",
+        "dataNovaAlteracaoSenha": "17/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1005",
+        "nome": "Lucas Ferreira",
+        "email": "Lucas.Ferreira@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "15/12/2023",
+        "dataNovaAlteracaoSenha": "15/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1006",
+        "nome": "Matheus Barbosa",
+        "email": "matheus.barbosa@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "13/12/2023",
+        "dataNovaAlteracaoSenha": "13/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1007",
+        "nome": "Gabriel Viana",
+        "email": "gabriel.viana@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "18/12/2023",
+        "dataNovaAlteracaoSenha": "18/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1008",
+        "nome": "Helena Junqueira",
+        "email": "helena.junqueira@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "12/12/2023",
+        "dataNovaAlteracaoSenha": "12/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1009",
+        "nome": "Victor Dias",
+        "email": "victor.dias@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "21/12/2023",
+        "dataNovaAlteracaoSenha": "21/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    },
+    {
+        "codigoCadastro": "p1010",
+        "nome": "Marlon Fernandes",
+        "email": "marlon.fernandes@example.com",
+        "senhaPadrao": "123456@",
+        "ultimaAlteracaoDeSenha": "15/12/2023",
+        "dataNovaAlteracaoSenha": "15/01/2023",
+        "quantidadeDeLivrosEmprestados": 0
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "codigoCadastro": "b0101",
+        "nome": "Alice Silva",
+        "email": "alice.silva@example.com",
+        "login": "alice89",
+        "senha": "123456@",
+        "livroEmprestado": false
+    },
+    {
+        "codigoCadastro": "b0102",
+        "nome": "Bruno Santos",
+        "email": "bruno.santos@example.com",
+        "login": "bruno11",
+        "senha": "123456@",
+        "livroEmprestado": false
+    },
+    {
+        "codigoCadastro": "b0103",
+        "nome": "Calorina Oliveira",
+        "email": "carolina.oliveira@example.com",
+        "login": "carol_82",
+        "senha": "123456@",
+        "livroEmprestado": false
+    },
+    {
+        "codigoCadastro": "b0104",
+        "nome": "Diego Costa",
+        "email": "diego.costa@example.com",
+        "login": "diegoc",
+        "senha": "123456@",
+        "livroEmprestado": false
+    },
+    {
+        "codigoCadastro": "b0105",
+        "nome": "Eduarda Fernandes",
+        "email": "eduarda.fernandes@example.com",
+        "login": "eduarda_f",
+        "senha": "123456@",
+        "livroEmprestado": false
+    }
+]
