@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Text.Json;
 namespace ControleDoAcervo.Livros
 {
@@ -21,11 +22,6 @@ namespace ControleDoAcervo.Livros
             VerificarSetor(exemplares);
             // não sei se precisa setar no construtor porque isso pode ser feito automatico a depender de exemplares
             ListaDeReserva = new List<string>();
-        }
-
-        public void Disponivel()
-        {
-            // não sei se precisa ter esse método
         }
 
         public void VerificarSetor(Dictionary<EstadoExemplar, int> exemplares)
@@ -55,7 +51,39 @@ namespace ControleDoAcervo.Livros
         public void AtualizarExemplares(Dictionary<EstadoExemplar, int> exemplares) 
         {
             Exemplares = exemplares;
-            VerificarSetor(exemplares);
+            VerificarSetor(Exemplares);
+        }
+
+        public void AdicionarExemplar(EstadoExemplar estado, int quantidade)
+        {
+            if (Exemplares.ContainsKey(estado))
+                Exemplares[estado] += quantidade;
+            else
+            {
+                bool deuCerto = Exemplares.TryAdd(estado, quantidade);
+                if (!deuCerto)
+                    throw new ArgumentException("Não foi possível adicionar exemplar.");
+            }
+
+            VerificarSetor(Exemplares);
+        }
+
+        public void RemoverExemplar(EstadoExemplar estado, int quantidade)
+        {
+            if (Exemplares.ContainsKey(estado))
+                Exemplares[estado] -= quantidade;
+            else
+                throw new ArgumentException("Não existe um exemplar neste estado.");
+
+            VerificarSetor(Exemplares);
+        }
+
+        public void ExibirInformacoes()
+        {
+            Console.WriteLine($"Título: {Titulo}");
+            Console.WriteLine($"Autor: {Autor}");
+            Console.WriteLine($"Ano de publicação: {AnoPublicacao}");
+            Console.WriteLine($"Setor / Acervo: {SetorLocal}");
         }
 
         public void ConverterObjetoParaJson(Livro livro)

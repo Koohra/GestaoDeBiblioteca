@@ -2,7 +2,7 @@
 
 namespace ControleDoAcervo
 {
-    public static class AcervoBiblioteca
+    public class AcervoBiblioteca: IBuscarLivro
     {
         public static List<Livro> Livros {  get; private set; } = new();
 
@@ -28,14 +28,14 @@ namespace ControleDoAcervo
                 ForaDeEstoque.RemoverLivro(livro);
         }
 
-        public static List<Livro> BuscarLivroPorTitulo (string titulo)
+        public List<Livro> BuscarLivroPorTitulo (string titulo)
         {
             return Livros.Where(livro => livro.Titulo == titulo).ToList();
         }
 
         public static void VerificarDisponibilidade(Livro livro)
         {
-            // não sei como implementar ainda
+            // pensando que pode ser uma interface das classes filhas
         }
     }
 }
