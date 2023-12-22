@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using System.Text.Json;
+﻿using System.Text.Json;
 namespace ControleDoAcervo.Livros
 {
     public class Livro
@@ -11,20 +9,18 @@ namespace ControleDoAcervo.Livros
         public Dictionary<EstadoExemplar, int> Exemplares { get; private set; }
         public Acervo SetorLocal { get; private set; }
         public List<string> ListaDeReserva { get; private set; }
-        // provavelmente em vez de list de string vai ser list de usuario
 
-        public Livro(string titulo, string autor, int anoPublicacao, Dictionary<EstadoExemplar, int> exemplares, Acervo setor)
+        public Livro(string titulo, string autor, int anoPublicacao, Dictionary<EstadoExemplar, int> exemplares)
         {
             Titulo = titulo;
             Autor = autor;
             AnoPublicacao = anoPublicacao;
             Exemplares = exemplares;
             VerificarSetor(exemplares);
-            // não sei se precisa setar no construtor porque isso pode ser feito automatico a depender de exemplares
             ListaDeReserva = new List<string>();
         }
 
-        public void VerificarSetor(Dictionary<EstadoExemplar, int> exemplares)
+        private void VerificarSetor(Dictionary<EstadoExemplar, int> exemplares)
         {
             int quantidadeTotalLivros = exemplares.Values.Sum();
             foreach (var (estado, quantidade) in exemplares)
@@ -70,10 +66,10 @@ namespace ControleDoAcervo.Livros
 
         public void RemoverExemplar(EstadoExemplar estado, int quantidade)
         {
-            if (Exemplares.ContainsKey(estado))
+            if (Exemplares.ContainsKey(estado) && Exemplares[estado] >= quantidade)
                 Exemplares[estado] -= quantidade;
             else
-                throw new ArgumentException("Não existe um exemplar neste estado.");
+                throw new ArgumentException("Não existe a quantidade de exemplares neste estado deste livro.");
 
             VerificarSetor(Exemplares);
         }
