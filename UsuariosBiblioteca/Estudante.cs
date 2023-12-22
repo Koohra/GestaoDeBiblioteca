@@ -8,5 +8,15 @@ namespace UsuariosBiblioteca
 {
     internal class Estudante
     {
+
+
+        "matricula": 20212265,
+        "nome": "Gustavo Gomes",
+        "email": "gustavo.gomes@example.com",
+        "curso": "Engenharia da Computação",
+        "anoDeIngresso": 2021,
+        "livroEmprestado": false
+
+
     }
 }

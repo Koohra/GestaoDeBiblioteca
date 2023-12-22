@@ -126,5 +126,174 @@
     "exemplares": 4,
     "setor": "público",
     "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "O Grande Gatsby",
+    "autor": "F. Scott Fitzgerald",
+    "anoPublicacao": 1925,
+    "exemplares": 5,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Iracema",
+    "autor": "JOSÉ DE ALENCAR",
+    "anoPublicacao": 1865,
+    "exemplares": 4,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Mulherzinhas",
+    "autor": "Louisa May Alcott",
+    "anoPublicacao": 1868,
+    "exemplares": 3,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Divina Comédia",
+    "autor": "Dante Alighieri",
+    "anoPublicacao": 1472,
+    "exemplares": 2,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "O Cortiço",
+    "autor": "Aluísio Azevedo",
+    "anoPublicacao": 1890,
+    "exemplares": 4,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Vidas Secas",
+    "autor": "Graciliano Ramos",
+    "anoPublicacao": 1938,
+    "exemplares": 3,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Capitães da Areia",
+    "autor": "Jorge Leal Amado de Faria",
+    "anoPublicacao": 1937,
+    "exemplares": 3,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Dom Casmurro",
+    "autor": "Machado de Assis",
+    "anoPublicacao": 1899,
+    "exemplares": 1,
+    "setor": "Restrito",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "O Pequeno Príncipe",
+    "autor": "Antoine de Saint-Exupéry",
+    "anoPublicacao": 1943,
+    "exemplares": 5,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Como as democracias morrem",
+    "autor": "Steven Levitsky",
+    "anoPublicacao": 2018,
+    "exemplares": 4,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "anoPublicacao": 1949,
+    "exemplares": 2,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "O Silêncio dos Inocentes",
+    "autor": "Thomas Harris",
+    "anoPublicacao": 1988,
+    "exemplares": 1,
+    "setor": "Restrito",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Orgulho e Preconceito",
+    "autor": "Jane Austen",
+    "anoPublicacao": 1813,
+    "exemplares": 1,
+    "setor": "Restrito",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "O Conde de Monte Cristo",
+    "autor": "Alexandre Dumas, pai e Auguste Maquet",
+    "anoPublicacao": 1844,
+    "exemplares": 4,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Eu, Robô",
+    "autor": "Isaac Asimov",
+    "anoPublicacao": 1950,
+    "exemplares": 3,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+  {
+    "titulo": "A Redoma de Vidro",
+    "autor": "Sylvia Plath",
+    "anoPublicacao": 1963,
+    "exemplares": 1,
+    "setor": "Restrito",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Em Busca do Tempo Perdido",
+    "autor": "Marcel Proust",
+    "anoPublicacao": 1914,
+    "exemplares": 1,
+    "setor": "Restrito",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "Morte em Veneza",
+    "autor": "Thomas Mann",
+    "anoPublicacao": 1929,
+    "exemplares": 3,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
+  },
+
+  {
+    "titulo": "O Cristo Cigano",
+    "autor": "Sophia de Mello Breyner Andresen",
+    "anoPublicacao": 1961,
+    "exemplares": 2,
+    "setor": "público",
+    "listaDeReserva": "sem lista de espera"
   }
+
 ]
