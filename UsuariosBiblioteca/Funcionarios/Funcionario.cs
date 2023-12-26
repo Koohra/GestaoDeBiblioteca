@@ -8,12 +8,14 @@ namespace UsuariosBiblioteca.Funcionarios
         public string Nome { get; set; }
         public string Email { get; set; }
         private string Senha { get; set; }
+        public Cargos Cargo { get; set; } 
 
-        public Funcionario(string nome, string email, string senha)
+        public Funcionario(string nome, string email, string senha, Cargos cargo)
         {
             Nome = nome;
             Email = email;
             Senha = senha;
+            Cargo = cargo;
         }
 
         public void VerificarStatusLivro(Livro livro)

@@ -5,6 +5,7 @@
         "email": "alice.silva@example.com",
         "login": "alice89",
         "senha": "123456@",
+        "cargo": "Atendente",
         "livroEmprestado": false
     },
     {
@@ -13,6 +14,7 @@
         "email": "bruno.santos@example.com",
         "login": "bruno11",
         "senha": "123456@",
+        "cargo": "Atendente",
         "livroEmprestado": false
     },
     {
@@ -21,6 +23,7 @@
         "email": "carolina.oliveira@example.com",
         "login": "carol_82",
         "senha": "123456@",
+        "cargo": "Bibliotecario",
         "livroEmprestado": false
     },
     {
@@ -29,6 +32,7 @@
         "email": "diego.costa@example.com",
         "login": "diegoc",
         "senha": "123456@",
+        "cargo": "Bibliotecario",
         "livroEmprestado": false
     },
     {
@@ -37,6 +41,7 @@
         "email": "eduarda.fernandes@example.com",
         "login": "eduarda_f",
         "senha": "123456@",
+        "cargo": "Diretor",
         "livroEmprestado": false
     }
 ]
