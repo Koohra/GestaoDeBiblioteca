@@ -13,7 +13,7 @@ namespace SistemaBiblioteca.Dados
         public string nomeArquivo(string nomeArquivo)
         {
             string arquivoJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", nomeArquivo);
-            return arquivoJson; ;
+            return arquivoJson; 
         }
    
         public void crudEstudante()
@@ -49,9 +49,9 @@ namespace SistemaBiblioteca.Dados
  /*
     public class JsonCrud
     {
-        public void DetalhesdoUsuario(string arquivoJson)
+        public void DetalhesdoUsuario(string Caminho)
         {
-            var json = File.ReadAllText(arquivoJson);
+            var json = File.ReadAllText(Caminho);
             try
             {
                 var jObject = JObject.Parse(json);
@@ -83,7 +83,7 @@ namespace SistemaBiblioteca.Dados
             }
         }
         //incluir empresa
-        public void AdicionarEmpresa(string arquivoJson)
+        public void AdicionarEmpresa(string Caminho)
         {
             WriteLine("Informe o Id da empresa : ");
             var empresaId = Console.ReadLine();
@@ -92,14 +92,14 @@ namespace SistemaBiblioteca.Dados
             var novaEmpresaMembro = "{ 'empresaid': " + empresaId + ", 'empresanome': '" + nomeEmpresa + "'}";
             try
             {
-                var json = File.ReadAllText(arquivoJson);
+                var json = File.ReadAllText(Caminho);
                 var jsonObj = JObject.Parse(json);
                 var arrayExperiencias = jsonObj.GetValue("experiencias") as JArray;
                 var novaEmpresa = JObject.Parse(novaEmpresaMembro);
                 arrayExperiencias.Add(novaEmpresa);
                 jsonObj["experiencias"] = arrayExperiencias;
                 string novoJsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
-                File.WriteAllText(arquivoJson, novoJsonResult);
+                File.WriteAllText(Caminho, novoJsonResult);
             }
             catch (Exception ex)
             {
@@ -107,9 +107,9 @@ namespace SistemaBiblioteca.Dados
             }
         }
         //deletar empresa
-        public void DeletarEmpresa(string arquivoJson)
+        public void DeletarEmpresa(string Caminho)
         {
-            var json = File.ReadAllText(arquivoJson);
+            var json = File.ReadAllText(Caminho);
             try
             {
                 var jObject = JObject.Parse(json);
@@ -122,12 +122,12 @@ namespace SistemaBiblioteca.Dados
                     var empresaADeletar = arrayExperiencias.FirstOrDefault(obj => obj["empresaid"].Value<int>() == empresaId);
                     arrayExperiencias.Remove(empresaADeletar);
                     string saida = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(arquivoJson, saida);
+                    File.WriteAllText(Caminho, saida);
                 }
                 else
                 {
                     Write("O ID da empresa é inválido, tente novamente!");
-                    AtualizarEmpresa(arquivoJson);
+                    AtualizarEmpresa(Caminho);
                 }
             }
             catch (Exception)
@@ -136,9 +136,9 @@ namespace SistemaBiblioteca.Dados
             }
         }
         //atualizar empresa
-        public void AtualizarEmpresa(string arquivoJson)
+        public void AtualizarEmpresa(string Caminho)
         {
-            string json = File.ReadAllText(arquivoJson);
+            string json = File.ReadAllText(Caminho);
             try
             {
                 var jObject = JObject.Parse(json);
@@ -156,12 +156,12 @@ namespace SistemaBiblioteca.Dados
                     }
                     jObject["experiencias"] = arrayExperiencias;
                     string saida = Newtonsoft.Json.JsonConvert.SerializeObject(jObject, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(arquivoJson, saida);
+                    File.WriteAllText(Caminho, saida);
                 }
                 else
                 {
                     Write("O ID da empresa é inválido, tente novamente!");
-                    AtualizarEmpresa(arquivoJson);
+                    AtualizarEmpresa(Caminho);
                 }
             }
             catch (Exception ex)

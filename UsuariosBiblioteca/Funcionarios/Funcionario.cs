@@ -3,19 +3,23 @@ using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Funcionarios
 {
-    internal abstract class Funcionario : IUsuario, ISenha
+    public class Funcionario : IUsuario, ISenha
     {
+        public string CodigoCadastro { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
-        private string Senha { get; set; }
         public Cargos Cargo { get; set; } 
+        private string Senha { get; set; }
+        
 
-        public Funcionario(string nome, string email, string senha, Cargos cargo)
+        public Funcionario(string codigoCadastro, string nome, string email, Cargos cargo, string senha)
         {
+            CodigoCadastro = codigoCadastro;
             Nome = nome;
             Email = email;
-            Senha = senha;
             Cargo = cargo;
+            Senha = senha;
+            
         }
 
         public void VerificarStatusLivro(Livro livro)
