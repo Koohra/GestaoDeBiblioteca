@@ -3,6 +3,8 @@ namespace ControleDoAcervo.Livros
 {
     public class Livro
     {
+        private static int contadorId = 0;
+        public int Id { get; private set; }
         public string Titulo { get; private set; }
         public string Autor { get; private set; }
         public int AnoPublicacao { get; private set; }
@@ -12,6 +14,7 @@ namespace ControleDoAcervo.Livros
 
         public Livro(string titulo, string autor, int anoPublicacao, Dictionary<EstadoExemplar, int> exemplares)
         {
+            Id = contadorId++;
             Titulo = titulo;
             Autor = autor;
             AnoPublicacao = anoPublicacao;
@@ -76,6 +79,7 @@ namespace ControleDoAcervo.Livros
 
         public void ExibirInformacoes()
         {
+            Console.WriteLine($"ID: {Id}");
             Console.WriteLine($"Título: {Titulo}");
             Console.WriteLine($"Autor: {Autor}");
             Console.WriteLine($"Ano de publicação: {AnoPublicacao}");
