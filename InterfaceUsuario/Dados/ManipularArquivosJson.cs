@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿ /*
+using Newtonsoft.Json.Linq;
 namespace SistemaBiblioteca.Dados
 {
     internal class ManipularArquivosJson
@@ -20,33 +15,15 @@ namespace SistemaBiblioteca.Dados
         {
             string arquivoJson = nomeArquivo("ListaDeEstudantes.json");
 
-            var json = File.ReadAllText(arquivoJson);
-            try
-            {
-                var jObject = JObject.Parse(json);
-                if (jObject != null)
-                {
-                    // Mudar para Especifico ***********
-                    //WriteLine("ID :" + jObject["id"].ToString());
-                    //WriteLine("Nome :" + jObject["nome"].ToString());
-                    //var endereco = jObject["endereco"];
-                    //WriteLine("Rua :" + endereco["rua"].ToString());
-                    //WriteLine("Cidade :" + endereco["cidade"].ToString());
-                    //WriteLine("Cep :" + endereco["cep"]);
-                  
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+        public void CriarLivro()
+        {
+
         }
 
     }
 
     }
 
- /*
     public class JsonCrud
     {
         public void DetalhesdoUsuario(string Caminho)

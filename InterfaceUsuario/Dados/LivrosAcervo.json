@@ -1,299 +1,47 @@
 [
   {
-    "titulo": "Aventuras na Floresta",
-    "autor": "Maria Silva",
-    "anoPublicacao": 2010,
-    "exemplares": 5,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
+    "Id": 0,
+    "Titulo": "O ladrão de raios",
+    "Autor": "Rick Riordan",
+    "AnoPublicacao": 2010,
+    "Exemplares": {
+      "Perdido": 1,
+      "TotalmenteDanificado": 3,
+      "MalConservado": 4,
+      "Emprestado": 2,
+      "Conservado": 0
+    },
+    "SetorLocal": 0,
+    "ListaDeReserva": []
   },
   {
-    "titulo": "Mistérios da Cidade",
-    "autor": "João Pereira",
-    "anoPublicacao": 2015,
-    "exemplares": 0,
-    "setor": "Fora de estoque",
-    "listaDeReserva": "sem lista de espera"
+    "Id": 1,
+    "Titulo": "O mar de monstros",
+    "Autor": "Rick Riordan",
+    "AnoPublicacao": 2011,
+    "Exemplares": {
+      "Perdido": 1,
+      "TotalmenteDanificado": 3,
+      "MalConservado": 4,
+      "Emprestado": 2,
+      "Conservado": 0
+    },
+    "SetorLocal": 0,
+    "ListaDeReserva": []
   },
   {
-    "titulo": "Segredos do Espaço",
-    "autor": "Carlos Souza",
-    "anoPublicacao": 2020,
-    "exemplares": 1,
-    "setor": "Restrito",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Romance Inesquecível",
-    "autor": "Ana Oliveira",
-    "anoPublicacao": 2018,
-    "exemplares": 3,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Ciência em Foco",
-    "autor": "Fernando Santos",
-    "anoPublicacao": 2022,
-    "exemplares": 0,
-    "setor": "Fora de estoque",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "A Arte da Guerra",
-    "autor": "Sun Tzu",
-    "anoPublicacao": -500,
-    "exemplares": 2,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Ficção Científica Incrível",
-    "autor": "Paulo Lima",
-    "anoPublicacao": 2019,
-    "exemplares": 1,
-    "setor": "Restrito",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Histórias de Fantasia",
-    "autor": "Mariana Costa",
-    "anoPublicacao": 2017,
-    "exemplares": 4,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Poesias Contemporâneas",
-    "autor": "Ricardo Oliveira",
-    "anoPublicacao": 2021,
-    "exemplares": 0,
-    "setor": "Fora de estoque",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "O Mundo dos Insetos",
-    "autor": "Luciana Fernandes",
-    "anoPublicacao": 2016,
-    "exemplares": 2,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Clean Code: Código Limpo",
-    "autor": "Robert C. Martin",
-    "anoPublicacao": 2008,
-    "exemplares": 3,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Aprendendo Python",
-    "autor": "Mark Lutz",
-    "anoPublicacao": 2013,
-    "exemplares": 2,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Inteligência Artificial: Uma Abordagem Moderna",
-    "autor": "Stuart Russell, Peter Norvig",
-    "anoPublicacao": 2015,
-    "exemplares": 1,
-    "setor": "Restrito",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "O Senhor dos Anéis",
-    "autor": "J.R.R. Tolkien",
-    "anoPublicacao": 1954,
-    "exemplares": 5,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "As Crônicas de Nárnia",
-    "autor": "C.S. Lewis",
-    "anoPublicacao": 1950,
-    "exemplares": 3,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "Harry Potter e a Pedra Filosofal",
-    "autor": "J.K. Rowling",
-    "anoPublicacao": 1997,
-    "exemplares": 4,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "O Grande Gatsby",
-    "autor": "F. Scott Fitzgerald",
-    "anoPublicacao": 1925,
-    "exemplares": 5,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Iracema",
-    "autor": "JOSÉ DE ALENCAR",
-    "anoPublicacao": 1865,
-    "exemplares": 4,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Mulherzinhas",
-    "autor": "Louisa May Alcott",
-    "anoPublicacao": 1868,
-    "exemplares": 3,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Divina Comédia",
-    "autor": "Dante Alighieri",
-    "anoPublicacao": 1472,
-    "exemplares": 2,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "O Cortiço",
-    "autor": "Aluísio Azevedo",
-    "anoPublicacao": 1890,
-    "exemplares": 4,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Vidas Secas",
-    "autor": "Graciliano Ramos",
-    "anoPublicacao": 1938,
-    "exemplares": 3,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Capitães da Areia",
-    "autor": "Jorge Leal Amado de Faria",
-    "anoPublicacao": 1937,
-    "exemplares": 3,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Dom Casmurro",
-    "autor": "Machado de Assis",
-    "anoPublicacao": 1899,
-    "exemplares": 1,
-    "setor": "Restrito",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "O Pequeno Príncipe",
-    "autor": "Antoine de Saint-Exupéry",
-    "anoPublicacao": 1943,
-    "exemplares": 5,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Como as democracias morrem",
-    "autor": "Steven Levitsky",
-    "anoPublicacao": 2018,
-    "exemplares": 4,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "1984",
-    "autor": "George Orwell",
-    "anoPublicacao": 1949,
-    "exemplares": 2,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "O Silêncio dos Inocentes",
-    "autor": "Thomas Harris",
-    "anoPublicacao": 1988,
-    "exemplares": 1,
-    "setor": "Restrito",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Orgulho e Preconceito",
-    "autor": "Jane Austen",
-    "anoPublicacao": 1813,
-    "exemplares": 1,
-    "setor": "Restrito",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "O Conde de Monte Cristo",
-    "autor": "Alexandre Dumas, pai e Auguste Maquet",
-    "anoPublicacao": 1844,
-    "exemplares": 4,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Eu, Robô",
-    "autor": "Isaac Asimov",
-    "anoPublicacao": 1950,
-    "exemplares": 3,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-  {
-    "titulo": "A Redoma de Vidro",
-    "autor": "Sylvia Plath",
-    "anoPublicacao": 1963,
-    "exemplares": 1,
-    "setor": "Restrito",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Em Busca do Tempo Perdido",
-    "autor": "Marcel Proust",
-    "anoPublicacao": 1914,
-    "exemplares": 1,
-    "setor": "Restrito",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "Morte em Veneza",
-    "autor": "Thomas Mann",
-    "anoPublicacao": 1929,
-    "exemplares": 3,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
-  },
-
-  {
-    "titulo": "O Cristo Cigano",
-    "autor": "Sophia de Mello Breyner Andresen",
-    "anoPublicacao": 1961,
-    "exemplares": 2,
-    "setor": "público",
-    "listaDeReserva": "sem lista de espera"
+    "Id": 2,
+    "Titulo": "A maldição do titã",
+    "Autor": "Rick Riordan",
+    "AnoPublicacao": 2012,
+    "Exemplares": {
+      "Perdido": 1,
+      "TotalmenteDanificado": 3,
+      "MalConservado": 4,
+      "Emprestado": 2,
+      "Conservado": 0
+    },
+    "SetorLocal": 0,
+    "ListaDeReserva": []
   }
-
 ]
