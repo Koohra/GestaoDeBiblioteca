@@ -1,9 +1,10 @@
 ﻿using ControleDoAcervo.Livros;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace SistemaBiblioteca.Dados
 {
-    internal class LivroService
+    public class LivroService
     {
         public string Caminho { get; private set; }
         public List<Livro> Livros { get; private set; } = new List<Livro>();
@@ -17,21 +18,33 @@ namespace SistemaBiblioteca.Dados
             JArray livrosJSON = JArray.Parse(json);
 
             foreach (var livroJSON in livrosJSON)
-                Livros.Add(ConverterJsonParaLivro(livroJSON));
+            {
+                Livro? livro = JsonConvert.DeserializeObject<Livro?>(livroJSON.ToString());
+                if (livro != null) 
+                    Livros.Add(livro);
+            }
         }
 
+        public bool VerificaSeLivroJaExiste(Livro livro)
+        {
+            Livro? livroIgual = Livros.FirstOrDefault(l => l.Titulo == livro.Titulo && l.Autor == livro.Autor);
+            if (livroIgual != null)
+                return true;
+            return false;
+        }
         public void CriarLivro(Livro novoLivro)
         {
             try
             {
-                var json = File.ReadAllText(Caminho); 
-                var livros = JArray.Parse(json); 
-                var novoLivroJson = JObject.FromObject(novoLivro); 
-                livros.Add(novoLivroJson); 
-                Livros.Add(novoLivro);
-                File.WriteAllText(Caminho, livros.ToString());
-
-                Console.WriteLine("Livro criado com sucesso.");
+                if (VerificaSeLivroJaExiste(novoLivro))
+                    Console.WriteLine("Este livro já existe no sistema.");
+                else
+                {
+                    Livros.Add(novoLivro);
+                    var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
+                    File.WriteAllText(Caminho, json);
+                    Console.WriteLine("Livro criado com sucesso.");
+                }
             }
             catch (Exception e)
             {
@@ -43,9 +56,7 @@ namespace SistemaBiblioteca.Dados
         {
             try
             {
-                var json = File.ReadAllText(Caminho);
-                JArray livrosJSON = JArray.Parse(json);
-
+                Console.WriteLine("\nTodos os livros do Sistema de Biblioteca:");
                 foreach (var livro in Livros)
                 {
                     livro.ExibirInformacoes();
@@ -54,7 +65,7 @@ namespace SistemaBiblioteca.Dados
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Não foi possível ler todos os livrosJSON: {e}");
+                Console.WriteLine($"Não foi possível ler todos os livros do arquivo JSON: {e}");
             }
         }
 
@@ -62,12 +73,13 @@ namespace SistemaBiblioteca.Dados
         {
             try
             {
-                var json = File.ReadAllText(Caminho);
-                var livros = JArray.Parse(json);
-                var livro = livros.FirstOrDefault(livro => livro["ID"].Value<int>() == id);
+                Livro? livro = Livros.FirstOrDefault(livro => livro.Id == id);
 
                 if (livro != null)
-                    ExibirInformacoesDoLivro(livro);
+                {
+                    Console.WriteLine("Livro encontrado:\n");
+                    livro.ExibirInformacoes();
+                }
                 else
                     Console.WriteLine($"Livro com ID {id} não encontrado.");
             }
@@ -77,32 +89,37 @@ namespace SistemaBiblioteca.Dados
             }
         }
 
-        private void ExibirInformacoesDoLivro(JToken livro)
-        {
-            Console.WriteLine($"Título: {livro["Titulo"]}");
-            Console.WriteLine($"Autor: {livro["Autor"]}");
-            Console.WriteLine($"Ano de publicação: {livro["AnoPublicacao"]}");
-            Console.WriteLine($"Setor / Acervo: {livro["SetorLocal"]}");
-        }
-
         public void AlterarLivroPorID(int id, Livro livroAtualizado)
         {
             try
             {
-                var json = File.ReadAllText(Caminho);
-                var livros = JArray.Parse(json);
+                if (VerificaSeLivroJaExiste(livroAtualizado))
+                {
+                    Console.WriteLine("Livro com as mudanças solicitadas já existe no sistema.");
+                    return;
+                }
 
-                var livroParaAtualizar = livros.FirstOrDefault(l => l["ID"].Value<int>() == id);
-                Livro livro = ConverterJsonParaLivro(livroParaAtualizar);
+                Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
 
                 if (livroParaAtualizar != null)
                 {
-                    File.WriteAllText(Caminho, livros.ToString());
-                    livro.ExibirInformacoes();
+                    Livros.Remove(livroParaAtualizar);
+                    livroParaAtualizar.Titulo = livroAtualizado.Titulo;
+                    livroParaAtualizar.Autor = livroAtualizado.Autor;
+                    livroParaAtualizar.AnoPublicacao = livroAtualizado.AnoPublicacao;
+                    livroParaAtualizar.AtualizarExemplares(livroAtualizado.Exemplares);
+                    livroParaAtualizar.ListaDeReserva = livroAtualizado.ListaDeReserva;
+                    Livros.Add(livroParaAtualizar);
+
+                    var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
+                    File.WriteAllText(Caminho, json);
+
                     Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
+                    livroParaAtualizar.ExibirInformacoes();
+                } else
+                {
+                    Console.WriteLine($"Livro com ID {id} não foi encontrado.");
                 }
-                else
-                    Console.WriteLine($"Livro com ID {id} não encontrado.");
             }
             catch (Exception e)
             {
@@ -114,14 +131,12 @@ namespace SistemaBiblioteca.Dados
         {
             try
             {
-                var json = File.ReadAllText(Caminho);
-                var livros = JArray.Parse(json);
-
-                var livroParaDeletar = livros.FirstOrDefault(l => l["ID"].Value<int>() == id);
+                var livroParaDeletar = Livros.FirstOrDefault(livro => livro.Id == id);
                 if (livroParaDeletar != null)
                 {
-                    livros.Remove(livroParaDeletar);
-                    File.WriteAllText(Caminho, livros.ToString());
+                    Livros.Remove(livroParaDeletar);
+                    var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
+                    File.WriteAllText(Caminho, json);
                     Console.WriteLine($"Livro com ID {id} deletado com sucesso.");
                 }
                 else
@@ -131,27 +146,6 @@ namespace SistemaBiblioteca.Dados
             {
                 Console.WriteLine($"Não foi possível deletar o livro com ID {id}: {e}");
             }
-        }
-
-        private Livro ConverterJsonParaLivro(JToken livroJson)
-        {
-            string titulo = livroJson["Titulo"].ToString();
-            string autor = livroJson["Autor"].ToString();
-            int anoPublicacao = livroJson["AnoPublicacao"].Value<int>();
-
-            Dictionary<EstadoExemplar, int> exemplares = new Dictionary<EstadoExemplar, int>();
-
-            foreach (var estado in Enum.GetValues(typeof(EstadoExemplar)).Cast<EstadoExemplar>())
-            {
-                string estadoStr = estado.ToString();
-                if (livroJson["Exemplares"][estadoStr] != null)
-                    exemplares.Add(estado, livroJson["Exemplares"][estadoStr].Value<int>());
-                else
-                    exemplares.Add(estado, 0);
-            }
-
-            Livro livro = new(titulo, autor, anoPublicacao, exemplares);
-            return livro;
         }
     }
 }

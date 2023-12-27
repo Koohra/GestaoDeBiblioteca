@@ -5,12 +5,12 @@ namespace ControleDoAcervo.Livros
     {
         private static int contadorId = 0;
         public int Id { get; private set; }
-        public string Titulo { get; private set; }
-        public string Autor { get; private set; }
-        public int AnoPublicacao { get; private set; }
-        public Dictionary<EstadoExemplar, int> Exemplares { get; private set; }
+        public string Titulo { get; set; }
+        public string Autor { get; set; }
+        public int AnoPublicacao { get; set; }
+        public Dictionary<EstadoExemplar, int> Exemplares { get; set; }
         public Acervo SetorLocal { get; private set; }
-        public List<string> ListaDeReserva { get; private set; }
+        public List<string> ListaDeReserva { get; set; }
 
         public Livro(string titulo, string autor, int anoPublicacao, Dictionary<EstadoExemplar, int> exemplares)
         {
