@@ -34,11 +34,7 @@ public class ManipularJsonFuncionario
         {
             foreach (var funcionario in listaFuncionarios)
             {
-                Console.WriteLine("Codigo cadastro: " + funcionario.CodigoCadastro);
-                Console.WriteLine("Nome: " + funcionario.Nome);
-                Console.WriteLine("Email: " + funcionario.Email);
-                Console.WriteLine("Cargo: " + funcionario.Cargo);
-                Console.WriteLine();
+                funcionario.ExibirInformacoes();
             }
         }
         catch (Exception ex)

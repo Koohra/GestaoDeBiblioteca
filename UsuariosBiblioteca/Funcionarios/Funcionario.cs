@@ -21,6 +21,14 @@ namespace UsuariosBiblioteca.Funcionarios
             Senha = senha;
             
         }
+       public void ExibirInformacoes()
+        {
+            Console.WriteLine($"Codigo cadastro: {CodigoCadastro}");
+            Console.WriteLine($"Nome: {Nome}");
+            Console.WriteLine($"Email: {Email} ");
+            Console.WriteLine($"Cargo: {Cargo}");
+            Console.WriteLine();
+        }
 
         public void VerificarStatusLivro(Livro livro)
         {
