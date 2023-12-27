@@ -10,7 +10,7 @@ public class ManipularJsonFuncionario
 
     public ManipularJsonFuncionario()
     {
-        arquivoJson = arquivoJson.Replace("\\bin\\debug\\net8.0", "");
+        arquivoJson = arquivoJson.Replace("\\bin\\Debug\\net8.0", "");
         listaFuncionarios = InicializarFuncionarios();
     }
 
