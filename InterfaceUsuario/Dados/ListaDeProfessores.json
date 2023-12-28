@@ -1,30 +1,30 @@
 [
     {
-        "codigoCadastro": "p1001",
-        "nome": "Fernanda Santos",
-        "email": "fernanda.santos@example.com",
-        "senhaPadrao": "123456@",
-        "proximaAlteracaoDeSenha": "18/01/2023",
-        "quantidadeDeLivrosEmprestados": 0
+        "CodigoCadastro": "p1001",
+        "Nome": "Fernanda Santos",
+        "Email": "fernanda.santos@example.com",
+        "Senha": "123456@",
+        "ProximaAlteracaoDeSenha": "18/01/2023",
+        "QuantidadeDeLivrosEmprestados": 0
     },
     {
-        "codigoCadastro": "p1002",
-        "nome": "Ricardo Silva",
-        "email": "ricardo.silva@example.com",
-        "senhaPadrao": "123456@",
-        "proximaAlteracaoDeSenha": "19/01/2023",
-        "quantidadeDeLivrosEmprestados": 0
+        "CodigoCadastro": "p1002",
+        "Nome": "Ricardo Silva",
+        "Email": "ricardo.silva@example.com",
+        "Senha": "123456@",
+        "ProximaAlteracaoDeSenha": "19/01/2023",
+        "QuantidadeDeLivrosEmprestados": 0
     },
     {
-        "codigoCadastro": "p1003",
-        "nome": "Thiago Oliveira",
-        "email": "thiago.oliveira@example.com",
-        "senhaPadrao": "123456@",
-        "proximaAlteracaoDeSenha": "20/01/2023",
-        "quantidadeDeLivrosEmprestados": 0
+        "CodigoCadastro": "p1003",
+        "Nome": "Thiago Oliveira",
+        "Email": "thiago.oliveira@example.com",
+        "Senha": "abcde@",
+        "ProximaAlteracaoDeSenha": "28/01/2024",
+        "QuantidadeDeLivrosEmprestados": 0
     },
     {
-        "codigoCadastro": "p1004",
+        "codigoCadastro": "1004",
         "nome": "Eduarda Carvalho",
         "email": "eduarda.carvalho@example.com",
         "senhaPadrao": "123456@",
@@ -32,7 +32,7 @@
         "quantidadeDeLivrosEmprestados": 0
     },
     {
-        "codigoCadastro": "p1005",
+        "codigoCadastro": "1005",
         "nome": "Lucas Ferreira",
         "email": "Lucas.Ferreira@example.com",
         "senhaPadrao": "123456@",
@@ -40,7 +40,7 @@
         "quantidadeDeLivrosEmprestados": 0
     },
     {
-        "codigoCadastro": "p1006",
+        "codigoCadastro": "1006",
         "nome": "Matheus Barbosa",
         "email": "matheus.barbosa@example.com",
         "senhaPadrao": "123456@",
@@ -48,7 +48,7 @@
         "quantidadeDeLivrosEmprestados": 0
     },
     {
-        "codigoCadastro": "p1007",
+        "codigoCadastro": "1007",
         "nome": "Gabriel Viana",
         "email": "gabriel.viana@example.com",
         "senhaPadrao": "123456@",
