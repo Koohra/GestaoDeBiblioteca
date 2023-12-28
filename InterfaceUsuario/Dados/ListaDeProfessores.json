@@ -4,8 +4,7 @@
         "nome": "Fernanda Santos",
         "email": "fernanda.santos@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "18/12/2023",
-        "dataNovaAlteracaoSenha": "18/01/2023",
+        "proximaAlteracaoDeSenha": "18/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -13,8 +12,7 @@
         "nome": "Ricardo Silva",
         "email": "ricardo.silva@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "19/12/2023",
-        "dataNovaAlteracaoSenha": "19/01/2023",
+        "proximaAlteracaoDeSenha": "19/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -22,8 +20,7 @@
         "nome": "Thiago Oliveira",
         "email": "thiago.oliveira@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "20/12/2023",
-        "dataNovaAlteracaoSenha": "20/01/2023",
+        "proximaAlteracaoDeSenha": "20/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -31,8 +28,7 @@
         "nome": "Eduarda Carvalho",
         "email": "eduarda.carvalho@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "17/12/2023",
-        "dataNovaAlteracaoSenha": "17/01/2023",
+        "proximaAlteracaoDeSenha": "17/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -40,8 +36,7 @@
         "nome": "Lucas Ferreira",
         "email": "Lucas.Ferreira@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "15/12/2023",
-        "dataNovaAlteracaoSenha": "15/01/2023",
+        "proximaAlteracaoDeSenha": "15/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -49,8 +44,7 @@
         "nome": "Matheus Barbosa",
         "email": "matheus.barbosa@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "13/12/2023",
-        "dataNovaAlteracaoSenha": "13/01/2023",
+        "proximaAlteracaoDeSenha": "13/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -58,8 +52,7 @@
         "nome": "Gabriel Viana",
         "email": "gabriel.viana@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "18/12/2023",
-        "dataNovaAlteracaoSenha": "18/01/2023",
+        "proximaAlteracaoDeSenha": "18/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -67,8 +60,7 @@
         "nome": "Helena Junqueira",
         "email": "helena.junqueira@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "12/12/2023",
-        "dataNovaAlteracaoSenha": "12/01/2023",
+        "proximaAlteracaoDeSenha": "12/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -76,8 +68,7 @@
         "nome": "Victor Dias",
         "email": "victor.dias@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "21/12/2023",
-        "dataNovaAlteracaoSenha": "21/01/2023",
+        "proximaAlteracaoDeSenha": "21/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     },
     {
@@ -85,8 +76,7 @@
         "nome": "Marlon Fernandes",
         "email": "marlon.fernandes@example.com",
         "senhaPadrao": "123456@",
-        "ultimaAlteracaoDeSenha": "15/12/2023",
-        "dataNovaAlteracaoSenha": "15/01/2023",
+        "proximaAlteracaoDeSenha": "15/01/2023",
         "quantidadeDeLivrosEmprestados": 0
     }
 ]
