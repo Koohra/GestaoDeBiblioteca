@@ -24,6 +24,34 @@ namespace UsuariosBiblioteca.Estudantes
         public void PesquisarLivro(string livroBuscado)
         {
             throw new NotImplementedException();
+
+            /*string arquivoJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", "LivrosAcervo.json");
+
+            try
+            {
+                string json = File.ReadAllText(arquivoJson);
+                JArray livros = JArray.Parse(json);
+
+                foreach (var livro in livros)
+                {
+                    if (livro["titulo"].ToString().Equals(livroBuscado, StringComparison.OrdinalIgnoreCase))
+                    {
+                        // exibir livro, aonde está informação de disponível?
+                        WriteLine($"Título: {livro["titulo"]}");
+                        WriteLine($"Autor: {livro["autor"]}");
+                        WriteLine($"Ano de Publicação: {livro["anoPublicacao"]}");
+                        WriteLine($"Exemplares Disponíveis: {livro["exemplares"]}");
+                        WriteLine($"Setor: {livro["setor"]}");
+                        WriteLine($"Lista de Reserva: {livro["listaDeReserva"]}");
+                        return;
+                    }
+                }
+                WriteLine($"Livro '{livroBuscado}' não encontrado no acervo.");
+            }
+            catch (Exception ex)
+            {
+                WriteLine($"Erro ao pesquisar livro: {ex.Message}");
+            }*/
         }
     }
 }
