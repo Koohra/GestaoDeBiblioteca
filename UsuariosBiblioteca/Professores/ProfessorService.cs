@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace UsuariosBiblioteca.Professores
 {
-    internal class ProfessorService
+    public class ProfessorService
     {
         public string? Caminho { get; set; }
 
@@ -11,8 +11,8 @@ namespace UsuariosBiblioteca.Professores
 
         public ProfessorService(string arquivoJson = "ListaDeProfessores.json")
         {
-            Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", arquivoJson);
-            Caminho = Caminho.Replace("bin\\Debug\\net8.0\\", "");
+            Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Professores", arquivoJson);
+            Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0\\", "UsuariosBiblioteca\\");
         }
 
         public List<Professor>? LerJsonProfessores()
@@ -125,7 +125,7 @@ namespace UsuariosBiblioteca.Professores
 
             try
             {
-                if (File.Exists(Caminho))
+                if (File.Exists(Caminho)) // conferir se vai dar erro
                 {
                     // Serializa a lista de professores de volta para o formato JSON
                     string json = JsonConvert.SerializeObject(professores, Formatting.Indented);

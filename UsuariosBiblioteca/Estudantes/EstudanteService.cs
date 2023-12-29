@@ -2,14 +2,14 @@
 
 namespace UsuariosBiblioteca.Estudantes
 {
-    internal class EstudanteService
+    public class EstudanteService
     {
         public string? Caminho { get; set; }
 
         public EstudanteService(string? arquivoJson = "ListaDeEstudantes.json")
         {
-            Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", arquivoJson);
-            Caminho = Caminho.Replace("bin\\Debug\\net8.0\\", "");
+            Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Estudantes", arquivoJson);
+            Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "UsuariosBiblioteca");
         }
 
         public List<Estudante>? LerJsonEstudantes()

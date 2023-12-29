@@ -1,6 +1,7 @@
 ﻿using UsuariosBiblioteca.Professores;
 using UsuariosBiblioteca.Funcionarios;
 using ControleDoAcervo.Livros;
+using UsuariosBiblioteca.Estudantes;
 
 namespace SistemaBiblioteca
 {
@@ -9,7 +10,10 @@ namespace SistemaBiblioteca
         static void Main(string[] args)
         {
             Console.WriteLine("BEM VINDO À BIBLIOTECA");
-            FazerLogin.EscolherUsuario();
+            // FazerLogin.EscolherUsuario();
+
+            LivroService livroService = new LivroService();
+            livroService.LerLivros();
         }
     }
 }

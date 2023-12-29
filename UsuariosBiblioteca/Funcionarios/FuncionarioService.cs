@@ -5,12 +5,12 @@ using UsuariosBiblioteca.Funcionarios;
 
 public class FuncionarioService
 {
-    private string arquivoJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", "ListaDosFuncionarios.json");
+    private string arquivoJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Funcionarios", "ListaDosFuncionarios.json");
     private List<Funcionario> listaFuncionarios;
 
     public FuncionarioService()
     {
-        arquivoJson = arquivoJson.Replace("\\bin\\Debug\\net8.0", "");
+        arquivoJson = arquivoJson.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "UsuariosBiblioteca");
         listaFuncionarios = InicializarFuncionarios();
     }
 

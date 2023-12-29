@@ -2,7 +2,7 @@
 
 namespace UsuariosBiblioteca.Estudantes
 {
-    internal class Estudante : IUsuario
+    public class Estudante : IUsuario
     {
         public int Matricula { get; private set; }
         public string? Curso { get; set; }

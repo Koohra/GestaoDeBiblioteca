@@ -10,8 +10,8 @@ namespace ControleDoAcervo.Livros
 
         public LivroService(string? arquivo = "LivrosAcervo.json")
         {
-            Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", arquivo);
-            Caminho = Caminho.Replace("bin\\Debug\\net8.0\\", "");
+            Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Livros", arquivo);
+            Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "AcervoLivro");
 
             var json = File.ReadAllText(Caminho);
             JArray livrosJSON = JArray.Parse(json);
