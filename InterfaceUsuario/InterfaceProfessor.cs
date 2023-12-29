@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UsuariosBiblioteca.Professores;
 
-namespace UserInterface
+namespace SistemaBiblioteca
 {
     internal class InterfaceProfessor
     {

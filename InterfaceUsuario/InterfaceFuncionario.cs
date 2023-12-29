@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UsuariosBiblioteca.Funcionarios;
 
-namespace UserInterface
+namespace SistemaBiblioteca
 {
     internal class InterfaceFuncionario
     {

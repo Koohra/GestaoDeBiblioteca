@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UsuariosBiblioteca.Estudantes;
 
-namespace UserInterface
+namespace SistemaBiblioteca
 {
     internal static class FazerLogin
     {
-        internal static void EscolherUsuario ()
+        internal static void EscolherUsuario()
         {
             Console.WriteLine("Selecione login desejado:");
             Console.WriteLine("1- Estudante\n2- Professor\n3-Funcionário");
@@ -20,7 +20,7 @@ namespace UserInterface
                 Console.Write("Digite o número correspondente ao seu login");
             }
 
-                switch (usuario)
+            switch (usuario)
             {
                 case 1:
                     Console.WriteLine("\nLOGIN DE ESTUDANTE");

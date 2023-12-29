@@ -1,24 +1,22 @@
 ﻿using Newtonsoft.Json;
-using UsuariosBiblioteca.Estudantes;
 
-namespace SistemaBiblioteca.Dados
+namespace UsuariosBiblioteca.Estudantes
 {
-    internal class ManipularJsonEstudantes
+    internal class EstudanteService
     {
         public string? Caminho { get; set; }
 
-        public string EstudanteService(string arquivoJson = "ListaDeEstudantes.json")
+        public EstudanteService(string? arquivoJson = "ListaDeEstudantes.json")
         {
             Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", arquivoJson);
             Caminho = Caminho.Replace("bin\\Debug\\net8.0\\", "");
-            return Caminho;
         }
 
         public List<Estudante>? LerJsonEstudantes()
         {
             try
             {
-                if (File.Exists(EstudanteService()))
+                if (File.Exists(Caminho))
                 {
                     var conteudoJson = File.ReadAllText(Caminho);
                     List<Estudante>? estudantes = JsonConvert.DeserializeObject<List<Estudante>>(conteudoJson);

@@ -1,34 +1,31 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UsuariosBiblioteca.Professores;
 
-namespace SistemaBiblioteca.Dados
+namespace UsuariosBiblioteca.Professores
 {
-    internal class ManipularJasonProfessor
+    internal class ProfessorService
     {
         public string? Caminho { get; set; }
 
 
 
-        public string ProfessorService(string arquivoJson = "ListaDeProfessores.json")
+        public ProfessorService(string arquivoJson = "ListaDeProfessores.json")
         {
             Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", arquivoJson);
             Caminho = Caminho.Replace("bin\\Debug\\net8.0\\", "");
-            return Caminho;
-
         }
 
         public List<Professor>? LerJsonProfessores()
         {
             try
             {
-                if (File.Exists(ProfessorService()))
+                if (File.Exists(Caminho))
                 {
                     var conteudoJson = File.ReadAllText(Caminho);
                     List<Professor>? professores = JsonConvert.DeserializeObject<List<Professor>>(conteudoJson);
                     return professores;
                 }
-                
+
                 else
                 {
                     Console.WriteLine("O arquivo json não foi encontrado");
@@ -81,7 +78,7 @@ namespace SistemaBiblioteca.Dados
                 {
                     // Realiza as alterações nos campos desejados
                     professorIgual.QuantidadeDeLivrosEmprestados = professorIgual.QuantidadeDeLivrosEmprestados + 1;
-                    
+
                     SalvarJsonProfessores(professores);
                     Console.WriteLine($"O professor {professorIgual.Nome} está com" +
                         $" {professorIgual.QuantidadeDeLivrosEmprestados} livros emprestados.");

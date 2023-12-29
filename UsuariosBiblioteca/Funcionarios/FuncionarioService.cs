@@ -3,12 +3,12 @@ using Newtonsoft.Json.Linq;
 using UsuariosBiblioteca.Funcionarios;
 
 
-public class ManipularJsonFuncionario
+public class FuncionarioService
 {
     private string arquivoJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", "ListaDosFuncionarios.json");
     private List<Funcionario> listaFuncionarios;
 
-    public ManipularJsonFuncionario()
+    public FuncionarioService()
     {
         arquivoJson = arquivoJson.Replace("\\bin\\Debug\\net8.0", "");
         listaFuncionarios = InicializarFuncionarios();

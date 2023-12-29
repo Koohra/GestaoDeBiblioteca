@@ -1,8 +1,4 @@
-﻿using ControleDoAcervo.Livros;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-namespace SistemaBiblioteca.Dados
+﻿namespace ControleDoAcervo.Livros
 {
     public class LivroService
     {
@@ -20,7 +16,7 @@ namespace SistemaBiblioteca.Dados
             foreach (var livroJSON in livrosJSON)
             {
                 Livro? livro = JsonConvert.DeserializeObject<Livro?>(livroJSON.ToString());
-                if (livro != null) 
+                if (livro != null)
                     Livros.Add(livro);
             }
         }
@@ -116,7 +112,8 @@ namespace SistemaBiblioteca.Dados
 
                     Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
                     livroParaAtualizar.ExibirInformacoes();
-                } else
+                }
+                else
                 {
                     Console.WriteLine($"Livro com ID {id} não foi encontrado.");
                 }

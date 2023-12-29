@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UsuariosBiblioteca.Estudantes;
 
-namespace UserInterface
+namespace SistemaBiblioteca
 {
     internal static class InterfaceEstudante
     {

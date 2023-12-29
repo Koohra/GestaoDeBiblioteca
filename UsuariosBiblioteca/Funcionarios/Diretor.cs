@@ -22,7 +22,7 @@ namespace UsuariosBiblioteca.Funcionarios
             throw new NotImplementedException();
         }
         
-        public static void AdicionarFuncionario(ManipularJsonFuncionario manipularJson, Funcionario novoFuncionario)
+        public static void AdicionarFuncionario(FuncionarioService manipularJson, Funcionario novoFuncionario)
         {
             manipularJson.AdicionarNovoFuncionario(novoFuncionario);
         }

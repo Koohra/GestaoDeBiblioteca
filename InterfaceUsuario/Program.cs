@@ -1,6 +1,8 @@
-﻿using UserInterface;
+﻿using UsuariosBiblioteca.Professores;
+using UsuariosBiblioteca.Funcionarios;
+using ControleDoAcervo.Livros;
 
-namespace InterfaceUsuario
+namespace SistemaBiblioteca
 {
     internal class Program
     {
@@ -9,6 +11,5 @@ namespace InterfaceUsuario
             Console.WriteLine("BEM VINDO À BIBLIOTECA");
             FazerLogin.EscolherUsuario();
         }
-
     }
 }

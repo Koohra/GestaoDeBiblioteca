@@ -11,6 +11,8 @@ namespace UsuariosBiblioteca.Professores
         public string? ProximaAlteracaoDeSenha { get; set; }
         public int QuantidadeDeLivrosEmprestados { get; set; }
 
+        public Professor() { }
+
         public void Login()
         {
             throw new NotImplementedException();
