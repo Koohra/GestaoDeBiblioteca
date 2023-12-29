@@ -1,4 +1,7 @@
-﻿namespace ControleDoAcervo.Livros
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+namespace ControleDoAcervo.Livros
 {
     public class LivroService
     {
