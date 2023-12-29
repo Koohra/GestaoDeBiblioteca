@@ -1,17 +1,28 @@
 ﻿using ControleDoAcervo.Livros;
+using System.Text.Json.Serialization;
 using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Funcionarios
 {
-    public class Funcionario : IUsuario, ISenha
+    public class Funcionario : ISenha
     {
-        public string CodigoCadastro { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
+        public string? CodigoCadastro { get; set; }
+        public string? Nome { get; set; }
+        public string? Email { get; set; }
         public Cargos Cargo { get; set; } 
-        private string Senha { get; set; }
-        
+        public string? Senha { get; set; }
 
+
+        
+        public Funcionario(){}
+
+        public Funcionario(string codigoCadastro, string nome, string email, string senha)
+        {
+            CodigoCadastro = codigoCadastro;
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+        }
         public Funcionario(string codigoCadastro, string nome, string email, Cargos cargo, string senha)
         {
             CodigoCadastro = codigoCadastro;
@@ -19,9 +30,8 @@ namespace UsuariosBiblioteca.Funcionarios
             Email = email;
             Cargo = cargo;
             Senha = senha;
-            
         }
-       public void ExibirInformacoes()
+        public void ExibirInformacoes()
         {
             Console.WriteLine($"Codigo cadastro: {CodigoCadastro}");
             Console.WriteLine($"Nome: {Nome}");
@@ -33,11 +43,12 @@ namespace UsuariosBiblioteca.Funcionarios
         public void VerificarStatusLivro(Livro livro)
         {
             // AcervoBiblioteca.VerificarDisponibilidade(livro);
+            // Aguardando método estar pronto
         }
 
         public void CadastrarLivro(string titulo, string autor, int anoPublicacao, Dictionary<EstadoExemplar, int> exemplares)
         {
-            // AcervoBiblioteca.AdicionarLivro(new Livro(titulo, autor, anoPublicacao, exemplares));
+            
         }
 
         public void AtualizarNumeroLivros()
@@ -56,9 +67,18 @@ namespace UsuariosBiblioteca.Funcionarios
             
         }
 
-        public void Login()
+        public static Funcionario? Login(string codigoCadastro, string senha)
         {
-            throw new NotImplementedException();
+            FuncionarioService funcionarioService = new FuncionarioService();
+            List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
+            foreach (Funcionario funcionario in listaFuncionarios)
+            {
+                if (funcionario.CodigoCadastro == codigoCadastro && funcionario.Senha == senha)
+                {
+                    return funcionario;
+                }
+            }
+            return null;
         }
 
         public void ValidarSenha(string senha)

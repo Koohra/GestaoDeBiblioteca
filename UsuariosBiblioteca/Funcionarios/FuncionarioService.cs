@@ -14,6 +14,12 @@ public class FuncionarioService
         listaFuncionarios = InicializarFuncionarios();
     }
 
+    internal List<Funcionario> RetornarLista()
+    {
+        listaFuncionarios = InicializarFuncionarios();
+        return listaFuncionarios;
+    }
+
     private List<Funcionario> InicializarFuncionarios()
     {
         try

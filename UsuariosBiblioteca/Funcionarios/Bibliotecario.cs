@@ -2,7 +2,7 @@
 
 namespace UsuariosBiblioteca.Funcionarios
 {
-    internal class Bibliotecario : IUsuario
+    public class Bibliotecario : IUsuario
     {
         public string? Nome { get; set; }
         public string? Email { get; set; }

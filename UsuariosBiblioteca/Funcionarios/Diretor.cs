@@ -1,11 +1,14 @@
-﻿using UsuariosBiblioteca.Interfaces;
+﻿using Newtonsoft.Json;
+using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Funcionarios
 {
-    internal class Diretor : IUsuario
+    public class Diretor : Funcionario
     {
-        public string? Nome { get; set; }
-        public string? Email { get; set; }
+
+        public Diretor(string codigoCadastro, string nome, string email, string senha) : base(codigoCadastro, nome, email, senha) {
+            Cargo = Cargos.Diretor;
+        }
 
         public void Login()
         {
@@ -21,10 +24,11 @@ namespace UsuariosBiblioteca.Funcionarios
         {
             throw new NotImplementedException();
         }
-        
-        public static void AdicionarFuncionario(FuncionarioService manipularJson, Funcionario novoFuncionario)
+
+        public static void AdicionarFuncionario(FuncionarioService instanciaFuncionarioService, Funcionario novoFuncionario)
         {
-            manipularJson.AdicionarNovoFuncionario(novoFuncionario);
+            instanciaFuncionarioService.AdicionarNovoFuncionario(novoFuncionario);
         }
+
     }
 }

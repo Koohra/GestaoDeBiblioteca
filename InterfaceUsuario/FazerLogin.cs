@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UsuariosBiblioteca.Estudantes;
+using UsuariosBiblioteca.Funcionarios;
 
 namespace SistemaBiblioteca
 {
@@ -42,13 +43,32 @@ namespace SistemaBiblioteca
                     return;
                 case 3:
                     Console.WriteLine("\nLOGIN DE FUNCIONÁRIO");
-                    //Como passa um funcionario que pode ser qualquer um?
-                    //InterfaceProfessor.MenuFuncionario(); //passando um funcionario
+                    Console.WriteLine("Código de cadastro:");
+                    string codigoCadastro = Console.ReadLine()!;
+                    Console.WriteLine("Senha:");
+                    string senha = Console.ReadLine()!;
+                    Funcionario funcionario = Funcionario.Login(codigoCadastro, senha);
+
+                    Console.WriteLine($"Logado como {funcionario.Nome}");
+                    if (funcionario.Cargo == Cargos.Atendente)
+                    {
+                        Atendente atendente = InterfaceFuncionario.TransformarAtentende(funcionario);
+                        InterfaceFuncionario.MenuAtendente(atendente);
+                    } else if (funcionario.Cargo == Cargos.Bibliotecario)
+                    {
+                        //InterfaceFuncionario.MenuBibliotecario(funcionario);
+                    } else
+                    {
+                        Diretor diretor = InterfaceFuncionario.TransformarDiretor(funcionario);
+                        InterfaceFuncionario.MenuDiretor(diretor);
+                    }
+
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
                     return;
             }
         }
+
     }
 }

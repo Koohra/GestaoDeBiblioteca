@@ -10,10 +10,10 @@ namespace SistemaBiblioteca
         static void Main(string[] args)
         {
             Console.WriteLine("BEM VINDO À BIBLIOTECA");
-            // FazerLogin.EscolherUsuario();
+            FazerLogin.EscolherUsuario();
 
-            LivroService livroService = new LivroService();
-            livroService.LerLivros();
+            //LivroService livroService = new LivroService();
+            //livroService.LerLivros();
         }
     }
 }

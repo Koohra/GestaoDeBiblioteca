@@ -10,7 +10,7 @@ namespace SistemaBiblioteca
 {
     internal class InterfaceFuncionario
     {
-        internal static void MenuAtendente() //receber Atendente atendente
+        internal static void MenuAtendente(Atendente atendente)
         {
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("1- Liberar Empréstimo \n2- Verificar Livro \n3- Cadastrar Livro \n4- Atualizar Livro \n5- Atualizar dados de Usuário");
@@ -44,7 +44,7 @@ namespace SistemaBiblioteca
             }
         }
 
-        internal static void MenuDiretor() //receber Diretor diretor
+        internal static void MenuDiretor(Diretor diretor) //receber Diretor diretor
         {
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("\n1- Cadastrar funcionário \n2- Verificar Livro \n3- Cadastrar Livro \n4- Atualizar Livro");
@@ -58,7 +58,9 @@ namespace SistemaBiblioteca
             switch (acao)
             {
                 case 1:
-                    //diretor.AdicionarFuncionario();
+                    Funcionario funcionario = CriarFuncionario();
+                    FuncionarioService funcionarioService = new FuncionarioService();
+                    Diretor.AdicionarFuncionario(funcionarioService, funcionario);
                     return;
                 case 2:
                     //atendente.PesquisarLivro(); esta duplicado em funcionario e atendente
@@ -75,7 +77,7 @@ namespace SistemaBiblioteca
             }
         }
 
-        internal static void MenuBibliotecario() //receber Bibliotecario bibliotecario
+        internal static void MenuBibliotecario(Bibliotecario bibliotecario) //receber Bibliotecario bibliotecario
         {
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("1- Verificar Livro \n2- Cadastrar Livro \n3- Atualizar Livro");
@@ -101,6 +103,34 @@ namespace SistemaBiblioteca
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
                     return;
             }
+        }
+
+        internal static Funcionario CriarFuncionario()
+        {
+            Funcionario funcionario = new Funcionario("0002", "Carlos", "carlos@gmail.com", Cargos.Bibliotecario, "abc");
+            return funcionario;
+        }
+
+        public static Atendente TransformarAtentende(Funcionario funcionario)
+        {
+            string codigo = funcionario.CodigoCadastro;
+            string nome = funcionario.Nome;
+            string email = funcionario.Email;
+            string senha = funcionario.Senha;
+
+            Atendente atendente = new Atendente(codigo, nome, email, senha);
+            return atendente;
+        }
+
+        public static Diretor TransformarDiretor(Funcionario funcionario)
+        {
+            string codigo = funcionario.CodigoCadastro;
+            string nome = funcionario.Nome;
+            string email = funcionario.Email;
+            string senha = funcionario.Senha;
+
+            Diretor diretor = new Diretor(codigo, nome, email, senha);
+            return diretor;
         }
 
     }
