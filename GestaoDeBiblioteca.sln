@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuariosBiblioteca", "Usuar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleDoAcervo", "AcervoLivro\ControleDoAcervo.csproj", "{DC555890-7815-4E06-8C2F-F047B8824DDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{BA40A5F1-244C-4E30-8A33-26E4095E120C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{DC555890-7815-4E06-8C2F-F047B8824DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC555890-7815-4E06-8C2F-F047B8824DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC555890-7815-4E06-8C2F-F047B8824DDE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA40A5F1-244C-4E30-8A33-26E4095E120C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA40A5F1-244C-4E30-8A33-26E4095E120C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA40A5F1-244C-4E30-8A33-26E4095E120C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA40A5F1-244C-4E30-8A33-26E4095E120C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
