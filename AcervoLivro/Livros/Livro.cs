@@ -1,16 +1,17 @@
-﻿using System.Text.Json;
+﻿using ControleDoAcervo.Reservas;
+
 namespace ControleDoAcervo.Livros
 {
     public class Livro
     {
         private static int contadorId = 0;
         public int Id { get; private set; }
-        public string Titulo { get; set; }
-        public string Autor { get; set; }
-        public int AnoPublicacao { get; set; }
+        public string Titulo { get; internal set; }
+        public string Autor { get; internal set; }
+        public int AnoPublicacao { get; internal set; }
         public Dictionary<EstadoExemplar, int> Exemplares { get; set; }
-        public Acervo SetorLocal { get; private set; }
-        public List<string> ListaDeReserva { get; set; }
+        public Acervo Setor { get; internal set; }
+        public List<Reserva> Reservas { get; internal set; }
 
         public Livro(string titulo, string autor, int anoPublicacao, Dictionary<EstadoExemplar, int> exemplares)
         {
@@ -20,7 +21,7 @@ namespace ControleDoAcervo.Livros
             AnoPublicacao = anoPublicacao;
             Exemplares = exemplares;
             VerificarSetor(exemplares);
-            ListaDeReserva = new List<string>();
+            Reservas = new List<Reserva>();
         }
 
         private void VerificarSetor(Dictionary<EstadoExemplar, int> exemplares)
@@ -30,18 +31,18 @@ namespace ControleDoAcervo.Livros
             {
                 if (estado == EstadoExemplar.Conservado && quantidade > 2)
                 {
-                    SetorLocal = Acervo.Publico;
+                    Setor = Acervo.Publico;
                     break;
                 }
                 else if (estado == EstadoExemplar.Conservado && quantidade == 1 ||
                          estado == EstadoExemplar.MalConservado && quantidade == quantidadeTotalLivros)
                 {
-                    SetorLocal = Acervo.Restrito;
+                    Setor = Acervo.Restrito;
                     break;
                 }
                 else if (estado == EstadoExemplar.Conservado && quantidade == 0)
                 {
-                    SetorLocal = Acervo.ForaDeEstoque;
+                    Setor = Acervo.ForaDeEstoque;
                     break;
                 }
             }
@@ -77,42 +78,28 @@ namespace ControleDoAcervo.Livros
             VerificarSetor(Exemplares);
         }
 
+        public Reserva AdicionarReserva(string matricula, DateTime? dataReserva)
+        {
+            // verificar acervo, se usuario for estudante ou professor a reserva nao pode ser aceita
+            // se for possivel criar reserva 
+            // ordenar a lista de reservas primeiro por cargo do usuário, depois por data
+            //Reservas.OrderBy(reserva => reserva.CargoUsuario).ThenBy()
+            // retorna a reserva adicionada
+        }
+
+        public Reserva RemoverReserva()
+        {
+            // remover o primeiro da lista de reservas, porque ela já está ordenada
+            // retorna a reserva removida
+        }
+
         public void ExibirInformacoes()
         {
             Console.WriteLine($"ID: {Id}");
             Console.WriteLine($"Título: {Titulo}");
             Console.WriteLine($"Autor: {Autor}");
             Console.WriteLine($"Ano de publicação: {AnoPublicacao}");
-            Console.WriteLine($"Setor / Acervo: {SetorLocal}");
-        }
-
-        public void ConverterObjetoParaJson(Livro livro)
-        {
-            //string caminhoArquivoJson = * Adicionar o caminho do arquivo json dos livros.
-            // Serializa o Objeto para um json
-            string jsonString = JsonSerializer.Serialize(livro);
-            //try
-            //{
-            //    if (File.Exists(caminhoArquivoJson))
-            //    {
-            //        string existeJson = File.ReadAllText(caminhoArquivoJson);
-            //        var jsonArray = JsonDocument.Parse(existeJson).RootElement;
-
-            //        var AdicionarObjetoNoArray = JsonDocument.Parse(jsonString).RootElement;
-            //        jsonArray.Append(AdicionarObjetoNoArray);
-
-            //        File.WriteAllText(caminhoArquivoJson, jsonArray.ToString());
-            //    }
-            //    else
-            //    {
-            //        File.WriteAllText(caminhoArquivoJson, $"[{jsonString}]");
-            //    }
-            //    Console.WriteLine("Objeto adicionado ao arquivo JSON com sucesso.");
-            //}
-            //catch(Exception ex)
-            //{
-            //    Console.WriteLine($"Ocorreu um erro: {ex.Message}");
-            //}
+            Console.WriteLine($"Setor: {Setor}");
         }
     }
 }

@@ -51,7 +51,7 @@ namespace ControleDoAcervo.Livros
             }
         }
 
-        public void LerLivros()
+        public List<Livro> LerLivros()
         {
             try
             {
@@ -61,14 +61,16 @@ namespace ControleDoAcervo.Livros
                     livro.ExibirInformacoes();
                     Console.WriteLine();
                 }
+                return Livros;
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Não foi possível ler todos os livros do arquivo JSON: {e}");
+                return Livros;
             }
         }
 
-        public void LerLivroPorID(int id)
+        public Livro LerLivroPorID(int id)
         {
             try
             {
@@ -107,7 +109,7 @@ namespace ControleDoAcervo.Livros
                     livroParaAtualizar.Autor = livroAtualizado.Autor;
                     livroParaAtualizar.AnoPublicacao = livroAtualizado.AnoPublicacao;
                     livroParaAtualizar.AtualizarExemplares(livroAtualizado.Exemplares);
-                    livroParaAtualizar.ListaDeReserva = livroAtualizado.ListaDeReserva;
+                    livroParaAtualizar.Reservas = livroAtualizado.Reservas;
                     Livros.Add(livroParaAtualizar);
 
                     var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
