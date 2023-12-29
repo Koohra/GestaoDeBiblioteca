@@ -1,6 +1,4 @@
-﻿using UserInterface;
-
-namespace InterfaceUsuario
+﻿namespace UserInterface
 {
     internal class Program
     {
@@ -8,7 +6,7 @@ namespace InterfaceUsuario
         {
             Console.WriteLine("BEM VINDO À BIBLIOTECA");
             FazerLogin.EscolherUsuario();
-        }
 
+        }
     }
 }
