@@ -10,20 +10,6 @@ namespace UsuariosBiblioteca.Funcionarios
             Cargo = Cargos.Diretor;
         }
 
-        public void Login()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Logout()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PesquisarLivro(string livroBuscado)
-        {
-            throw new NotImplementedException();
-        }
 
         public static void AdicionarFuncionario(FuncionarioService instanciaFuncionarioService, Funcionario novoFuncionario)
         {

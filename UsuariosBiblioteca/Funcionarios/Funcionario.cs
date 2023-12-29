@@ -48,23 +48,17 @@ namespace UsuariosBiblioteca.Funcionarios
 
         public void CadastrarLivro(string titulo, string autor, int anoPublicacao, Dictionary<EstadoExemplar, int> exemplares)
         {
-            
+            // Aguardando método estar pronto
         }
 
         public void AtualizarNumeroLivros()
         {
-
-        }
-
-
-        public void Logout()
-        {
-            throw new NotImplementedException();
+            // Aguardando método estar pronto
         }
 
         public void PesquisarLivro(string livroBuscado)
         {
-            
+            // Aguardando método estar pronto
         }
 
         public static Funcionario? Login(string codigoCadastro, string senha)
@@ -81,9 +75,5 @@ namespace UsuariosBiblioteca.Funcionarios
             return null;
         }
 
-        public void ValidarSenha(string senha)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
