@@ -9,8 +9,10 @@ namespace SistemaBiblioteca
 {
     internal static class InterfaceEstudante
     {
-        internal static void MenuEstudante()
+        public static void MenuEstudante()
         {
+            Estudante estudante = new Estudante();
+
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("1- Pesquisar Livro\n2- Reservar Livro\n3- Logout");
 
@@ -23,13 +25,23 @@ namespace SistemaBiblioteca
             switch (acao)
             {
                 case 1:
-                    //Estudante.PesquisarLivro();
+                    Console.WriteLine("Digite o título do livro:");
+                    string livroBuscado = Console.ReadLine();
+
+                    if (!string.IsNullOrEmpty(livroBuscado))
+                    {
+                        estudante.PesquisarLivro(livroBuscado);
+                    }
+                    else
+                    {
+                        Console.WriteLine("O título do livro não pode ser vazio.");
+                    }
                     return;
                 case 2:
                     //Função de reservar livro;
                     return;
                 case 3:
-                    //Estudante.Logout();
+                    estudante.Logout();
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");

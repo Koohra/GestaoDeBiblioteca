@@ -25,15 +25,10 @@ namespace SistemaBiblioteca
             {
                 case 1:
                     Console.WriteLine("\nLOGIN DE ESTUDANTE");
-                    //Console.WriteLine("Insira seu número de matrícula:");
-                    //int matricula;
-                    //while (!int.TryParse(Console.ReadLine(), out matricula)) //tentar adicionar condição de n° de caracteres na matricula
-                    //{
-                    //    Console.Write("Número inválido, digite de novo: ");
-                    //}
-                    ////Estudante estudante = Estudante.Login(matricula);
-                    //Console.WriteLine($"Logado como ...");
-                    InterfaceEstudante.MenuEstudante(); //passando um estudante
+                    if (LoginEstudante())
+                    {
+                        InterfaceEstudante.MenuEstudante();
+                    }
                     return;
 
                 case 2:
@@ -69,6 +64,11 @@ namespace SistemaBiblioteca
                     return;
             }
         }
-
+        private static bool LoginEstudante()
+        {
+            Estudante estudante = new Estudante();
+            return estudante.Login();
+        }
+        
     }
 }

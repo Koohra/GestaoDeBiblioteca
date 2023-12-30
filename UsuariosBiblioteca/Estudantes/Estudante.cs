@@ -1,4 +1,5 @@
-﻿using UsuariosBiblioteca.Interfaces;
+﻿using ControleDoAcervo.Livros;
+using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Estudantes
 {
@@ -10,48 +11,94 @@ namespace UsuariosBiblioteca.Estudantes
         public bool LivroEmprestado { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
+        public object InterfaceEstudante { get; private set; }
 
-        public void Login()
+        public Estudante() { }
+
+        public bool Login()
         {
-            throw new NotImplementedException();
-        }
+            EstudanteService estudanteService = new EstudanteService();
+            List<Estudante> estudantes = estudanteService.LerJsonEstudantes() ?? new List<Estudante>();
 
-        public void Logout()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PesquisarLivro(string livroBuscado)
-        {
-            throw new NotImplementedException();
-
-            /*string arquivoJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dados", "LivrosAcervo.json");
-
-            try
+            while (true)
             {
-                string json = File.ReadAllText(arquivoJson);
-                JArray livros = JArray.Parse(json);
+                Console.WriteLine("Digite sua matrícula:");
 
-                foreach (var livro in livros)
+                if (int.TryParse(Console.ReadLine(), out int matricula))
                 {
-                    if (livro["titulo"].ToString().Equals(livroBuscado, StringComparison.OrdinalIgnoreCase))
+                    Estudante estudante = estudantes.FirstOrDefault(e => e.Matricula == matricula);
+
+                    if (estudante != null)
                     {
-                        // exibir livro, aonde está informação de disponível?
-                        WriteLine($"Título: {livro["titulo"]}");
-                        WriteLine($"Autor: {livro["autor"]}");
-                        WriteLine($"Ano de Publicação: {livro["anoPublicacao"]}");
-                        WriteLine($"Exemplares Disponíveis: {livro["exemplares"]}");
-                        WriteLine($"Setor: {livro["setor"]}");
-                        WriteLine($"Lista de Reserva: {livro["listaDeReserva"]}");
-                        return;
+                        Console.WriteLine($"Login bem-sucedido! Bem-vindo, {estudante.Nome}.");
+                        return true;
+                    }
+
+                    Console.WriteLine("Matrícula inválida. O que deseja fazer?");
+                    Console.WriteLine("1- Tentar novamente\n2- Voltar ao menu principal\n3- Sair");
+
+                    int opcao;
+                    while (!int.TryParse(Console.ReadLine(), out opcao))
+                    {
+                        Console.Write("Digite o número correspondente à sua escolha: ");
+                    }
+
+                    switch (opcao)
+                    {
+                        case 1:
+                            break;
+                        case 2:
+                            return false;
+                        case 3:
+                            Console.WriteLine("Obrigado por usar nossos serviços. Até mais!");
+                            Environment.Exit(0);
+                            return false;
+                        default:
+                            Console.WriteLine("Número digitado não corresponde a nenhuma das opções.");
+                            break;
                     }
                 }
-                WriteLine($"Livro '{livroBuscado}' não encontrado no acervo.");
             }
-            catch (Exception ex)
-            {
-                WriteLine($"Erro ao pesquisar livro: {ex.Message}");
-            }*/
         }
+        public void Logout()
+        {
+            Console.WriteLine($"Usuário {Nome} desconectado.");
+        }
+        public void PesquisarLivro(string livroBuscado)
+        {
+            LivroService livroService = new LivroService();
+            List<Livro> livros = livroService.LerLivros() ?? new List<Livro>();
+
+            foreach (var livro in livros)
+            {
+                if (livro.Titulo.Equals(livroBuscado, StringComparison.OrdinalIgnoreCase) && livro.Setor == Acervo.Publico)
+                {
+                    Console.WriteLine($"Título: {livro.Titulo}");
+                    Console.WriteLine($"Autor: {livro.Autor}");
+                    Console.WriteLine($"Ano de Publicação: {livro.AnoPublicacao}");
+                    Console.WriteLine($"Setor: {livro.Setor}");
+
+                    var disponibilidade = VerificarDisponibilidade(livro);
+                    Console.WriteLine($"Exemplares Disponíveis: {disponibilidade}");
+
+                    var numeroReservas = livro.Reservas.Count;
+                    Console.WriteLine($"Número de Reservas: {numeroReservas}");
+
+                    return;
+                }
+            }
+
+            Console.WriteLine($"Livro '{livroBuscado}' não encontrado no acervo público.");
+        }
+
+        private int VerificarDisponibilidade(Livro livro)
+        {
+            int exemplaresDisponiveis = livro.Exemplares
+                .Where(e => e.Key == EstadoExemplar.Conservado && e.Value > 0)
+                .Sum(e => e.Value);
+
+            return exemplaresDisponiveis;
+        }
+
     }
 }

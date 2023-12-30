@@ -2,9 +2,9 @@
 
 namespace UsuariosBiblioteca.Interfaces
 {
-    internal interface IUsuario
+    public interface IUsuario
     {
-        void Login();
+        bool Login();
         void Logout();
         void PesquisarLivro(string livroBuscado);
     }
