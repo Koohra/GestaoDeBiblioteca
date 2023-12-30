@@ -42,6 +42,7 @@ namespace SistemaBiblioteca
                     return;
                 case 3:
                     estudante.Logout();
+                    FazerLogin.EscolherUsuario();
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");

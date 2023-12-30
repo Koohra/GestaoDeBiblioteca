@@ -14,7 +14,8 @@ namespace SistemaBiblioteca
         {
             Console.WriteLine("Selecione login desejado:");
             Console.WriteLine("1- Estudante\n2- Professor\n3-Funcionário");
-
+            Console.WriteLine();
+            Console.WriteLine("\nOu digite 4 para SAIR");
             int usuario;
             while (!int.TryParse(Console.ReadLine(), out usuario))
             {
@@ -58,6 +59,10 @@ namespace SistemaBiblioteca
                         InterfaceFuncionario.MenuDiretor(diretor);
                     }
 
+                    return;
+                case 4:
+                    Console.WriteLine("Agradecemos por usar nossos serviços. Até mais!");
+                    Environment.Exit(0);
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
