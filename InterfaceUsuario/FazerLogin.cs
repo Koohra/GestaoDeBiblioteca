@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UsuariosBiblioteca.Estudantes;
 using UsuariosBiblioteca.Funcionarios;
+using UsuariosBiblioteca.Interfaces;
 
 namespace SistemaBiblioteca
 {
@@ -16,19 +17,23 @@ namespace SistemaBiblioteca
             Console.WriteLine("1- Estudante\n2- Professor\n3-Funcionário");
             Console.WriteLine();
             Console.WriteLine("\nOu digite 4 para SAIR");
-            int usuario;
-            while (!int.TryParse(Console.ReadLine(), out usuario))
+            int opcaoUsuario;
+            while (!int.TryParse(Console.ReadLine(), out opcaoUsuario))
             {
                 Console.Write("Digite o número correspondente ao seu login");
             }
 
-            switch (usuario)
+            switch (opcaoUsuario)
             {
                 case 1:
                     Console.WriteLine("\nLOGIN DE ESTUDANTE");
-                    if (LoginEstudante())
+
+                    Estudante estudante = new Estudante();
+                    Estudante estudanteLogado = (Estudante) estudante.Login();
+
+                    if (estudanteLogado != null)
                     {
-                        InterfaceEstudante.MenuEstudante();
+                        InterfaceEstudante.MenuEstudante(estudanteLogado);
                     }
                     return;
 
@@ -68,11 +73,6 @@ namespace SistemaBiblioteca
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
                     return;
             }
-        }
-        private static bool LoginEstudante()
-        {
-            Estudante estudante = new Estudante();
-            return estudante.Login();
         }
         
     }

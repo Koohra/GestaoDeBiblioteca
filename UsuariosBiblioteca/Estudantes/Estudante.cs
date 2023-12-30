@@ -15,7 +15,7 @@ namespace UsuariosBiblioteca.Estudantes
 
         public Estudante() { }
 
-        public bool Login()
+        public IUsuario Login()
         {
             EstudanteService estudanteService = new EstudanteService();
             List<Estudante> estudantes = estudanteService.LerJsonEstudantes() ?? new List<Estudante>();
@@ -31,7 +31,7 @@ namespace UsuariosBiblioteca.Estudantes
                     if (estudante != null)
                     {
                         Console.WriteLine($"Login bem-sucedido! Bem-vindo, {estudante.Nome}.");
-                        return true;
+                        return estudante;
                     }
 
                     Console.WriteLine("Matrícula inválida. O que deseja fazer?");
@@ -48,11 +48,11 @@ namespace UsuariosBiblioteca.Estudantes
                         case 1:
                             break;
                         case 2:
-                            return false;
+                            return null;
                         case 3:
                             Console.WriteLine("Obrigado por usar nossos serviços. Até mais!");
                             Environment.Exit(0);
-                            return false;
+                            return null;
                         default:
                             Console.WriteLine("Número digitado não corresponde a nenhuma das opções.");
                             break;
@@ -62,7 +62,7 @@ namespace UsuariosBiblioteca.Estudantes
         }
         public void Logout()
         {
-            Console.WriteLine($"Usuário {Nome} desconectado.");
+            Console.WriteLine($"Usuário desconectado.");
         }
         public void PesquisarLivro(string livroBuscado)
         {

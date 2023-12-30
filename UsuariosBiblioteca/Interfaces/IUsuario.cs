@@ -4,7 +4,7 @@ namespace UsuariosBiblioteca.Interfaces
 {
     public interface IUsuario
     {
-        bool Login();
+        IUsuario Login();
         void Logout();
         void PesquisarLivro(string livroBuscado);
     }

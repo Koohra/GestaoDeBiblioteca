@@ -9,9 +9,8 @@ namespace SistemaBiblioteca
 {
     internal static class InterfaceEstudante
     {
-        public static void MenuEstudante()
+        public static void MenuEstudante(Estudante estudanteLogado)
         {
-            Estudante estudante = new Estudante();
 
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("1- Pesquisar Livro\n2- Reservar Livro\n3- Logout");
@@ -30,7 +29,7 @@ namespace SistemaBiblioteca
 
                     if (!string.IsNullOrEmpty(livroBuscado))
                     {
-                        estudante.PesquisarLivro(livroBuscado);
+                        estudanteLogado.PesquisarLivro(livroBuscado);
                     }
                     else
                     {
@@ -41,7 +40,7 @@ namespace SistemaBiblioteca
                     //Função de reservar livro;
                     return;
                 case 3:
-                    estudante.Logout();
+                    estudanteLogado.Logout();
                     FazerLogin.EscolherUsuario();
                     return;
                 default:
