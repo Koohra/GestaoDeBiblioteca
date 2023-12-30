@@ -15,7 +15,7 @@ namespace UsuariosBiblioteca.Estudantes
 
         public Estudante() { }
 
-        public IUsuario Login()
+        public IUsuario? Login()
         {
             EstudanteService estudanteService = new EstudanteService();
             List<Estudante> estudantes = estudanteService.LerJsonEstudantes() ?? new List<Estudante>();
