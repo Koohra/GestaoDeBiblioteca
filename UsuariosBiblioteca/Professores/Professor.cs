@@ -1,5 +1,7 @@
-﻿using ControleDoAcervo.Livros;
+﻿using ControleDoAcervo;
+using ControleDoAcervo.Livros;
 using System.Globalization;
+using System.Linq;
 using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Professores
@@ -90,7 +92,17 @@ namespace UsuariosBiblioteca.Professores
 
         public void PesquisarLivro(string livroBuscado)
         {
-            throw new NotImplementedException();
+            AcervoPublico acervoPublico = new AcervoPublico();
+            AcervoRestrito acervoRestrito = new AcervoRestrito();
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorTitulo(livroBuscado);
+            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorTitulo(livroBuscado);
+
+            List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).ToList();
+            
+            foreach(Livro livro in livrosBuscados)
+            {
+                livro.ExibirInformacoes();
+            }
         }
 
         public void AlterarSenhaMensal() { }//já tinha um método parecido na ProfessorService

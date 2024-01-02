@@ -2,7 +2,7 @@
 
 namespace ControleDoAcervo
 {
-    internal class AcervoPublico: AcervoBiblioteca
+    public class AcervoPublico: AcervoBiblioteca
     {
         public List<Livro> LivrosPublicos {
             get

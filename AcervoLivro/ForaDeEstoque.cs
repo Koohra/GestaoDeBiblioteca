@@ -2,7 +2,7 @@
 
 namespace ControleDoAcervo
 {
-    internal class ForaDeEstoque: AcervoBiblioteca
+    public class ForaDeEstoque: AcervoBiblioteca
     {
         public static List<Livro> LivrosForaDeEstoque { 
             get
