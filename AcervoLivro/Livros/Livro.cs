@@ -91,6 +91,17 @@ namespace ControleDoAcervo.Livros
         {
             // remover o primeiro da lista de reservas, porque ela já está ordenada
             // retorna a reserva removida
+            // base 
+            if (Reservas.Count > 0)
+            {
+                Reserva reservaRemovida = Reservas[0];
+                Reservas.RemoveAt(0);
+                return reservaRemovida;
+            }
+            else
+            {
+                throw new InvalidOperationException("Não á reserva para remover.");
+            }
         }
 
         public void ExibirInformacoes()
