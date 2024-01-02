@@ -107,7 +107,13 @@ namespace SistemaBiblioteca
 
         internal static Funcionario CriarFuncionario()
         {
-            Funcionario funcionario = new Funcionario("0002", "Carlos", "carlos@gmail.com", Cargos.Bibliotecario, "abc");
+            Console.WriteLine("Codigo: ");
+            string codigo = Console.ReadLine()!;
+            string nome = Console.ReadLine()!;
+            string email = Console.ReadLine()!;
+            string senha = Console.ReadLine()!;
+
+            Funcionario funcionario = new Funcionario(codigo, nome, email, Cargos.Bibliotecario, "abc");
             return funcionario;
         }
 
@@ -117,6 +123,24 @@ namespace SistemaBiblioteca
             string nome = funcionario.Nome;
             string email = funcionario.Email;
             string senha = funcionario.Senha;
+
+            Cargos cargo;
+            bool entradaValida = false;
+
+            do
+            {
+                Console.WriteLine("Insira o cargo: ");
+                string Cargo = Console.ReadLine()!;
+
+                if (Enum.TryParse(Cargo, true, out cargo) && Enum.IsDefined(typeof(Cargos), cargo))
+                {
+                    entradaValida = true;
+                }
+                else
+                {
+                    Console.WriteLine("Cargo inválido. Tente novamente.");
+                }
+            } while (!entradaValida);
 
             Atendente atendente = new Atendente(codigo, nome, email, senha);
             return atendente;
@@ -131,6 +155,17 @@ namespace SistemaBiblioteca
 
             Diretor diretor = new Diretor(codigo, nome, email, senha);
             return diretor;
+        }
+
+        public static Bibliotecario TransformarBibliotecario(Funcionario funcionario) 
+        {
+            string codigo = funcionario.CodigoCadastro;
+            string nome = funcionario.Nome;
+            string email = funcionario.Email;
+            string senha = funcionario.Senha;
+
+            Bibliotecario bibliotecario = new Bibliotecario(codigo, nome, email, senha);
+            return bibliotecario;
         }
 
     }

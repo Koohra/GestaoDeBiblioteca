@@ -49,30 +49,28 @@ namespace SistemaBiblioteca
                     }
                     return;
 
-                    return;
                 case 3:
                     Console.WriteLine("\nLOGIN DE FUNCIONÁRIO");
-                    Console.WriteLine("Código de cadastro:");
-                    string codigoCadastro = Console.ReadLine()!;
-                    Console.WriteLine("Senha:");
-                    string senha = Console.ReadLine()!;
-                    Funcionario funcionario = Funcionario.Login(codigoCadastro, senha);
 
-                    Console.WriteLine($"Logado como {funcionario.Nome}");
-                    if (funcionario.Cargo == Cargos.Atendente)
+                    Funcionario funcionario = new Funcionario();
+                    Funcionario funcionarioLogado = funcionario.Login() as Funcionario;
+
+                    Console.WriteLine($"Logado como {funcionarioLogado.Nome}");
+                    if (funcionarioLogado.Cargo == Cargos.Atendente)
                     {
-                        Atendente atendente = InterfaceFuncionario.TransformarAtentende(funcionario);
+                        Atendente atendente = InterfaceFuncionario.TransformarAtentende(funcionarioLogado);
                         InterfaceFuncionario.MenuAtendente(atendente);
-                    } else if (funcionario.Cargo == Cargos.Bibliotecario)
+                    } else if (funcionarioLogado.Cargo == Cargos.Bibliotecario)
                     {
-                        //InterfaceFuncionario.MenuBibliotecario(funcionario);
+                        Bibliotecario bibliotecario = InterfaceFuncionario.TransformarBibliotecario(funcionarioLogado);
+                        InterfaceFuncionario.MenuBibliotecario(bibliotecario);
                     } else
                     {
-                        Diretor diretor = InterfaceFuncionario.TransformarDiretor(funcionario);
+                        Diretor diretor = InterfaceFuncionario.TransformarDiretor(funcionarioLogado);
                         InterfaceFuncionario.MenuDiretor(diretor);
                     }
-
                     return;
+
                 case 4:
                     Console.WriteLine("Agradecemos por usar nossos serviços. Até mais!");
                     Environment.Exit(0);

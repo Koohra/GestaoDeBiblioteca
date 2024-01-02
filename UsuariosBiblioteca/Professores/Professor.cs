@@ -84,6 +84,7 @@ namespace UsuariosBiblioteca.Professores
 
         public void Logout()
         {
+            Console.Clear();
             Console.WriteLine($"Usuário desconectado.");
         }
 

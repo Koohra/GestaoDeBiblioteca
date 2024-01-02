@@ -62,6 +62,7 @@ namespace UsuariosBiblioteca.Estudantes
         }
         public void Logout()
         {
+            Console.Clear();
             Console.WriteLine($"Usuário desconectado.");
         }
         public void PesquisarLivro(string livroBuscado)
