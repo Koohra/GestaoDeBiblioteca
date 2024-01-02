@@ -62,50 +62,35 @@ namespace UsuariosBiblioteca.Funcionarios
             // Aguardando método estar pronto
         }
 
-        public IUsuario Login()
+        public IUsuario? Login()
         {
             FuncionarioService funcionarioService = new FuncionarioService();
             List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
 
-            while (true)
+            Console.WriteLine("Código de cadastro:");
+            string codigoCadastro = Console.ReadLine()!;
+            Console.WriteLine("Senha:");
+            string senha = Console.ReadLine()!;
+
+            foreach (Funcionario funcionario in listaFuncionarios)
             {
-                Console.WriteLine("Código de cadastro:");
-                string codigoCadastro = Console.ReadLine()!;
-                Console.WriteLine("Senha:");
-                string senha = Console.ReadLine()!;
-
-                foreach (Funcionario funcionario in listaFuncionarios)
+                if (funcionario.CodigoCadastro == codigoCadastro && funcionario.Senha == senha)
                 {
-                    if (funcionario.CodigoCadastro == codigoCadastro && funcionario.Senha == senha)
-                    {
-                        return funcionario;
-                    }
-                }
-                Console.WriteLine("Código de cadastro ou senha incorreta. O que deseja fazer?");
-                Console.WriteLine("1- Tentar novamente\n2- Voltar ao menu principal\n3- Sair");
-
-                int opcao;
-                while (!int.TryParse(Console.ReadLine(), out opcao))
-                {
-                    Console.Write("Digite o número correspondente à sua escolha: ");
-                }
-
-                switch (opcao)
-                {
-                    case 1:
-                        break;
-                    case 2:
-                        Console.Clear();
-                        return null;
-                    case 3:
-                        Console.WriteLine("Obrigado por usar nossos serviços. Até mais!");
-                        Environment.Exit(0);
-                        return null;
-                    default:
-                        Console.WriteLine("Número digitado não corresponde a nenhuma das opções.");
-                        break;
+                    return funcionario;
                 }
             }
+
+            Console.WriteLine("Código de cadastro ou senha incorreta. Tentar novamente? Digite 'S' para tentar novamente");
+            char continuar = Console.ReadKey().KeyChar;
+            Console.WriteLine("");
+
+            if (continuar == 'S' || continuar == 's')
+            {
+                Login();
+            }
+
+            return null;
+
         }
 
         void IUsuario.Logout()
@@ -118,5 +103,26 @@ namespace UsuariosBiblioteca.Funcionarios
         {
             throw new NotImplementedException();
         }
+
+        public static Funcionario LocalizarPorCodigo()
+        {
+            FuncionarioService funcionarioService = new FuncionarioService();
+            List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
+
+            Console.WriteLine("Código de cadastro:");
+            string codigoCadastro = Console.ReadLine()!;
+
+            foreach (Funcionario funcionario in listaFuncionarios)
+            {
+                if (funcionario.CodigoCadastro == codigoCadastro)
+                {
+                    return funcionario;
+                }
+            }
+            return null;
+        }
+
+
     }
 }
+

@@ -36,7 +36,8 @@ namespace SistemaBiblioteca
                     //atendente.AtualizarNumeroLivros();
                     return;
                 case 5:
-                    //atendente.AtualizarDadosDeUsuario(); precisa adicionar em atendente
+                    atendente.AtualizarRegistroUsuario();
+                    MenuAtendente(atendente);
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
@@ -123,24 +124,6 @@ namespace SistemaBiblioteca
             string nome = funcionario.Nome;
             string email = funcionario.Email;
             string senha = funcionario.Senha;
-
-            Cargos cargo;
-            bool entradaValida = false;
-
-            do
-            {
-                Console.WriteLine("Insira o cargo: ");
-                string Cargo = Console.ReadLine()!;
-
-                if (Enum.TryParse(Cargo, true, out cargo) && Enum.IsDefined(typeof(Cargos), cargo))
-                {
-                    entradaValida = true;
-                }
-                else
-                {
-                    Console.WriteLine("Cargo inválido. Tente novamente.");
-                }
-            } while (!entradaValida);
 
             Atendente atendente = new Atendente(codigo, nome, email, senha);
             return atendente;
