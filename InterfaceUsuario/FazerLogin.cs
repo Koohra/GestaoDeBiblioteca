@@ -49,7 +49,6 @@ namespace SistemaBiblioteca
                     }
                     return;
 
-                    return;
                 case 3:
                     Console.WriteLine("\nLOGIN DE FUNCIONÁRIO");
                     Console.WriteLine("Código de cadastro:");
