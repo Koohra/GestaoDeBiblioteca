@@ -80,11 +80,31 @@ namespace ControleDoAcervo.Livros
 
         public Reserva AdicionarReserva(string matricula, DateTime? dataReserva)
         {
-            // verificar acervo, se usuario for estudante ou professor a reserva nao pode ser aceita
-            // se for possivel criar reserva 
-            // ordenar a lista de reservas primeiro por cargo do usuário, depois por data
-            //Reservas.OrderBy(reserva => reserva.CargoUsuario).ThenBy()
-            // retorna a reserva adicionada
+            CargoUsuario cargoUsuario;
+
+            if (matricula.Any(digito => digito == 'p'))
+                cargoUsuario = CargoUsuario.Professor;
+            else
+                cargoUsuario = CargoUsuario.Estudante;
+
+            if (this.Setor == Acervo.ForaDeEstoque)
+            {
+                throw new AccessViolationException("Não é possível reservar um livro fora de estoque.");
+            } 
+            else if (this.Setor == Acervo.Restrito && cargoUsuario == CargoUsuario.Estudante)
+            {
+                throw new AccessViolationException("Estudante não tem acesso ao acervo restrito.");
+            }
+
+            Reserva novaReserva = new Reserva(matricula, cargoUsuario, dataReserva);
+            Reservas.Add(novaReserva);
+
+            Reservas = Reservas
+                    .OrderByDescending(reserva => reserva.CargoUsuario)
+                    .ThenBy(reserva => reserva.DataReserva)
+                    .ToList();
+
+            return novaReserva;
         }
 
         public Reserva RemoverReserva()
