@@ -29,7 +29,7 @@ namespace ControleDoAcervo.Livros
             int quantidadeTotalLivros = exemplares.Values.Sum();
             foreach (var (estado, quantidade) in exemplares)
             {
-                if (estado == EstadoExemplar.Conservado && quantidade > 2)
+                if (estado == EstadoExemplar.Conservado && quantidade >= 2)
                 {
                     Setor = Acervo.Publico;
                     break;

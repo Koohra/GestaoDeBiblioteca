@@ -4,12 +4,18 @@ namespace ControleDoAcervo
 {
     internal  class AcervoRestrito: AcervoBiblioteca
     {
-        public static List<Livro> LivrosRestritos { get; private set; } = new List<Livro>();
-        public override void AdicionarLivro(Livro livro) { }
+        public static List<Livro> LivrosRestritos { get
+            {
+                LivroService livroService = new LivroService();
+                LivrosRestritos = livroService.LerLivros().Where(livro => livro.Setor == Acervo.Restrito).ToList();
+                return LivrosRestritos;
+            }
+            private set { }
+        }
 
-        public override void RemoverLivro(Livro livro) { }
+        public AcervoRestrito() { }
 
-        public override void BuscarLivroPorTitulo(string titulo) { }
+        public override List<Livro> BuscarLivroPorTitulo(string titulo) { }
 
         public override void VerificarDisponibilidade(Livro livro) { }
     }
