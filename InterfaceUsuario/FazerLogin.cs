@@ -45,7 +45,7 @@ namespace SistemaBiblioteca
 
                     if (professorLogado != null)
                     {
-                        InterfaceEstudante.MenuProfessor(professorLogado);
+                        InterfaceProfessor.MenuProfessor(professorLogado);
                     }
                     return;
 
