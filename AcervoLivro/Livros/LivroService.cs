@@ -31,6 +31,7 @@ namespace ControleDoAcervo.Livros
                 return true;
             return false;
         }
+
         public void CriarLivro(Livro novoLivro)
         {
             try
@@ -83,10 +84,12 @@ namespace ControleDoAcervo.Livros
                 }
                 else
                     Console.WriteLine($"Livro com ID {id} não encontrado.");
+                return livro;
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Não foi possível ler o livro com ID {id}: {e}");
+                return null;
             }
         }
 

@@ -4,12 +4,22 @@ namespace ControleDoAcervo
 {
     internal class AcervoPublico: AcervoBiblioteca
     {
-        public List<Livro> LivrosPublicos {  get; private set; } = new List<Livro>();
-        public override void AdicionarLivro(Livro livro) { }
+        public List<Livro> LivrosPublicos {
+            get
+            {
+                LivroService livroService = new LivroService();
+                LivrosPublicos = livroService.LerLivros().Where(livro => livro.Setor == Acervo.Publico).ToList();
+                return LivrosPublicos;
+            }
+            private set { }
+        }
 
-        public override void RemoverLivro(Livro livro) { }
+        public AcervoPublico() 
+        {
+            LivrosPublicos = new List<Livro>();
+        }
 
-        public override void BuscarLivroPorTitulo(string titulo) { }
+        public override List<Livro> BuscarLivroPorTitulo(string titulo) { }
 
         public override void VerificarDisponibilidade(Livro livro) { }
     }

@@ -29,7 +29,7 @@ namespace ControleDoAcervo.Livros
             int quantidadeTotalLivros = exemplares.Values.Sum();
             foreach (var (estado, quantidade) in exemplares)
             {
-                if (estado == EstadoExemplar.Conservado && quantidade > 2)
+                if (estado == EstadoExemplar.Conservado && quantidade >= 2)
                 {
                     Setor = Acervo.Publico;
                     break;
@@ -89,8 +89,16 @@ namespace ControleDoAcervo.Livros
 
         public Reserva RemoverReserva()
         {
-            // remover o primeiro da lista de reservas, porque ela já está ordenada
-            // retorna a reserva removida
+            if (Reservas.Count > 0)
+            {
+                Reserva reservaRemovida = Reservas[0];
+                Reservas.RemoveAt(0);
+                return reservaRemovida;
+            }
+            else
+            {
+                throw new InvalidOperationException("Não á reserva para remover.");
+            }
         }
 
         public void ExibirInformacoes()
