@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UsuariosBiblioteca.Estudantes;
 using UsuariosBiblioteca.Funcionarios;
+using UsuariosBiblioteca.Professores;
 using UsuariosBiblioteca.Interfaces;
 
 namespace SistemaBiblioteca
@@ -29,7 +30,7 @@ namespace SistemaBiblioteca
                     Console.WriteLine("\nLOGIN DE ESTUDANTE");
 
                     Estudante estudante = new Estudante();
-                    Estudante estudanteLogado = (Estudante) estudante.Login();
+                    Estudante? estudanteLogado = estudante.Login() as Estudante;
 
                     if (estudanteLogado != null)
                     {
@@ -39,8 +40,15 @@ namespace SistemaBiblioteca
 
                 case 2:
                     Console.WriteLine("\nLOGIN DE PROFESSOR");
-                    //Professor professor = Professor.Login();
-                    InterfaceProfessor.MenuProfessor(); //passando um professor
+                    Professor professor = new Professor();
+                    Professor? professorLogado = professor.Login() as Professor;
+
+                    if (professorLogado != null)
+                    {
+                        InterfaceEstudante.MenuProfessor(professorLogado);
+                    }
+                    return;
+
                     return;
                 case 3:
                     Console.WriteLine("\nLOGIN DE FUNCIONÁRIO");

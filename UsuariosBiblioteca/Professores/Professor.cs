@@ -1,4 +1,5 @@
-﻿using UsuariosBiblioteca.Interfaces;
+﻿using System.Globalization;
+using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Professores
 {
@@ -13,14 +14,77 @@ namespace UsuariosBiblioteca.Professores
 
         public Professor() { }
 
-        public void Login()
+        public IUsuario Login()
         {
-            throw new NotImplementedException();
+            ProfessorService professorService = new ProfessorService();
+            List<Professor> professores = professorService.LerJsonProfessores() ?? new List<Professor>();
+
+            while (true)
+            {
+                Console.WriteLine("Digite seu código de cadastro:");
+                string codigoCadastro = Console.ReadLine();
+
+                Console.WriteLine("Digite sua senha:");
+                string senha = Console.ReadLine();
+
+                Professor professor = professores.FirstOrDefault(predicate: p => p.CodigoCadastro == codigoCadastro);
+
+                if (professor != null)
+                {
+                    if (professor.Senha == senha)
+                    {
+                        if (SenhaExpirada(professor))
+                        {
+                            Console.WriteLine("Por favor, altere sua senha.");
+                            Console.WriteLine("Digite a nova senha:");
+
+                            string novaSenha = Console.ReadLine();
+                            professorService.AlterarSenha(codigoCadastro, novaSenha);
+                        }
+
+                        Console.WriteLine($"Login bem-sucedido! Bem-vindo, {professor.Nome}.");
+                        return professor;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Senha incorreta.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Código de cadastro incorreto.");
+                }
+
+                Console.WriteLine("O que deseja fazer?");
+                Console.WriteLine("1- Tentar novamente\n2- Voltar ao menu principal\n3- Sair");
+
+                int opcao;
+                while (!int.TryParse(Console.ReadLine(), out opcao))
+                {
+                    Console.Write("Digite o número correspondente à sua escolha: ");
+                }
+
+                switch (opcao)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        return null;
+                    case 3:
+                        Console.WriteLine("Obrigado por usar nossos serviços. Até mais!");
+                        Environment.Exit(0);
+                        return null;
+                    default:
+                        Console.WriteLine("Número digitado não corresponde a nenhuma das opções.");
+                        break;
+                }
+            }
         }
+
 
         public void Logout()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Usuário desconectado.");
         }
 
         public void PesquisarLivro(string livroBuscado)
@@ -28,11 +92,16 @@ namespace UsuariosBiblioteca.Professores
             throw new NotImplementedException();
         }
 
-        public void AlterarSenhaMensal() { }
+        public void AlterarSenhaMensal() { }//já tinha um método parecido na ProfessorService
 
-        public void ValidarSenha(string senha)
+        public void ValidarSenha(string senha) // Faltam informações
         {
             throw new NotImplementedException();
+        }
+        private bool SenhaExpirada(Professor professor)
+        {
+            DateTime proximaAlteracao = DateTime.ParseExact(professor.ProximaAlteracaoDeSenha, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            return DateTime.Now >= proximaAlteracao;
         }
     }
 }

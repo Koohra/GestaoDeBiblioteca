@@ -9,7 +9,7 @@ namespace SistemaBiblioteca
 {
     internal class InterfaceProfessor
     {
-        internal static void MenuProfessor()
+        internal static void MenuProfessor(Professor professorLogado)
         {
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("1- Pesquisar Livro\n2- Reservar Livro\n3- Logout");
@@ -23,13 +23,25 @@ namespace SistemaBiblioteca
             switch (acao)
             {
                 case 1:
-                    //Professor.PesquisarLivro();
+                    Console.WriteLine("Digite o título do livro:");
+                    string livroBuscado = Console.ReadLine();
+
+                    if (!string.IsNullOrEmpty(livroBuscado))
+                    {
+                        professorLogado.PesquisarLivro(livroBuscado);
+                    }
+                    else
+                    {
+                        Console.WriteLine("O título do livro não pode ser vazio.");
+                    }
                     return;
+                  
                 case 2:
                     //Função de reservar livro;
                     return;
                 case 3:
-                    //Professor.Logout();
+                    professorLogado.Logout();
+                    FazerLogin.EscolherUsuario();
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");

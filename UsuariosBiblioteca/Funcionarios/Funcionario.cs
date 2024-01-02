@@ -75,5 +75,9 @@ namespace UsuariosBiblioteca.Funcionarios
             return null;
         }
 
+        public void ValidarSenha(string senha)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
