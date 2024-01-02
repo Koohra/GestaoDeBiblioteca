@@ -89,9 +89,6 @@ namespace ControleDoAcervo.Livros
 
         public Reserva RemoverReserva()
         {
-            // remover o primeiro da lista de reservas, porque ela já está ordenada
-            // retorna a reserva removida
-            // base 
             if (Reservas.Count > 0)
             {
                 Reserva reservaRemovida = Reservas[0];
