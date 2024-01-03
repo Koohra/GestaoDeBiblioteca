@@ -15,10 +15,10 @@ namespace SistemaBiblioteca
             //LivroService livroService = new LivroService();
             //livroService.LerLivros();
 
-            Dictionary<EstadoExemplar, int> meuTeste = Livro.ReceberEstadoExemplar();
+            //Dictionary<EstadoExemplar, int> meuTeste = Livro.ReceberEstadoExemplar();
 
-            Livro livroTeste = new Livro("Um novo teste", "Minha mente", 2024, meuTeste);
-            livroTeste.AtualizarExemplares();
+            //Livro livroTeste = new Livro("Um novo teste", "Minha mente", 2024, meuTeste);
+            //livroTeste.AtualizarExemplares();
             
         }
     }

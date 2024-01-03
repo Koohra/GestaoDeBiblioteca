@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using UsuariosBiblioteca.Professores;
 
 namespace UsuariosBiblioteca.Estudantes
 {
@@ -32,6 +33,32 @@ namespace UsuariosBiblioteca.Estudantes
             {
                 Console.WriteLine($"Erro ao ler o json de Estudantes: {e}");
                 return new List<Estudante>();
+            }
+        }
+
+        public void SalvarJsonEstudantes(List<Professor> estudantes)
+        {
+
+            try
+            {
+                if (File.Exists(Caminho)) // conferir se vai dar erro
+                {
+                    // Serializa a lista de professores de volta para o formato JSON
+                    string json = JsonConvert.SerializeObject(estudantes, Formatting.Indented);
+
+                    // Escreve o JSON de volta no arquivo
+                    File.WriteAllText(Caminho, json);
+
+                    Console.WriteLine("Alterações salvas com sucesso no arquivo JSON.");
+                }
+                else
+                {
+                    Console.WriteLine("Não foi encontrado nenhum arquivo JSON para ser atualizado.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: " + e.Message);
             }
         }
     }
