@@ -49,7 +49,7 @@ Bem-vindo ao repositório do projeto Sistema de Gestão de Biblioteca! Aqui, apr
 - [Kaique Ramos](https://github.com/KaiqueRamoss)
 - [Maria Eduarda Sampaio](https://github.com/MariaEduardaSampaio)
 - [Miguel Pereira de Sousa](https://github.com/Koohra)
-- [Suellen ](https://github.com/suellenr)
+- [Suellen ](https://github.com/suellensr)
 
 ## 📝 Conclusão
 Dúvidas ou sugestões? Entre em contato conosco! 📧
