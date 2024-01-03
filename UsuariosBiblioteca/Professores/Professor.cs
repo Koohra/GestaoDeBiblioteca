@@ -1,5 +1,8 @@
-﻿using ControleDoAcervo.Livros;
+﻿using ControleDoAcervo;
+using ControleDoAcervo.Livros;
 using System.Globalization;
+using UsuariosBiblioteca.Funcionarios;
+using System.Linq;
 using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Professores
@@ -82,15 +85,35 @@ namespace UsuariosBiblioteca.Professores
             }
         }
 
-
+        public void ExibirInformacoes()
+        {
+            Console.WriteLine($"Código de Cadastro: {CodigoCadastro}");
+            Console.WriteLine($"Nome: {Nome}");
+            Console.WriteLine($"Email: {Email} ");
+            Console.WriteLine();
+        }
         public void Logout()
         {
+            Console.Clear();
             Console.WriteLine($"Usuário desconectado.");
         }
 
-        public void PesquisarLivro(string livroBuscado)
+        public void PesquisarLivro()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Qual o título do livro gostaria de pesquisar no acervo?");
+            string livroBuscado = Console.ReadLine();
+
+            AcervoPublico acervoPublico = new AcervoPublico();
+            AcervoRestrito acervoRestrito = new AcervoRestrito();
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorTitulo(livroBuscado);
+            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorTitulo(livroBuscado);
+
+            List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).ToList();
+            
+            foreach(Livro livro in livrosBuscados)
+            {
+                livro.ExibirInformacoes();
+            }
         }
 
         public void AlterarSenhaMensal() { }//já tinha um método parecido na ProfessorService
@@ -103,6 +126,24 @@ namespace UsuariosBiblioteca.Professores
         {
             DateTime proximaAlteracao = DateTime.ParseExact(professor.ProximaAlteracaoDeSenha, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             return DateTime.Now >= proximaAlteracao;
+        }
+
+        public static Professor LocalizarPorCodigo()
+        {
+            ProfessorService professorService = new ProfessorService();
+            List<Professor> professores = professorService.LerJsonProfessores() ?? new List<Professor>();
+
+            Console.WriteLine("Código de cadastro:");
+            string codigoCadastro = Console.ReadLine()!;
+
+            foreach (Professor professor in professores)
+            {
+                if (professor.CodigoCadastro == codigoCadastro)
+                {
+                    return professor;
+                }
+            }
+            return null;
         }
     }
 }

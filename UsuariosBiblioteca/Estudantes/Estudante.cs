@@ -1,4 +1,6 @@
 ﻿using ControleDoAcervo.Livros;
+using System.Globalization;
+using UsuariosBiblioteca.Funcionarios;
 using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Estudantes
@@ -60,8 +62,18 @@ namespace UsuariosBiblioteca.Estudantes
                 }
             }
         }
+
+        public void ExibirInformacoes()
+        {
+            Console.WriteLine($"Número de matrícula: {Matricula}");
+            Console.WriteLine($"Nome: {Nome}");
+            Console.WriteLine($"Email: {Email} ");
+            Console.WriteLine($"Curso: {Curso}");
+            Console.WriteLine();
+        }
         public void Logout()
         {
+            Console.Clear();
             Console.WriteLine($"Usuário desconectado.");
         }
         public void PesquisarLivro(string livroBuscado)
@@ -99,6 +111,37 @@ namespace UsuariosBiblioteca.Estudantes
 
             return exemplaresDisponiveis;
         }
+
+        public static Estudante LocalizarPorMatricula()
+        {
+            EstudanteService estudanteService = new EstudanteService();
+            List<Estudante> estudantes = estudanteService.LerJsonEstudantes() ?? new List<Estudante>();
+
+            int matricula;
+            Console.WriteLine("Digite o número da matrícula:");
+            while (!int.TryParse(Console.ReadLine(), out matricula))
+            {
+                Console.Write("Formato inválido, digite de novo: ");
+            }
+
+            //Estudante estudante = estudantes.FirstOrDefault(e => e.Matricula == matricula);
+
+            //if (estudante != null)
+            //{
+            //    return estudante;
+            //}
+
+            foreach (Estudante estudante in estudantes)
+            {
+                if (estudante.Matricula == matricula)
+                {
+                    return estudante;
+                }
+            }
+
+            return null;
+        }
+
 
     }
 }

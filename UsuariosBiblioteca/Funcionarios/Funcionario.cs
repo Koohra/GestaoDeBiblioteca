@@ -1,20 +1,21 @@
 ﻿using ControleDoAcervo.Livros;
 using System.Text.Json.Serialization;
+using UsuariosBiblioteca.Estudantes;
 using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Funcionarios
 {
-    public class Funcionario : ISenha
+    public class Funcionario : IUsuario
     {
         public string? CodigoCadastro { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
-        public Cargos Cargo { get; set; } 
+        public Cargos Cargo { get; set; }
         public string? Senha { get; set; }
 
 
-        
-        public Funcionario(){}
+
+        public Funcionario() { }
 
         public Funcionario(string codigoCadastro, string nome, string email, string senha)
         {
@@ -61,10 +62,16 @@ namespace UsuariosBiblioteca.Funcionarios
             // Aguardando método estar pronto
         }
 
-        public static Funcionario? Login(string codigoCadastro, string senha)
+        public IUsuario? Login()
         {
             FuncionarioService funcionarioService = new FuncionarioService();
             List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
+
+            Console.WriteLine("Código de cadastro:");
+            string codigoCadastro = Console.ReadLine()!;
+            Console.WriteLine("Senha:");
+            string senha = Console.ReadLine()!;
+
             foreach (Funcionario funcionario in listaFuncionarios)
             {
                 if (funcionario.CodigoCadastro == codigoCadastro && funcionario.Senha == senha)
@@ -72,12 +79,50 @@ namespace UsuariosBiblioteca.Funcionarios
                     return funcionario;
                 }
             }
+
+            Console.WriteLine("Código de cadastro ou senha incorreta. Tentar novamente? Digite 'S' para tentar novamente");
+            char continuar = Console.ReadKey().KeyChar;
+            Console.WriteLine("");
+
+            if (continuar == 'S' || continuar == 's')
+            {
+                Login();
+            }
+
             return null;
+
         }
 
-        public void ValidarSenha(string senha)
+        void IUsuario.Logout()
+        {
+            Console.Clear();
+            Console.WriteLine($"Usuário desconectado.");
+        }
+
+        void IUsuario.PesquisarLivro(string livroBuscado)
         {
             throw new NotImplementedException();
         }
+
+        public static Funcionario LocalizarPorCodigo()
+        {
+            FuncionarioService funcionarioService = new FuncionarioService();
+            List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
+
+            Console.WriteLine("Código de cadastro:");
+            string codigoCadastro = Console.ReadLine()!;
+
+            foreach (Funcionario funcionario in listaFuncionarios)
+            {
+                if (funcionario.CodigoCadastro == codigoCadastro)
+                {
+                    return funcionario;
+                }
+            }
+            return null;
+        }
+
+
     }
 }
+

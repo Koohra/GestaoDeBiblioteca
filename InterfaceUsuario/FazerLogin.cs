@@ -51,27 +51,33 @@ namespace SistemaBiblioteca
 
                 case 3:
                     Console.WriteLine("\nLOGIN DE FUNCIONÁRIO");
-                    Console.WriteLine("Código de cadastro:");
-                    string codigoCadastro = Console.ReadLine()!;
-                    Console.WriteLine("Senha:");
-                    string senha = Console.ReadLine()!;
-                    Funcionario funcionario = Funcionario.Login(codigoCadastro, senha);
 
-                    Console.WriteLine($"Logado como {funcionario.Nome}");
-                    if (funcionario.Cargo == Cargos.Atendente)
+                    Funcionario funcionario = new Funcionario();
+                    Funcionario funcionarioLogado = funcionario.Login() as Funcionario;
+
+                    if (funcionarioLogado == null)
                     {
-                        Atendente atendente = InterfaceFuncionario.TransformarAtentende(funcionario);
-                        InterfaceFuncionario.MenuAtendente(atendente);
-                    } else if (funcionario.Cargo == Cargos.Bibliotecario)
-                    {
-                        //InterfaceFuncionario.MenuBibliotecario(funcionario);
-                    } else
-                    {
-                        Diretor diretor = InterfaceFuncionario.TransformarDiretor(funcionario);
-                        InterfaceFuncionario.MenuDiretor(diretor);
+                        VoltarMenu();
                     }
 
+                    Console.WriteLine($"Logado como {funcionarioLogado.Nome}");
+                    if (funcionarioLogado.Cargo == Cargos.Atendente)
+                    {
+                        Atendente atendente = InterfaceFuncionario.TransformarAtentende(funcionarioLogado);
+                        InterfaceFuncionario.MenuAtendente(atendente);
+                    }
+                    else if (funcionarioLogado.Cargo == Cargos.Bibliotecario)
+                    {
+                        Bibliotecario bibliotecario = InterfaceFuncionario.TransformarBibliotecario(funcionarioLogado);
+                        InterfaceFuncionario.MenuBibliotecario(bibliotecario);
+                    }
+                    else
+                    {
+                        Diretor diretor = InterfaceFuncionario.TransformarDiretor(funcionarioLogado);
+                        InterfaceFuncionario.MenuDiretor(diretor);
+                    }
                     return;
+
                 case 4:
                     Console.WriteLine("Agradecemos por usar nossos serviços. Até mais!");
                     Environment.Exit(0);
@@ -81,6 +87,34 @@ namespace SistemaBiblioteca
                     return;
             }
         }
-        
+
+        internal static void VoltarMenu()
+        {
+            Console.WriteLine("\nO que deseja fazer?");
+            Console.WriteLine("1- Voltar ao menu principal\n2- Sair");
+
+            int opcao;
+            while (!int.TryParse(Console.ReadLine(), out opcao))
+            {
+
+                Console.Write("Digite o número correspondente à sua escolha: ");
+            }
+
+            switch (opcao)
+            {
+                case 1:
+                    Console.Clear();
+                    EscolherUsuario();
+                    return;
+                case 2:
+                    Console.WriteLine("Obrigado por usar nossos serviços. Até mais!");
+                    Environment.Exit(0);
+                    return;
+                default:
+                    Console.WriteLine("Número digitado não corresponde a nenhuma das opções.");
+                    break;
+            }
+
+        }
     }
 }
