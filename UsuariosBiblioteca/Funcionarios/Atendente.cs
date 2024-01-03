@@ -50,36 +50,20 @@ namespace UsuariosBiblioteca.Funcionarios
             EstudanteService estudanteService = new EstudanteService();
             List<Estudante> estudantes = estudanteService.LerJsonEstudantes() ?? new List<Estudante>();
 
+            Console.WriteLine("EDITAR DADOS: ESTUDANTE");
             Estudante estudante = Estudante.LocalizarPorMatricula(); //adicionar trycatch
-
             estudante.ExibirInformacoes();
 
-            Console.WriteLine("");
-            Console.WriteLine("O que deseja alterar?");
-            Console.WriteLine("1- Nome\n2- E-mail\n3- Curso");
-            int modificar;
-            while (!int.TryParse(Console.ReadLine(), out modificar))
-            {
-                Console.Write("Digite o número correspondente;");
-            }
+            Console.Write("Nome: ");
+            string nomenovo = Console.ReadLine();
 
-            switch (modificar)
-            {
-                case 1:
-                    Console.Write("Nome: ");
-                    estudante.Nome = Console.ReadLine();
-                    return;
-                case 2:
-                    Console.Write("E-mail: ");
-                    estudante.Email = Console.ReadLine();
-                    return;
-                case 3:
-                    Console.Write("Curso: ");
-                    estudante.Curso = Console.ReadLine();
-                    return;
-                defaut:
-                    return;
-            }
+            Console.Write("E-mail: ");
+            string emailnovo = Console.ReadLine();
+
+            Console.Write("Curso: ");
+            string cursonovo = Console.ReadLine();
+
+            //estudanteService.AlterarEstudantePorMatricula(estudante.Matricula, nomenovo, emailnovo, cursonovo);
 
         }
 
@@ -88,41 +72,20 @@ namespace UsuariosBiblioteca.Funcionarios
             ProfessorService professorService = new ProfessorService();
             List<Professor> professores = professorService.LerJsonProfessores() ?? new List<Professor>();
 
+            Console.WriteLine("EDITAR DADOS: PROFESSOR");
             Professor professor = Professor.LocalizarPorCodigo(); //adicionar trycatch
-
             professor.ExibirInformacoes();
 
-            Console.WriteLine("");
-            Console.WriteLine("O que deseja alterar?");
-            Console.WriteLine("1- Nome\n2- E-mail\n3- ");
-            int modificar;
-            while (!int.TryParse(Console.ReadLine(), out modificar))
-            {
-                Console.Write("Digite o número correspondente;");
-            }
+            Console.Write("Nome: ");
+            string nomenovo = Console.ReadLine();
 
-            switch (modificar)
-            {
-                case 1:
-                    Console.Write("Nome: ");
-                    professor.Nome = Console.ReadLine();
-                    Console.Write("Cadastro Atualizado:");
-                    professor.ExibirInformacoes();
-                    return;
-                case 2:
-                    Console.Write("E-mail: ");
-                    professor.Email = Console.ReadLine();
-                    Console.Write("Cadastro Atualizado:");
-                    professor.ExibirInformacoes();
-                    return;
-                case 3:
+            Console.Write("E-mail: ");
+            string emailnovo = Console.ReadLine();
 
-                    return;
-                defaut:
-                    return;
-            }
+            Console.Write("Senha: ");
+            string senhanova = Console.ReadLine();
 
-            
+            professorService.AlterarProfessorPorCodigo(professor.CodigoCadastro, nomenovo, emailnovo, senhanova);
         }
 
         private void AtualizarFuncionario()
@@ -130,37 +93,22 @@ namespace UsuariosBiblioteca.Funcionarios
             FuncionarioService funcionarioService = new FuncionarioService();
             List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
 
+            Console.WriteLine("EDITAR DADOS: FUNCIONÁRIO");
             Funcionario funcionario = Funcionario.LocalizarPorCodigo(); //adicionar trycatch
-
             funcionario.ExibirInformacoes();
 
-            Console.WriteLine("");
-            Console.WriteLine("O que deseja alterar?");
-            Console.WriteLine("1- Nome\n2- E-mail\n3- Cargo");
-            int modificar;
-            while (!int.TryParse(Console.ReadLine(), out modificar))
-            {
-                Console.Write("Digite o número correspondente;");
-            }
+            Console.Write("Nome: ");
+            string nomenovo = Console.ReadLine();
 
-            switch (modificar)
-            {
-                case 1:
-                    Console.Write("Nome: ");
-                    funcionario.Nome = Console.ReadLine();
-                    funcionario.ExibirInformacoes();
-                    return;
-                case 2:
-                    Console.Write("E-mail: ");
-                    funcionario.Email = Console.ReadLine();
-                    funcionario.ExibirInformacoes();
-                    return;
-                case 3:
-                    
-                    return;
-                defaut:
-                    return;
-            }
+            Console.Write("E-mail: ");
+            string emailnovo = Console.ReadLine();
+
+            Cargos cargonovo = funcionario.MudarCargo();
+
+            Console.Write("Senha: ");
+            string senhanova = Console.ReadLine();
+
+            funcionarioService.AlterarFuncionarioPorCodigo(funcionario.CodigoCadastro, nomenovo, emailnovo, cargonovo, senhanova);
 
         }
     }
