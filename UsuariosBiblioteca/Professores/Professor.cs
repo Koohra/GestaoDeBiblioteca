@@ -100,13 +100,10 @@ namespace UsuariosBiblioteca.Professores
 
         public void PesquisarLivro()
         {
-            Console.WriteLine("Qual o título do livro gostaria de pesquisar no acervo?");
-            string livroBuscado = Console.ReadLine();
-
             AcervoPublico acervoPublico = new AcervoPublico();
             AcervoRestrito acervoRestrito = new AcervoRestrito();
-            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorTitulo(livroBuscado);
-            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorTitulo(livroBuscado);
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome();
+            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome();
 
             List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).ToList();
             
