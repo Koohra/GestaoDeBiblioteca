@@ -4,20 +4,14 @@ namespace ControleDoAcervo
 {
     public class AcervoPublico: AcervoBiblioteca
     {
-        public List<Livro> LivrosPublicos {
-            get
-            {
-                LivroService livroService = new LivroService();
-                LivrosPublicos = livroService.LerLivros().Where(livro => livro.Setor == Acervo.Publico).ToList();
-                return LivrosPublicos;
-            }
-            private set { }
-        }
+        public List<Livro> LivrosPublicos { get; private set; }
 
-        //public AcervoPublico() 
-        //{
-        //    LivrosPublicos = new List<Livro>();
-        //}
+        public AcervoPublico()
+        {
+            LivrosPublicos = new List<Livro>();
+            LivroService livroService = new LivroService();
+            LivrosPublicos = livroService.LerLivros();
+        }
 
         public override List<Livro> BuscarLivroPorParteDoNome()
         {
@@ -40,16 +34,15 @@ namespace ControleDoAcervo
                     {
                         livrosEncontrados.Add(livro);
                     }
-
                     //ExibirInformacoesLivros(livrosEncontrados);
                 }
+                return livrosEncontrados;
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Erro ao buscar livro por parte do nome: {e}");
+                return livrosEncontrados;
             }
-
-            return livrosEncontrados;
         }
 
         public override void VerificarDisponibilidade(Livro livro) { }

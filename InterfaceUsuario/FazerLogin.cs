@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection.Emit;
 using UsuariosBiblioteca.Estudantes;
 using UsuariosBiblioteca.Funcionarios;
 using UsuariosBiblioteca.Professores;
-using UsuariosBiblioteca.Interfaces;
 
 namespace SistemaBiblioteca
 {
@@ -16,12 +11,11 @@ namespace SistemaBiblioteca
         {
             Console.WriteLine("Selecione login desejado:");
             Console.WriteLine("1- Estudante\n2- Professor\n3-Funcionário");
-            Console.WriteLine();
             Console.WriteLine("\nOu digite 4 para SAIR");
             int opcaoUsuario;
-            while (!int.TryParse(Console.ReadLine(), out opcaoUsuario))
+            while (!int.TryParse(Console.ReadLine(), out opcaoUsuario) || opcaoUsuario < 1 || opcaoUsuario > 4)
             {
-                Console.Write("Digite o número correspondente ao seu login");
+                Console.Write("Digite o número correspondente ao seu login.\n");
             }
 
             switch (opcaoUsuario)
@@ -63,7 +57,7 @@ namespace SistemaBiblioteca
                     Console.WriteLine($"Logado como {funcionarioLogado.Nome}");
                     if (funcionarioLogado.Cargo == Cargos.Atendente)
                     {
-                        Atendente atendente = InterfaceFuncionario.TransformarAtentende(funcionarioLogado);
+                        Atendente atendente = InterfaceFuncionario.TransformarAtendente(funcionarioLogado);
                         InterfaceFuncionario.MenuAtendente(atendente);
                     }
                     else if (funcionarioLogado.Cargo == Cargos.Bibliotecario)
@@ -94,9 +88,8 @@ namespace SistemaBiblioteca
             Console.WriteLine("1- Voltar ao menu principal\n2- Sair");
 
             int opcao;
-            while (!int.TryParse(Console.ReadLine(), out opcao))
+            while (!int.TryParse(Console.ReadLine(), out opcao) || opcao < 1 || opcao > 2)
             {
-
                 Console.Write("Digite o número correspondente à sua escolha: ");
             }
 
@@ -114,7 +107,6 @@ namespace SistemaBiblioteca
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções.");
                     break;
             }
-
         }
     }
 }

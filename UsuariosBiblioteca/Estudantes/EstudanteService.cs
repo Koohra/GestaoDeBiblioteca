@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using ControleDoAcervo.Livros;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UsuariosBiblioteca.Professores;
 
 namespace UsuariosBiblioteca.Estudantes
@@ -6,6 +8,7 @@ namespace UsuariosBiblioteca.Estudantes
     public class EstudanteService
     {
         public string? Caminho { get; set; }
+        public List<Estudante> Estudantes { get; private set; } = new List<Estudante>();
 
         public EstudanteService(string? arquivoJson = "ListaDeEstudantes.json")
         {
@@ -20,14 +23,21 @@ namespace UsuariosBiblioteca.Estudantes
                 if (File.Exists(Caminho))
                 {
                     var conteudoJson = File.ReadAllText(Caminho);
-                    List<Estudante>? estudantes = JsonConvert.DeserializeObject<List<Estudante>>(conteudoJson);
-                    return estudantes;
+                    JArray estudantesJSON = JArray.Parse(conteudoJson);
+
+                    foreach (var estudanteJSON in estudantesJSON)
+                    {
+                        Estudante? estudante = JsonConvert.DeserializeObject<Estudante?>(estudanteJSON.ToString());
+                        if (estudante != null)
+                            Estudantes.Add(estudante);
+                    }
                 }
                 else
                 {
                     Console.WriteLine("O arquivo json não foi encontrado");
-                    return new List<Estudante>();
                 }
+                
+                return Estudantes;
             }
             catch (Exception e)
             {

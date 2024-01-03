@@ -6,10 +6,10 @@
     "AnoPublicacao": 2010,
     "Exemplares": {
       "Perdido": 1,
+      "Conservado": 3,
       "TotalmenteDanificado": 3,
       "MalConservado": 4,
-      "Emprestado": 2,
-      "Conservado": 0
+      "Emprestado": 2
     },
     "SetorLocal": 0,
     "ListaDeReserva": []
@@ -21,10 +21,10 @@
     "AnoPublicacao": 2011,
     "Exemplares": {
       "Perdido": 1,
+      "Conservado": 2,
       "TotalmenteDanificado": 3,
       "MalConservado": 4,
-      "Emprestado": 2,
-      "Conservado": 0
+      "Emprestado": 2
     },
     "SetorLocal": 0,
     "ListaDeReserva": []
@@ -36,10 +36,10 @@
     "AnoPublicacao": 2012,
     "Exemplares": {
       "Perdido": 1,
+      "Conservado": 1,
       "TotalmenteDanificado": 3,
       "MalConservado": 4,
-      "Emprestado": 2,
-      "Conservado": 0
+      "Emprestado": 2
     },
     "SetorLocal": 0,
     "ListaDeReserva": []

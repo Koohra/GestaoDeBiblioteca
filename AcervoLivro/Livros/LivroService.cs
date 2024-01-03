@@ -26,7 +26,7 @@ namespace ControleDoAcervo.Livros
 
         public bool VerificaSeLivroJaExiste(Livro livro)
         {
-            Livro? livroIgual = Livros.FirstOrDefault(l => l.Titulo == livro.Titulo && l.Autor == livro.Autor);
+            Livro? livroIgual = Livros.FirstOrDefault(l => l.Titulo == livro.Titulo && l.Autor == livro.Autor && l.Reservas == livro.Reservas);
             if (livroIgual != null)
                 return true;
             return false;
@@ -56,12 +56,6 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
-                Console.WriteLine("\nTodos os livros do Sistema de Biblioteca:");
-                foreach (var livro in Livros)
-                {
-                    livro.ExibirInformacoes();
-                    Console.WriteLine();
-                }
                 return Livros;
             }
             catch (Exception e)

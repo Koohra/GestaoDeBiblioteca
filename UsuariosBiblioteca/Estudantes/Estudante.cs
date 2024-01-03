@@ -8,7 +8,7 @@ namespace UsuariosBiblioteca.Estudantes
 {
     public class Estudante : IUsuario
     {
-        public string Matricula { get; private set; }
+        public string Matricula { get; set; }
         public string? Curso { get; set; }
         public int AnoDeIngresso { get; set; }
         public bool LivroEmprestado { get; set; }
@@ -30,7 +30,7 @@ namespace UsuariosBiblioteca.Estudantes
 
                 //if (int.TryParse(Console.ReadLine(), out int matricula))
                 string matricula = Console.ReadLine();
-                Estudante estudante = estudantes.FirstOrDefault(e => e.Matricula == matricula);
+                Estudante? estudante = estudantes.FirstOrDefault(e => e.Matricula == matricula);
 
                 if (estudante != null)
                 {
