@@ -165,6 +165,34 @@ namespace ControleDoAcervo.Livros
                 Console.WriteLine($"Não foi possível deletar o livro {titulo}: {e}");
             }
         }
+
+        public void SalvarJsonLivro(List<Livro> livros, string? arquivoJson = "LivrosAcervo.json")
+        {
+            Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Livros", arquivoJson);
+            Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "AcervoLivro");
+            
+            try
+            {
+                if (File.Exists(Caminho)) // conferir se vai dar erro
+                {
+                    // Serializa a lista de livros de volta para o formato JSON
+                    string json = JsonConvert.SerializeObject(livros, Formatting.Indented);
+
+                    // Escreve o JSON de volta no arquivo
+                    File.WriteAllText(Caminho, json);
+
+                    Console.WriteLine("Alterações salvas com sucesso no arquivo JSON.");
+                }
+                else
+                {
+                    Console.WriteLine("Não foi encontrado nenhum arquivo JSON para ser atualizado.");
+                }
+            }
+            catch (Exception ex3)
+            {
+                Console.WriteLine("Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: " + ex3.Message);
+            }
+        }
     }
 }
 
