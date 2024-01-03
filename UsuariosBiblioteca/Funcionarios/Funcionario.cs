@@ -122,6 +122,34 @@ namespace UsuariosBiblioteca.Funcionarios
             return null;
         }
 
+        public Cargos MudarCargo()
+        {
+            Cargos novocargo;
+            Console.WriteLine("Cargo:");
+            Console.WriteLine("1- Atendente\n2- Bibliotecario\n3- Diretor");
+            int opcao;
+            while (!int.TryParse(Console.ReadLine(), out opcao))
+            {
+                Console.Write("Digite o número correspondente;");
+            }
+            switch (opcao)
+            {
+                case 1:
+                    novocargo = Cargos.Atendente;
+                    return novocargo;
+                case 2:
+                    novocargo = Cargos.Bibliotecario;
+                    return novocargo;
+                case 3:
+                    novocargo = Cargos.Diretor;
+                    return novocargo;
+                default:
+                    Console.Write("Entrada não identificada, sera mantido o cargo atual;");
+                    novocargo = Cargo;
+                    return novocargo;
+            }
+        }
+
 
     }
 }

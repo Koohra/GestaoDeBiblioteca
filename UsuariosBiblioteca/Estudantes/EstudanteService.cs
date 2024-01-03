@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using UsuariosBiblioteca.Professores;
 
 namespace UsuariosBiblioteca.Estudantes
 {
@@ -34,5 +35,36 @@ namespace UsuariosBiblioteca.Estudantes
                 return new List<Estudante>();
             }
         }
+
+
+        //public void AlterarProfessorPorCodigo(string matricula, string nome, string email, string curso)
+        //{
+        //    try
+        //    {
+        //        List<Estudante>? estudantes = LerJsonEstudantes();
+        //        Estudante? estudanteParaAtualizar = estudantes.FirstOrDefault(estudante => estudante.Matricula == matricula);
+
+        //        if (estudanteParaAtualizar != null)
+        //        {
+        //            estudanteParaAtualizar.Nome = nome;
+        //            estudanteParaAtualizar.Email = email;
+        //            estudanteParaAtualizar.Curso = curso;
+
+        //            //SalvarJsonProfessores(professores);
+
+        //            Console.WriteLine($"Estudante com matricula {Matricula} atualizado com sucesso.");
+        //            estudanteParaAtualizar.ExibirInformacoes();
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine($"Professor com código {Matricula} não foi encontrado.");
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine($"Não foi possível alterar o professor com código {Matricula}: {e}");
+        //    }
+        //}
+
     }
 }

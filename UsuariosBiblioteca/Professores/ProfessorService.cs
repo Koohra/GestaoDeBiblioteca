@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ControleDoAcervo.Livros;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace UsuariosBiblioteca.Professores
@@ -143,6 +144,37 @@ namespace UsuariosBiblioteca.Professores
             catch (Exception ex3)
             {
                 Console.WriteLine("Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: " + ex3.Message);
+            }
+        }
+
+        public void AlterarProfessorPorCodigo(string CodigoCadastro, string nome, string email, string senha)
+        {
+            try
+            {
+                List<Professor>? professores = LerJsonProfessores();
+                Professor? professorParaAtualizar = professores.FirstOrDefault(professor => professor.CodigoCadastro == CodigoCadastro);
+
+                if (professorParaAtualizar != null)
+                {
+                    professorParaAtualizar.Nome = nome;
+                    professorParaAtualizar.Email = email;
+                    professorParaAtualizar.Senha = senha;
+                    DateTime proximoMes = DateTime.Now.AddMonths(1);
+                    professorParaAtualizar.ProximaAlteracaoDeSenha = proximoMes.ToString("dd/MM/yyyy");
+
+                    SalvarJsonProfessores(professores);
+
+                    Console.WriteLine($"Professor com código {CodigoCadastro} atualizado com sucesso.");
+                    professorParaAtualizar.ExibirInformacoes();
+                }
+                else
+                {
+                    Console.WriteLine($"Professor com código {CodigoCadastro} não foi encontrado.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Não foi possível alterar o professor com código {CodigoCadastro}: {e}");
             }
         }
     }
