@@ -78,9 +78,20 @@ namespace ControleDoAcervo.Livros
             VerificarSetor(Exemplares);
         }
 
-        public Reserva AdicionarReserva(string matricula, DateTime? dataReserva)
+        public Reserva AdicionarReserva()
         {
             CargoUsuario cargoUsuario;
+            DateTime dataReserva;
+            bool deuCerto;
+
+            Console.WriteLine("Entre com a matrícula do usuário:");
+            string matricula = Console.ReadLine();
+
+            do
+            {
+                Console.WriteLine("Entre com a data da reserva:");
+                deuCerto = DateTime.TryParse(Console.ReadLine(), out dataReserva);
+            } while (!deuCerto);
 
             if (matricula.Any(digito => digito == 'p'))
                 cargoUsuario = CargoUsuario.Professor;
@@ -88,13 +99,9 @@ namespace ControleDoAcervo.Livros
                 cargoUsuario = CargoUsuario.Estudante;
 
             if (this.Setor == Acervo.ForaDeEstoque)
-            {
                 throw new AccessViolationException("Não é possível reservar um livro fora de estoque.");
-            } 
             else if (this.Setor == Acervo.Restrito && cargoUsuario == CargoUsuario.Estudante)
-            {
                 throw new AccessViolationException("Estudante não tem acesso ao acervo restrito.");
-            }
 
             Reserva novaReserva = new Reserva(matricula, cargoUsuario, dataReserva);
             Reservas.Add(novaReserva);
