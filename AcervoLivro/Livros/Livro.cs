@@ -126,15 +126,12 @@ namespace ControleDoAcervo.Livros
             VerificarSetor(Exemplares);
         }
 
-        public Reserva AdicionarReserva()
+        public Reserva AdicionarReserva(string matricula)
         {
             CargoUsuario cargoUsuario;
             DateTime dataReserva;
             bool deuCerto;
-
-            Console.WriteLine("Entre com a matrícula do usuário:");
-            string matricula = Console.ReadLine();
-
+            
             do
             {
                 Console.WriteLine("Entre com a data da reserva:");

@@ -99,7 +99,7 @@ namespace UsuariosBiblioteca.Funcionarios
             Console.WriteLine($"Usuário desconectado.");
         }
 
-        void IUsuario.PesquisarLivro(string livroBuscado)
+        void IUsuario.PesquisarLivro()
         {
             throw new NotImplementedException();
         }

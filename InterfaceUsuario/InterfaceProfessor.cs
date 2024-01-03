@@ -28,7 +28,7 @@ namespace SistemaBiblioteca
 
                     if (!string.IsNullOrEmpty(livroBuscado))
                     {
-                        professorLogado.PesquisarLivro(livroBuscado);
+                        professorLogado.PesquisarLivro();
                     }
                     else
                     {

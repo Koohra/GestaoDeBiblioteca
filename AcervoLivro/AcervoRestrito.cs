@@ -37,7 +37,7 @@ namespace ControleDoAcervo
                         livrosEncontrados.Add(livro);
                     }
 
-                    ExibirInformacoesLivros(livrosEncontrados);
+                    //ExibirInformacoesLivros(livrosEncontrados);
                 }
             }
             catch (Exception e)

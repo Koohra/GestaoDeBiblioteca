@@ -1,90 +1,11 @@
 [
     {
-        "matricula": 20191001,
-        "nome": "João Silva",
-        "email": "joao.silva@example.com",
-        "curso": "Engenharia da Computação",
-        "anoDeIngresso": 2019,
-        "livroEmprestado": false
+        "Matricula": "20191001",
+        "Nome": "João Silva",
+        "Email": "joao.silva@example.com",
+        "Curso": "Engenharia da Computação",
+        "AnoDeIngresso": 2019,
+        "LivroEmprestado": false
     },
-    {
-        "matricula": 20191022,
-        "nome": "Maria Oliveira",
-        "email": "maria.oliveira@example.com",
-        "curso": "Administração",
-        "anoDeIngresso": 2019,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20192103,
-        "nome": "Pedro Santos",
-        "email": "pedro.santos@example.com",
-        "curso": "Engenharia Elétrica",
-        "anoDeIngresso": 2019,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20192216,
-        "nome": "Ana Pereira",
-        "email": "ana.pereira@example.com",
-        "curso": "Economia",
-        "anoDeIngresso": 2019,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20201042,
-        "nome": "Luiza Carvalho",
-        "email": "luiza.carvalho@example.com",
-        "curso": "Ciência da Computação",
-        "anoDeIngresso": 2020,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20201098,
-        "nome": "Gabriel Martins",
-        "email": "gabriel.martins@example.com",
-        "curso": "Engenharia de Software",
-        "anoDeIngresso": 2020,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20202057,
-        "nome": "Julia Rodrigues",
-        "email": "julia.rodrigues@example.com",
-        "curso": "Administração",
-        "anoDeIngresso": 2020,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20202342,
-        "nome": "Felipe Costa",
-        "email": "felipe.costa@example.com",
-        "curso": "Economia",
-        "anoDeIngresso": 2020,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20211104,
-        "nome": "Rafaela Fernandes",
-        "email": "rafaela.fernandes@example.com",
-        "curso": "Ciência da Computação",
-        "anoDeIngresso": 2021,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20211265,
-        "nome": "Amanda Almeida",
-        "email": "amanda.almeida@example.com",
-        "curso": "Engenharia Elétrica",
-        "anoDeIngresso": 2021,
-        "livroEmprestado": false
-    },
-    {
-        "matricula": 20212265,
-        "nome": "Gustavo Gomes",
-        "email": "gustavo.gomes@example.com",
-        "curso": "Engenharia da Computação",
-        "anoDeIngresso": 2021,
-        "livroEmprestado": false
-    }
+    
 ]

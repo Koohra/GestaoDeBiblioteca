@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControleDoAcervo.Livros;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,21 +25,24 @@ namespace SistemaBiblioteca
             switch (acao)
             {
                 case 1:
-                    Console.WriteLine("Digite o título do livro:");
-                    string livroBuscado = Console.ReadLine();
+                    estudanteLogado.PesquisarLivro();
+                    return;
 
-                    if (!string.IsNullOrEmpty(livroBuscado))
-                    {
-                        estudanteLogado.PesquisarLivro(livroBuscado);
-                    }
-                    else
-                    {
-                        Console.WriteLine("O título do livro não pode ser vazio.");
-                    }
-                    return;
                 case 2:
-                    //Função de reservar livro;
+                    int idLivro;
+
+                    Console.WriteLine("Digite o Id do livro que você deseja reservar:");
+                    while (!int.TryParse(Console.ReadLine(), out idLivro))
+                    {
+                        Console.Write("Número inválido, digite de novo: ");
+                    }
+
+                    LivroService livroService = new LivroService();
+                    Livro livroReservar = livroService.LerLivroPorID(idLivro);
+                    livroReservar.AdicionarReserva(estudanteLogado.Matricula.ToString());
+                    livroService.AlterarLivroPorID(livroReservar.Id, livroReservar);
                     return;
+
                 case 3:
                     estudanteLogado.Logout();
                     FazerLogin.EscolherUsuario();

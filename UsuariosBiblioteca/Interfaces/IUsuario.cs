@@ -6,6 +6,6 @@ namespace UsuariosBiblioteca.Interfaces
     {
         IUsuario Login();
         void Logout();
-        void PesquisarLivro(string livroBuscado);
+        void PesquisarLivro();
     }
 }
