@@ -90,8 +90,11 @@ namespace UsuariosBiblioteca.Professores
             Console.WriteLine($"Usuário desconectado.");
         }
 
-        public void PesquisarLivro(string livroBuscado)
+        public void PesquisarLivro()
         {
+            Console.WriteLine("Qual o título do livro gostaria de pesquisar no acervo?");
+            string livroBuscado = Console.ReadLine();
+
             AcervoPublico acervoPublico = new AcervoPublico();
             AcervoRestrito acervoRestrito = new AcervoRestrito();
             List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorTitulo(livroBuscado);
