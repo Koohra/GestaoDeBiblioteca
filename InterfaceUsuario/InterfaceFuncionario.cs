@@ -27,13 +27,16 @@ namespace SistemaBiblioteca
                     //atendente.LiberarEmprestimo(); precisa adicionar em atendente implementado
                     return;
                 case 2:
-                    //atendente.PesquisarLivro(); esta duplicado em funcionario e atendente
+                    atendente.VerificarStatusLivro();
+                    MenuAtendente(atendente);
                     return;
                 case 3:
-                    //atendente.CadastrarLivro();
+                    atendente.CadastrarLivro();
+                    MenuAtendente(atendente);
                     return;
                 case 4:
-                    //atendente.AtualizarNumeroLivros();
+                    atendente.AtualizarNumeroLivros();
+                    MenuAtendente(atendente);
                     return;
                 case 5:
                     atendente.AtualizarRegistroUsuario();
@@ -45,7 +48,7 @@ namespace SistemaBiblioteca
             }
         }
 
-        internal static void MenuDiretor(Diretor diretor) //receber Diretor diretor
+        internal static void MenuDiretor(Diretor diretor)
         {
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("\n1- Cadastrar funcionário \n2- Verificar Livro \n3- Cadastrar Livro \n4- Atualizar Livro");
@@ -64,13 +67,13 @@ namespace SistemaBiblioteca
                     Diretor.AdicionarFuncionario(funcionarioService, funcionario);
                     return;
                 case 2:
-                    //atendente.PesquisarLivro(); esta duplicado em funcionario e atendente
+                    diretor.VerificarStatusLivro();
                     return;
                 case 3:
-                    //diretor.CadastrarLivro();
+                    diretor.CadastrarLivro();
                     return;
                 case 4:
-                    //diretor.AtualizarNumeroLivros();
+                    diretor.AtualizarNumeroLivros();
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
@@ -92,13 +95,13 @@ namespace SistemaBiblioteca
             switch (acao)
             {
                 case 1:
-                    //bibliotecario.PesquisarLivro(); esta duplicado em funcionario e atendente
+                    bibliotecario.VerificarStatusLivro();
                     return;
                 case 2:
-                    //bibliotecario.CadastrarLivro();
+                    bibliotecario.CadastrarLivro();
                     return;
                 case 3:
-                    //bibliotecario.AtualizarNumeroLivros();
+                    bibliotecario.AtualizarNumeroLivros();
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");

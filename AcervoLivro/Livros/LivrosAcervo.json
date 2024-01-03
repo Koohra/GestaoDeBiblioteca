@@ -1,6 +1,6 @@
 [
   {
-    "Id": 0,
+    "Id": 4,
     "Titulo": "O ladrão de raios",
     "Autor": "Rick Riordan",
     "AnoPublicacao": 2010,
@@ -15,7 +15,7 @@
     "Reservas": []
   },
   {
-    "Id": 2,
+    "Id": 5,
     "Titulo": "A maldição do titã",
     "Autor": "Rick Riordan",
     "AnoPublicacao": 2012,
@@ -30,7 +30,7 @@
     "Reservas": []
   },
   {
-    "Id": 1,
+    "Id": 6,
     "Titulo": "O mar de monstros",
     "Autor": "Rick Riordan",
     "AnoPublicacao": 2011,
@@ -41,7 +41,7 @@
       "Emprestado": 1,
       "Conservado": 0
     },
-    "Setor": 2,
+    "Setor": 0,
     "Reservas": [
       {
         "DataReserva": "2024-01-02T00:00:00",
@@ -49,5 +49,20 @@
         "CargoUsuario": 1
       }
     ]
+  },
+  {
+    "Id": 3,
+    "Titulo": "Cujo",
+    "Autor": "Stephen King",
+    "AnoPublicacao": 1980,
+    "Exemplares": {
+      "Perdido": 2,
+      "TotalmenteDanificado": 0,
+      "MalConservado": 0,
+      "Emprestado": 1,
+      "Conservado": 2
+    },
+    "Setor": 2,
+    "Reservas": []
   }
 ]

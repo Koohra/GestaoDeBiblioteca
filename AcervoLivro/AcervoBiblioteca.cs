@@ -15,7 +15,7 @@ namespace ControleDoAcervo
             Livros = livroService.LerLivros();
         }
 
-        public void AdicionarLivro()
+        public static void AdicionarLivro()
         {
             bool esperaAno = true;
             Dictionary<EstadoExemplar, int> estadosLivroNovo = new Dictionary<EstadoExemplar, int>();
