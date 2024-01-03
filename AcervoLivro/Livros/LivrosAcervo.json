@@ -11,23 +11,8 @@
       "MalConservado": 4,
       "Emprestado": 2
     },
-    "SetorLocal": 0,
-    "ListaDeReserva": []
-  },
-  {
-    "Id": 1,
-    "Titulo": "O mar de monstros",
-    "Autor": "Rick Riordan",
-    "AnoPublicacao": 2011,
-    "Exemplares": {
-      "Perdido": 1,
-      "Conservado": 2,
-      "TotalmenteDanificado": 3,
-      "MalConservado": 4,
-      "Emprestado": 2
-    },
-    "SetorLocal": 0,
-    "ListaDeReserva": []
+    "Setor": 2,
+    "Reservas": []
   },
   {
     "Id": 2,
@@ -41,7 +26,28 @@
       "MalConservado": 4,
       "Emprestado": 2
     },
-    "SetorLocal": 0,
-    "ListaDeReserva": []
+    "Setor": 1,
+    "Reservas": []
+  },
+  {
+    "Id": 1,
+    "Titulo": "O mar de monstros",
+    "Autor": "Rick Riordan",
+    "AnoPublicacao": 2011,
+    "Exemplares": {
+      "Perdido": 2,
+      "TotalmenteDanificado": 4,
+      "MalConservado": 5,
+      "Emprestado": 1,
+      "Conservado": 0
+    },
+    "Setor": 2,
+    "Reservas": [
+      {
+        "DataReserva": "2024-01-02T00:00:00",
+        "Matricula": "20191001",
+        "CargoUsuario": 1
+      }
+    ]
   }
 ]

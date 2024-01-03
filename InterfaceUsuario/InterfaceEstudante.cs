@@ -1,4 +1,5 @@
 ﻿using ControleDoAcervo.Livros;
+using ControleDoAcervo.Reservas;
 using UsuariosBiblioteca.Estudantes;
 
 namespace SistemaBiblioteca
@@ -36,7 +37,8 @@ namespace SistemaBiblioteca
 
                     LivroService livroService = new LivroService();
                     Livro livroReservar = livroService.LerLivroPorID(idLivro);
-                    livroReservar.AdicionarReserva(estudanteLogado.Matricula);
+                    Reserva reserva = livroReservar.AdicionarReserva(estudanteLogado.Matricula);
+                    reserva.ExibirInformacoes();
                     livroService.AlterarLivroPorID(livroReservar.Id, livroReservar);
                     MenuEstudante(estudanteLogado);
                     return;

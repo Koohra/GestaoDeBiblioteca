@@ -91,12 +91,6 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
-                if (VerificaSeLivroJaExiste(livroAtualizado))
-                {
-                    Console.WriteLine("Livro com as mudanças solicitadas já existe no sistema.");
-                    return;
-                }
-
                 Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
 
                 if (livroParaAtualizar != null)

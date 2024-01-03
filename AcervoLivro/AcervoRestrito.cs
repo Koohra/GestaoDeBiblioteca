@@ -4,16 +4,14 @@ namespace ControleDoAcervo
 {
     public  class AcervoRestrito: AcervoBiblioteca
     {
-        public static List<Livro> LivrosRestritos { get
-            {
-                LivroService livroService = new LivroService();
-                LivrosRestritos = livroService.LerLivros().Where(livro => livro.Setor == Acervo.Restrito).ToList();
-                return LivrosRestritos;
-            }
-            private set { }
-        }
+        public static List<Livro> LivrosRestritos { get; private set; }
 
-        public AcervoRestrito() { }
+        public AcervoRestrito() 
+        {
+            LivrosRestritos = new List<Livro>();
+            LivroService livroService = new LivroService();
+            LivrosRestritos = livroService.LerLivros();
+        }
 
         public override List<Livro> BuscarLivroPorParteDoNome()
         {

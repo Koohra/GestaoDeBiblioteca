@@ -6,16 +6,14 @@ namespace ControleDoAcervo
 {
     public class AcervoBiblioteca
     {
-        public List<Livro> Livros { 
-            get
-            {
-                LivroService livroService = new LivroService();
-                Livros = livroService.LerLivros();
-                return Livros;
-            } 
-            private set { } }
+        public List<Livro> Livros { get; private set; }
 
-        //public AcervoBiblioteca() { }
+        public AcervoBiblioteca() 
+        {
+            Livros = new List<Livro>();
+            LivroService livroService = new LivroService();
+            Livros = livroService.LerLivros();
+        }
 
         public void AdicionarLivro()
         {

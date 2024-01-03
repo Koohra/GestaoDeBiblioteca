@@ -16,5 +16,13 @@
             else
                 this.DataReserva = DataReserva;
         }
+
+        public void ExibirInformacoes()
+        {
+            Console.WriteLine($"Data da reserva: {DataReserva}");
+            Console.WriteLine($"Matrícula: {Matricula}");
+            Console.WriteLine($"Cargo do usuário: {CargoUsuario}");
+            Console.WriteLine();
+        }
     }
 }

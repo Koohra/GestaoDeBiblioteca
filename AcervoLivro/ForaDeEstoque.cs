@@ -4,18 +4,7 @@ namespace ControleDoAcervo
 {
     public class ForaDeEstoque: AcervoBiblioteca
     {
-        public static List<Livro> LivrosForaDeEstoque { 
-            get
-            {
-                LivroService livroService = new LivroService();
-                LivrosForaDeEstoque = livroService.LerLivros().Where(livro => livro.Setor == Acervo.ForaDeEstoque).ToList();
-                return LivrosForaDeEstoque;
-            }
-            private set 
-            { 
-
-            } 
-        }
+        public static List<Livro> LivrosForaDeEstoque { get; private set; }
 
         public ForaDeEstoque() { }
 

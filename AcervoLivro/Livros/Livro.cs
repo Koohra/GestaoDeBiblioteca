@@ -76,20 +76,21 @@ namespace ControleDoAcervo.Livros
                         resultado.Append(char.ToLower(caracter));
                         estadoNome = resultado.ToString();
 
-                        do
-                        {
-                            Console.WriteLine($"Digite a quantidade de livros em estado {estadoNome}");
-                            if (int.TryParse(Console.ReadLine(), out int quantidade))
-                            {
-                                estadosLivro.Add(estado, quantidade);
-                                esperaQuantidade = false;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Esta não é uma quantidade válida.");
-                            }
-                        } while (esperaQuantidade);
                     }
+
+                    do
+                    {
+                        Console.WriteLine($"Digite a quantidade de livros em estado {estadoNome}");
+                        if (int.TryParse(Console.ReadLine(), out int quantidade))
+                        {
+                            estadosLivro.Add(estado, quantidade);
+                            esperaQuantidade = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Esta não é uma quantidade válida.");
+                        }
+                    } while (esperaQuantidade);
                 }
             }
             return estadosLivro;
@@ -156,6 +157,7 @@ namespace ControleDoAcervo.Livros
                     .ThenBy(reserva => reserva.DataReserva)
                     .ToList();
 
+            
             return novaReserva;
         }
 

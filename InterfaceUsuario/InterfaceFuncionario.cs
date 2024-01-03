@@ -118,7 +118,7 @@ namespace SistemaBiblioteca
             return funcionario;
         }
 
-        public static Atendente TransformarAtentende(Funcionario funcionario)
+        public static Atendente TransformarAtendente(Funcionario funcionario)
         {
             string codigo = funcionario.CodigoCadastro;
             string nome = funcionario.Nome;
