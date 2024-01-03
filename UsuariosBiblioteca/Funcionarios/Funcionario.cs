@@ -1,4 +1,6 @@
-﻿using ControleDoAcervo.Livros;
+﻿using ControleDoAcervo;
+using ControleDoAcervo.Livros;
+using System;
 using System.Text.Json.Serialization;
 using UsuariosBiblioteca.Estudantes;
 using UsuariosBiblioteca.Interfaces;
@@ -41,25 +43,53 @@ namespace UsuariosBiblioteca.Funcionarios
             Console.WriteLine();
         }
 
-        public void VerificarStatusLivro(Livro livro)
+        public void VerificarStatusLivro()
         {
-            // AcervoBiblioteca.VerificarDisponibilidade(livro);
-            // Aguardando método estar pronto
+            Console.WriteLine("Digite o Id do livro:");
+            int idLivro;
+            while (!int.TryParse(Console.ReadLine(), out idLivro))
+            {
+                Console.Write("Número inválido, digite de novo: ");
+            }
+            LivroService livroService = new LivroService();
+            Livro livro = livroService.LerLivroPorID(idLivro);
+
+            livro.ExibirInformacoes();
         }
 
-        public void CadastrarLivro(string titulo, string autor, int anoPublicacao, Dictionary<EstadoExemplar, int> exemplares)
+        public void CadastrarLivro()
         {
-            // Aguardando método estar pronto
+            AcervoBiblioteca.AdicionarLivro();
         }
 
         public void AtualizarNumeroLivros()
         {
-            // Aguardando método estar pronto
+            Console.WriteLine("Digite o Id do livro:");
+            int idLivro;
+            while (!int.TryParse(Console.ReadLine(), out idLivro))
+            {
+                Console.Write("Número inválido, digite de novo: ");
+            }
+            LivroService livroService = new LivroService();
+            Livro livro = livroService.LerLivroPorID(idLivro);
+            livro.AtualizarExemplares();
         }
 
         public void PesquisarLivro(string livroBuscado)
         {
-            // Aguardando método estar pronto
+            AcervoPublico acervoPublico = new AcervoPublico();
+            AcervoRestrito acervoRestrito = new AcervoRestrito();
+            ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome();
+            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome();
+            List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome();
+
+            List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).Concat(livrosForaDeEstoqueBuscados).ToList();
+
+            foreach (Livro livro in livrosBuscados)
+            {
+                livro.ExibirInformacoes();
+            }
         }
 
         public IUsuario? Login()

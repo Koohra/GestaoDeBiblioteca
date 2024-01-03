@@ -96,7 +96,6 @@ namespace ControleDoAcervo.Livros
             return estadosLivro;
         }
 
-
         public void AtualizarExemplares() 
         {
             Exemplares = ReceberEstadoExemplar();

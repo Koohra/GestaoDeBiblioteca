@@ -10,16 +10,16 @@
   {
     "CodigoCadastro": "p1002",
     "Nome": "Ricardo Silva",
-    "Email": "ricardo.silva@example.com",
-    "Senha": "123456@",
-    "ProximaAlteracaoDeSenha": "19/01/2023",
+    "Email": "ricardosilva@example.com",
+    "Senha": "12345@",
+    "ProximaAlteracaoDeSenha": "03/02/2024",
     "QuantidadeDeLivrosEmprestados": 0
   },
   {
     "CodigoCadastro": "p1003",
     "Nome": "Thiago Oliveira",
     "Email": "thiago.oliveira@example.com",
-    "Senha": "abcde@",
+    "Senha": "12345@",
     "ProximaAlteracaoDeSenha": "28/01/2024",
     "QuantidadeDeLivrosEmprestados": 0
   },

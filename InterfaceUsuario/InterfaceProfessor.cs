@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ControleDoAcervo.Livros;
+using ControleDoAcervo.Reservas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,21 +25,25 @@ namespace SistemaBiblioteca
             switch (acao)
             {
                 case 1:
-                    Console.WriteLine("Digite o título do livro:");
-                    string livroBuscado = Console.ReadLine();
-
-                    if (!string.IsNullOrEmpty(livroBuscado))
-                    {
-                        professorLogado.PesquisarLivro();
-                    }
-                    else
-                    {
-                        Console.WriteLine("O título do livro não pode ser vazio.");
-                    }
+                    professorLogado.PesquisarLivro();
+                    MenuProfessor(professorLogado);
                     return;
                   
                 case 2:
-                    //Função de reservar livro;
+                    int idLivro;
+
+                    Console.WriteLine("Digite o ID do livro que deseja reservar:");
+                    while (!int.TryParse(Console.ReadLine(), out idLivro))
+                    {
+                        Console.Write("Número inválido, digite de novo: ");
+                    }
+
+                    LivroService livroService = new LivroService();
+                    Livro livroReservar = livroService.LerLivroPorID(idLivro);
+                    Reserva reserva = livroReservar.AdicionarReserva(professorLogado.CodigoCadastro);
+                    reserva.ExibirInformacoes();
+                    livroService.AlterarLivroPorID(livroReservar.Id, livroReservar);
+                    MenuProfessor(professorLogado);
                     return;
                 case 3:
                     professorLogado.Logout();
@@ -45,6 +51,7 @@ namespace SistemaBiblioteca
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
+                    MenuProfessor(professorLogado);
                     return;
             }
         }
