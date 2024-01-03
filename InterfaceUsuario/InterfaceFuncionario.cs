@@ -36,7 +36,8 @@ namespace SistemaBiblioteca
                     //atendente.AtualizarNumeroLivros();
                     return;
                 case 5:
-                    //atendente.AtualizarDadosDeUsuario(); precisa adicionar em atendente
+                    atendente.AtualizarRegistroUsuario();
+                    MenuAtendente(atendente);
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
@@ -107,7 +108,13 @@ namespace SistemaBiblioteca
 
         internal static Funcionario CriarFuncionario()
         {
-            Funcionario funcionario = new Funcionario("0002", "Carlos", "carlos@gmail.com", Cargos.Bibliotecario, "abc");
+            Console.WriteLine("Codigo: ");
+            string codigo = Console.ReadLine()!;
+            string nome = Console.ReadLine()!;
+            string email = Console.ReadLine()!;
+            string senha = Console.ReadLine()!;
+
+            Funcionario funcionario = new Funcionario(codigo, nome, email, Cargos.Bibliotecario, "abc");
             return funcionario;
         }
 
@@ -131,6 +138,17 @@ namespace SistemaBiblioteca
 
             Diretor diretor = new Diretor(codigo, nome, email, senha);
             return diretor;
+        }
+
+        public static Bibliotecario TransformarBibliotecario(Funcionario funcionario) 
+        {
+            string codigo = funcionario.CodigoCadastro;
+            string nome = funcionario.Nome;
+            string email = funcionario.Email;
+            string senha = funcionario.Senha;
+
+            Bibliotecario bibliotecario = new Bibliotecario(codigo, nome, email, senha);
+            return bibliotecario;
         }
 
     }

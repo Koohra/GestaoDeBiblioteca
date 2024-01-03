@@ -1,5 +1,6 @@
 ﻿using ControleDoAcervo.Livros;
 using System.Globalization;
+using UsuariosBiblioteca.Funcionarios;
 using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Professores
@@ -82,9 +83,16 @@ namespace UsuariosBiblioteca.Professores
             }
         }
 
-
+        public void ExibirInformacoes()
+        {
+            Console.WriteLine($"Código de Cadastro: {CodigoCadastro}");
+            Console.WriteLine($"Nome: {Nome}");
+            Console.WriteLine($"Email: {Email} ");
+            Console.WriteLine();
+        }
         public void Logout()
         {
+            Console.Clear();
             Console.WriteLine($"Usuário desconectado.");
         }
 
@@ -103,6 +111,24 @@ namespace UsuariosBiblioteca.Professores
         {
             DateTime proximaAlteracao = DateTime.ParseExact(professor.ProximaAlteracaoDeSenha, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             return DateTime.Now >= proximaAlteracao;
+        }
+
+        public static Professor LocalizarPorCodigo()
+        {
+            ProfessorService professorService = new ProfessorService();
+            List<Professor> professores = professorService.LerJsonProfessores() ?? new List<Professor>();
+
+            Console.WriteLine("Código de cadastro:");
+            string codigoCadastro = Console.ReadLine()!;
+
+            foreach (Professor professor in professores)
+            {
+                if (professor.CodigoCadastro == codigoCadastro)
+                {
+                    return professor;
+                }
+            }
+            return null;
         }
     }
 }
