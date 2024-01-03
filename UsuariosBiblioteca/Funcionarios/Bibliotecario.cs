@@ -2,9 +2,9 @@
 
 namespace UsuariosBiblioteca.Funcionarios
 {
-    public class Bibliotecario : IUsuario
-    {
+    //public class Bibliotecario : IUsuario
+    //{
 
 
-    }
+    //}
 }

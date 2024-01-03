@@ -1,4 +1,5 @@
 ﻿using ControleDoAcervo.Reservas;
+using System.Text;
 
 namespace ControleDoAcervo.Livros
 {
@@ -26,7 +27,11 @@ namespace ControleDoAcervo.Livros
 
         private void VerificarSetor(Dictionary<EstadoExemplar, int> exemplares)
         {
-            int quantidadeTotalLivros = exemplares.Values.Sum();
+            int quantidadeLivrosDisponiveis = exemplares.GetValueOrDefault(EstadoExemplar.Conservado, 0)
+                + exemplares.GetValueOrDefault(EstadoExemplar.MalConservado, 0)
+                + exemplares.GetValueOrDefault(EstadoExemplar.Emprestado, 0);
+
+            //int quantidadeLivrosDisponiveis = exemplares[EstadoExemplar.Conservado] + exemplares[EstadoExemplar.MalConservado];  //exemplares.Values.Sum()
             foreach (var (estado, quantidade) in exemplares)
             {
                 if (estado == EstadoExemplar.Conservado && quantidade >= 2)
@@ -35,12 +40,14 @@ namespace ControleDoAcervo.Livros
                     break;
                 }
                 else if (estado == EstadoExemplar.Conservado && quantidade == 1 ||
-                         estado == EstadoExemplar.MalConservado && quantidade == quantidadeTotalLivros)
+                         estado == EstadoExemplar.MalConservado && quantidade == quantidadeLivrosDisponiveis)
                 {
                     Setor = Acervo.Restrito;
                     break;
                 }
-                else if (estado == EstadoExemplar.Conservado && quantidade == 0)
+                else if (estado == EstadoExemplar.Emprestado && quantidade == quantidadeLivrosDisponiveis
+                        || quantidadeLivrosDisponiveis == 0 && ((estado == EstadoExemplar.TotalmenteDanificado && quantidade >=1)
+                        || (estado == EstadoExemplar.Perdido && quantidade >= 1)))
                 {
                     Setor = Acervo.ForaDeEstoque;
                     break;
@@ -48,9 +55,50 @@ namespace ControleDoAcervo.Livros
             }
         }
 
-        public void AtualizarExemplares(Dictionary<EstadoExemplar, int> exemplares) 
+        public static Dictionary<EstadoExemplar, int> ReceberEstadoExemplar()
         {
-            Exemplares = exemplares;
+            Dictionary<EstadoExemplar, int> estadosLivro = new Dictionary<EstadoExemplar, int>();
+            foreach (string estadoString in Enum.GetNames(typeof(EstadoExemplar)))
+            {
+                EstadoExemplar estado;
+                if (Enum.TryParse(estadoString, out estado))
+                {
+                    bool esperaQuantidade = true;
+
+                    string estadoNome = estado.ToString();
+                    StringBuilder resultado = new StringBuilder();
+                    foreach (char caracter in estadoNome)
+                    {
+                        if (char.IsUpper(caracter) && resultado.Length > 0)
+                        {
+                            resultado.Append(' ');
+                        }
+                        resultado.Append(char.ToLower(caracter));
+                        estadoNome = resultado.ToString();
+
+                        do
+                        {
+                            Console.WriteLine($"Digite a quantidade de livros em estado {estadoNome}");
+                            if (int.TryParse(Console.ReadLine(), out int quantidade))
+                            {
+                                estadosLivro.Add(estado, quantidade);
+                                esperaQuantidade = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Esta não é uma quantidade válida.");
+                            }
+                        } while (esperaQuantidade);
+                    }
+                }
+            }
+            return estadosLivro;
+        }
+
+
+        public void AtualizarExemplares() 
+        {
+            Exemplares = ReceberEstadoExemplar();
             VerificarSetor(Exemplares);
         }
 
@@ -78,14 +126,14 @@ namespace ControleDoAcervo.Livros
             VerificarSetor(Exemplares);
         }
 
-        public Reserva AdicionarReserva(string matricula, DateTime? dataReserva)
-        {
+        //public Reserva AdicionarReserva(string matricula, DateTime? dataReserva)
+        //{
             // verificar acervo, se usuario for estudante ou professor a reserva nao pode ser aceita
             // se for possivel criar reserva 
             // ordenar a lista de reservas primeiro por cargo do usuário, depois por data
             //Reservas.OrderBy(reserva => reserva.CargoUsuario).ThenBy()
             // retorna a reserva adicionada
-        }
+        //}
 
         public Reserva RemoverReserva()
         {
@@ -108,6 +156,7 @@ namespace ControleDoAcervo.Livros
             Console.WriteLine($"Autor: {Autor}");
             Console.WriteLine($"Ano de publicação: {AnoPublicacao}");
             Console.WriteLine($"Setor: {Setor}");
+            Console.WriteLine();
         }
     }
 }

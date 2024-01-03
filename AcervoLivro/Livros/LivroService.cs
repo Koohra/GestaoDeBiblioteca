@@ -111,7 +111,7 @@ namespace ControleDoAcervo.Livros
                     livroParaAtualizar.Titulo = livroAtualizado.Titulo;
                     livroParaAtualizar.Autor = livroAtualizado.Autor;
                     livroParaAtualizar.AnoPublicacao = livroAtualizado.AnoPublicacao;
-                    livroParaAtualizar.AtualizarExemplares(livroAtualizado.Exemplares);
+                    livroParaAtualizar.AtualizarExemplares();
                     livroParaAtualizar.Reservas = livroAtualizado.Reservas;
                     Livros.Add(livroParaAtualizar);
 
@@ -152,5 +152,31 @@ namespace ControleDoAcervo.Livros
                 Console.WriteLine($"Não foi possível deletar o livro com ID {id}: {e}");
             }
         }
+
+        public void DeletarLivroTitulo(string titulo, string autor, int anoPublicacao)
+        {
+            try
+            {
+                foreach (var livro in Livros)
+                {
+                    if (livro.Titulo.Equals(titulo, StringComparison.OrdinalIgnoreCase) &&
+                        livro.Autor.Equals(titulo, StringComparison.OrdinalIgnoreCase) &&
+                        livro.AnoPublicacao.Equals(anoPublicacao))
+                    {
+                        Livros.Remove(livro);
+                        var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
+                        File.WriteAllText(Caminho, json);
+                        Console.WriteLine($"O livro {titulo} foi deletado com sucesso.");
+                    }
+                    else
+                        Console.WriteLine($"O livro {titulo} não foi encontrado.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Não foi possível deletar o livro {titulo}: {e}");
+            }
+        }
     }
 }
+
