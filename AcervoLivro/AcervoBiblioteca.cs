@@ -6,14 +6,10 @@ namespace ControleDoAcervo
 {
     public class AcervoBiblioteca
     {
-        public List<Livro> Livros { get; private set; }
+        public static List<Livro> Livros { get; private set; } = new List<Livro>();
+        protected LivroService livroService { get; set; } = new LivroService();
 
-        public AcervoBiblioteca() 
-        {
-            Livros = new List<Livro>();
-            LivroService livroService = new LivroService();
-            Livros = livroService.LerLivros();
-        }
+        public AcervoBiblioteca() { }
 
         public static void AdicionarLivro()
         {
@@ -97,7 +93,6 @@ namespace ControleDoAcervo
                     }
                 } while (esperaAno);
 
-                LivroService livroService = new LivroService();
                 livroService.DeletarLivroTitulo(titulo, autor, anoPublicacao);
             }
             catch(Exception e)
@@ -117,7 +112,6 @@ namespace ControleDoAcervo
                     if (int.TryParse(Console.ReadLine(), out int id))
                     {
                         int idLivro = id;
-                        LivroService livroService = new LivroService();
                         livroService.DeletarLivroPorID(idLivro);
                         esperaId = false;
                     }
@@ -138,6 +132,7 @@ namespace ControleDoAcervo
         public virtual List<Livro> BuscarLivroPorParteDoNome()
         {   
             List<Livro> livrosEncontrados = new List<Livro>();
+            Livros = livroService.LerLivros();
 
             Console.WriteLine("Digite o título do livro ou parte dele:");
             string? parteTitulo = Console.ReadLine();

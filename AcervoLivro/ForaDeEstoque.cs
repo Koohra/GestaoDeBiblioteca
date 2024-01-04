@@ -4,13 +4,14 @@ namespace ControleDoAcervo
 {
     public class ForaDeEstoque: AcervoBiblioteca
     {
-        public static List<Livro> LivrosForaDeEstoque { get; private set; }
+        public static List<Livro> LivrosForaDeEstoque { get; private set; } = new List<Livro>();
 
         public ForaDeEstoque() { }
 
         public override List<Livro> BuscarLivroPorParteDoNome()
         {
             List<Livro> livrosEncontrados = new List<Livro>();
+            LivrosForaDeEstoque = livroService.LerLivros();
 
             Console.WriteLine("Digite o título do livro ou parte dele:");
             string? parteTitulo = Console.ReadLine();

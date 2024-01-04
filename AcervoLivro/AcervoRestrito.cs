@@ -4,18 +4,14 @@ namespace ControleDoAcervo
 {
     public  class AcervoRestrito: AcervoBiblioteca
     {
-        public static List<Livro> LivrosRestritos { get; private set; }
+        public static List<Livro> LivrosRestritos { get; private set; } = new List<Livro>();
 
-        public AcervoRestrito() 
-        {
-            LivrosRestritos = new List<Livro>();
-            LivroService livroService = new LivroService();
-            LivrosRestritos = livroService.LerLivros();
-        }
+        public AcervoRestrito() { }
 
         public override List<Livro> BuscarLivroPorParteDoNome()
         {
             List<Livro> livrosEncontrados = new List<Livro>();
+            LivrosRestritos = livroService.LerLivros();
 
             Console.WriteLine("Digite o título do livro ou parte dele:");
             string? parteTitulo = Console.ReadLine();

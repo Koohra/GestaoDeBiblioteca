@@ -145,9 +145,9 @@ namespace ControleDoAcervo.Livros
                 cargoUsuario = CargoUsuario.Estudante;
 
             if (this.Setor == Acervo.ForaDeEstoque)
-                throw new AccessViolationException("Não é possível reservar um livro fora de estoque.");
+                Console.WriteLine("Não é possível reservar um livro fora de estoque.");
             else if (this.Setor == Acervo.Restrito && cargoUsuario == CargoUsuario.Estudante)
-                throw new AccessViolationException("Estudante não tem acesso ao acervo restrito.");
+                Console.WriteLine("Estudante não tem acesso ao acervo restrito.");
 
             Reserva novaReserva = new Reserva(matricula, cargoUsuario, dataReserva);
             Reservas.Add(novaReserva);
