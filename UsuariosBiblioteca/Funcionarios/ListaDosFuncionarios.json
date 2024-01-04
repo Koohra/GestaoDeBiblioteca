@@ -15,7 +15,7 @@
   },
   {
     "CodigoCadastro": "b0103",
-    "Nome": "Calorina Oliveira",
+    "Nome": "Carolina Oliveira",
     "Email": "carolina.oliveira@example.com",
     "Cargo": 2,
     "Senha": "123456@"
@@ -37,7 +37,7 @@
   {
     "CodigoCadastro": "b0106",
     "Nome": "Miguel Pereira",
-    "Email": "miguelzinho@gmail.com",
+    "Email": "miguel@gmail.com",
     "Cargo": 2,
     "Senha": "123456@"
   }

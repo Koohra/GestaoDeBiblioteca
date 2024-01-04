@@ -18,6 +18,26 @@ namespace UsuariosBiblioteca.Professores
 
         public Professor() { }
 
+        private static string LerSenha()
+        {
+            string senha = "";
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(true);
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    senha += key.KeyChar;
+                    Console.Write("*");
+                }
+            } while (key.Key != ConsoleKey.Enter);
+
+            Console.WriteLine();
+            return senha;
+        }
+
         public IUsuario Login()
         {
             ProfessorService professorService = new ProfessorService();
@@ -29,7 +49,7 @@ namespace UsuariosBiblioteca.Professores
                 string codigoCadastro = Console.ReadLine();
 
                 Console.WriteLine("Digite sua senha:");
-                string senha = Console.ReadLine();
+                string senha = LerSenha();
 
                 Professor professor = professores.FirstOrDefault(predicate: p => p.CodigoCadastro == codigoCadastro);
 
@@ -109,8 +129,8 @@ namespace UsuariosBiblioteca.Professores
             List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome(parteTitulo);
 
             List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).DistinctBy(livro => livro.Titulo).ToList();
-            
-            foreach(Livro livro in livrosBuscados)
+
+            foreach (Livro livro in livrosBuscados)
             {
                 livro.ExibirInformacoes();
             }
