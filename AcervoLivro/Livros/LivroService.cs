@@ -74,7 +74,6 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
-                Console.WriteLine("\tTodos os livros do Sistema da Biblioteca");
                 return DeserializaJSON();
             }
             catch (Exception e)

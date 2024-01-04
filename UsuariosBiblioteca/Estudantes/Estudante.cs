@@ -81,8 +81,11 @@ namespace UsuariosBiblioteca.Estudantes
         }
         public void PesquisarLivro()
         {
+            Console.WriteLine("Digite o título do livro ou parte dele:");
+            string? parteTitulo = Console.ReadLine();
+
             AcervoPublico acervoPublico = new AcervoPublico();
-            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome();
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(parteTitulo);
 
             foreach (Livro livro in livrosPublicosBuscados)
             {

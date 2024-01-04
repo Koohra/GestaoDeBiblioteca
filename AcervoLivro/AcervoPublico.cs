@@ -8,13 +8,10 @@ namespace ControleDoAcervo
 
         public AcervoPublico() {  }
 
-        public override List<Livro> BuscarLivroPorParteDoNome()
+        public override List<Livro> BuscarLivroPorParteDoNome(string? parteTitulo)
         {
             List<Livro> livrosEncontrados = new List<Livro>();
             LivrosPublicos = livroService.LerLivros();
-
-            Console.WriteLine("Digite o título do livro ou parte dele:");
-            string? parteTitulo = Console.ReadLine();
 
             while (string.IsNullOrEmpty(parteTitulo))
             {

@@ -25,26 +25,34 @@ namespace SistemaBiblioteca
             {
                 case 1:
                     atendente.PermitirEmprestimo();
+                    MenuAtendente(atendente);
                     return;
+
                 case 2:
                     atendente.ReceberDevolucao();
+                    MenuAtendente(atendente);
                     return;
+
                 case 3:
                     atendente.VerificarStatusLivro();
                     MenuAtendente(atendente);
                     return;
+
                 case 4:
                     atendente.CadastrarLivro();
                     MenuAtendente(atendente);
                     return;
+
                 case 5:
                     atendente.AtualizarNumeroLivros();
                     MenuAtendente(atendente);
                     return;
+
                 case 6:
                     atendente.AtualizarRegistroUsuario();
                     MenuAtendente(atendente);
                     return;
+
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
                     MenuAtendente(atendente);
@@ -69,16 +77,24 @@ namespace SistemaBiblioteca
                     Funcionario funcionario = CriarFuncionario();
                     FuncionarioService funcionarioService = new FuncionarioService();
                     Diretor.AdicionarFuncionario(funcionarioService, funcionario);
+                    MenuDiretor(diretor);
                     return;
+
                 case 2:
                     diretor.VerificarStatusLivro();
+                    MenuDiretor(diretor);
                     return;
+
                 case 3:
                     diretor.CadastrarLivro();
+                    MenuDiretor(diretor);
                     return;
+
                 case 4:
                     diretor.AtualizarNumeroLivros();
+                    MenuDiretor(diretor);
                     return;
+
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
                     return;
@@ -100,15 +116,22 @@ namespace SistemaBiblioteca
             {
                 case 1:
                     bibliotecario.VerificarStatusLivro();
+                    MenuBibliotecario(bibliotecario);
                     return;
+
                 case 2:
                     bibliotecario.CadastrarLivro();
+                    MenuBibliotecario(bibliotecario);
                     return;
+
                 case 3:
                     bibliotecario.AtualizarNumeroLivros();
+                    MenuBibliotecario(bibliotecario);
                     return;
+
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
+                    MenuBibliotecario(bibliotecario);
                     return;
             }
         }
@@ -117,7 +140,7 @@ namespace SistemaBiblioteca
         {
             Console.WriteLine("Codigo: ");
             string codigo = Console.ReadLine()!;
-            Console.WriteLine("nome: ");
+            Console.WriteLine("Nome: ");
             string nome = Console.ReadLine()!;
             Console.WriteLine("Email: ");
             string email = Console.ReadLine()!;

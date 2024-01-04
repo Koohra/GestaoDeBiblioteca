@@ -80,9 +80,9 @@ namespace UsuariosBiblioteca.Funcionarios
             AcervoPublico acervoPublico = new AcervoPublico();
             AcervoRestrito acervoRestrito = new AcervoRestrito();
             ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
-            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome();
-            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome();
-            List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome();
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(livroBuscado);
+            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome(livroBuscado);
+            List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome(livroBuscado);
 
             List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).Concat(livrosForaDeEstoqueBuscados).ToList();
 
@@ -200,6 +200,9 @@ namespace UsuariosBiblioteca.Funcionarios
                     return novocargo;
                 case 3:
                     novocargo = Cargos.Diretor;
+                    return novocargo;
+                default:
+                    novocargo = Cargos.Bibliotecario;
                     return novocargo;
             }
         }

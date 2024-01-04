@@ -100,12 +100,15 @@ namespace UsuariosBiblioteca.Professores
 
         public void PesquisarLivro()
         {
+            Console.WriteLine("Digite o título do livro ou parte dele:");
+            string? parteTitulo = Console.ReadLine();
+
             AcervoPublico acervoPublico = new AcervoPublico();
             AcervoRestrito acervoRestrito = new AcervoRestrito();
-            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome();
-            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome();
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(parteTitulo);
+            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome(parteTitulo);
 
-            List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).ToList();
+            List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).DistinctBy(livro => livro.Titulo).ToList();
             
             foreach(Livro livro in livrosBuscados)
             {

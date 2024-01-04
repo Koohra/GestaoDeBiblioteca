@@ -1,6 +1,6 @@
 [
   {
-    "Id": 1,
+    "Id": 0,
     "Titulo": "A maldição do titã",
     "Autor": "Rick Riordan",
     "AnoPublicacao": 2012,
@@ -15,7 +15,7 @@
     "Reservas": []
   },
   {
-    "Id": 2,
+    "Id": 1,
     "Titulo": "O mar de monstros",
     "Autor": "Rick Riordan",
     "AnoPublicacao": 2011,
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "Id": 3,
+    "Id": 2,
     "Titulo": "Cujo",
     "Autor": "Stephen King",
     "AnoPublicacao": 1980,
@@ -51,7 +51,7 @@
     "Reservas": []
   },
   {
-    "Id": 0,
+    "Id": 3,
     "Titulo": "O ladrão de raios",
     "Autor": "Rick Riordan",
     "AnoPublicacao": 2010,
@@ -68,6 +68,57 @@
         "DataReserva": "2024-01-04T00:00:00",
         "Matricula": "20191001",
         "CargoUsuario": 1
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "Titulo": "A culpa é das estrelas",
+    "Autor": "John Green",
+    "AnoPublicacao": 2008,
+    "Exemplares": {
+      "Perdido": 0,
+      "TotalmenteDanificado": 1,
+      "MalConservado": 2,
+      "Emprestado": 1,
+      "Conservado": 5
+    },
+    "Setor": 2,
+    "Reservas": []
+  },
+  {
+    "Id": 6,
+    "Titulo": "Joyland",
+    "Autor": "Stepehn King",
+    "AnoPublicacao": 2010,
+    "Exemplares": {
+      "Perdido": 0,
+      "TotalmenteDanificado": 0,
+      "MalConservado": 2,
+      "Emprestado": 3,
+      "Conservado": 4
+    },
+    "Setor": 2,
+    "Reservas": []
+  },
+  {
+    "Id": 5,
+    "Titulo": "Deixe a neve cair",
+    "Autor": "John Green",
+    "AnoPublicacao": 2005,
+    "Exemplares": {
+      "Perdido": 1,
+      "TotalmenteDanificado": 2,
+      "MalConservado": 3,
+      "Emprestado": 2,
+      "Conservado": 3
+    },
+    "Setor": 2,
+    "Reservas": [
+      {
+        "DataReserva": "2024-01-04T00:00:00",
+        "Matricula": "p1001",
+        "CargoUsuario": 0
       }
     ]
   }
