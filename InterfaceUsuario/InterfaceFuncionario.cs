@@ -117,11 +117,15 @@ namespace SistemaBiblioteca
         {
             Console.WriteLine("Codigo: ");
             string codigo = Console.ReadLine()!;
+            Console.WriteLine("nome: ");
             string nome = Console.ReadLine()!;
+            Console.WriteLine("Email: ");
             string email = Console.ReadLine()!;
+            Console.WriteLine("Senha: ");
             string senha = Console.ReadLine()!;
+            Cargos cargo = Funcionario.SelecionarCargo();
 
-            Funcionario funcionario = new Funcionario(codigo, nome, email, Cargos.Bibliotecario, "abc");
+            Funcionario funcionario = new Funcionario(codigo, nome, email, cargo, senha);
             return funcionario;
         }
 
