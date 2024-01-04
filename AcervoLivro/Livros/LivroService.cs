@@ -6,13 +6,25 @@ namespace ControleDoAcervo.Livros
     public class LivroService
     {
         public string Caminho { get; private set; }
-        public List<Livro> Livros { get; private set; } = new List<Livro>();
+        public static List<Livro> Livros { get; private set; } = new List<Livro>();
 
         public LivroService(string? arquivo = "LivrosAcervo.json")
         {
             Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Livros", arquivo);
             Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "AcervoLivro");
+        }
 
+        private bool VerificaSeLivroJaExiste(Livro livro)
+        {
+            List<Livro> Livros = DeserializaJSON();
+            Livro? livroIgual = Livros.FirstOrDefault(l => l.Titulo == livro.Titulo && l.Autor == livro.Autor && l.Reservas == livro.Reservas);
+            if (livroIgual != null)
+                return true;
+            return false;
+        }
+
+        private List<Livro> DeserializaJSON()
+        {
             var json = File.ReadAllText(Caminho);
             JArray livrosJSON = JArray.Parse(json);
 
@@ -22,14 +34,13 @@ namespace ControleDoAcervo.Livros
                 if (livro != null)
                     Livros.Add(livro);
             }
+            return Livros.DistinctBy(livro => livro.Titulo).ToList();
         }
 
-        public bool VerificaSeLivroJaExiste(Livro livro)
+        private void SerializaJSON(List<Livro?> livros)
         {
-            Livro? livroIgual = Livros.FirstOrDefault(l => l.Titulo == livro.Titulo && l.Autor == livro.Autor && l.Reservas == livro.Reservas);
-            if (livroIgual != null)
-                return true;
-            return false;
+            var json = JsonConvert.SerializeObject(livros, Formatting.Indented);
+            File.WriteAllText(Caminho, json);
         }
 
         public void CriarLivro(Livro novoLivro)
@@ -40,9 +51,9 @@ namespace ControleDoAcervo.Livros
                     Console.WriteLine("Este livro já existe no sistema.");
                 else
                 {
+                    List<Livro> Livros = DeserializaJSON();
                     Livros.Add(novoLivro);
-                    var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
-                    File.WriteAllText(Caminho, json);
+                    SerializaJSON(Livros);
                     Console.WriteLine("Livro criado com sucesso.");
                 }
             }
@@ -56,19 +67,21 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
-                return Livros;
+                Console.WriteLine("\tTodos os livros do Sistema da Biblioteca");
+                return DeserializaJSON();
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Não foi possível ler todos os livros do arquivo JSON: {e}");
-                return Livros;
+                return null;
             }
         }
 
-        public Livro LerLivroPorID(int id)
+        public Livro? LerLivroPorID(int id)
         {
             try
             {
+                List<Livro?> Livros = DeserializaJSON();
                 Livro? livro = Livros.FirstOrDefault(livro => livro.Id == id);
 
                 if (livro != null)
@@ -91,6 +104,7 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
+                List<Livro?> Livros = DeserializaJSON();
                 Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
 
                 if (livroParaAtualizar != null)
@@ -103,8 +117,7 @@ namespace ControleDoAcervo.Livros
                     livroParaAtualizar.Reservas = livroAtualizado.Reservas;
                     Livros.Add(livroParaAtualizar);
 
-                    var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
-                    File.WriteAllText(Caminho, json);
+                    SerializaJSON(Livros);
 
                     Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
                     livroParaAtualizar.ExibirInformacoes();
@@ -124,12 +137,13 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
+                List<Livro?> Livros = DeserializaJSON();
                 var livroParaDeletar = Livros.FirstOrDefault(livro => livro.Id == id);
+
                 if (livroParaDeletar != null)
                 {
                     Livros.Remove(livroParaDeletar);
-                    var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
-                    File.WriteAllText(Caminho, json);
+                    SerializaJSON(Livros);
                     Console.WriteLine($"Livro com ID {id} deletado com sucesso.");
                 }
                 else
@@ -145,6 +159,8 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
+                List<Livro?> Livros = DeserializaJSON();
+
                 foreach (var livro in Livros)
                 {
                     if (livro.Titulo.Equals(titulo, StringComparison.OrdinalIgnoreCase) &&
@@ -152,8 +168,7 @@ namespace ControleDoAcervo.Livros
                         livro.AnoPublicacao.Equals(anoPublicacao))
                     {
                         Livros.Remove(livro);
-                        var json = JsonConvert.SerializeObject(Livros, Formatting.Indented);
-                        File.WriteAllText(Caminho, json);
+                        SerializaJSON(Livros);
                         Console.WriteLine($"O livro {titulo} foi deletado com sucesso.");
                     }
                     else
