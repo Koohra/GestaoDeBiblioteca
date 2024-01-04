@@ -14,8 +14,43 @@ namespace UsuariosBiblioteca.Funcionarios
             Cargo = Cargos.Atendente;
         }
 
-        public void RegistroUsuario() { }// provavelmente tem que receber algo
-        public void PermitirEmprestimo(Livro livro, Estudante aluno) { }
+        public void PermitirEmprestimo() {
+
+            Console.WriteLine("Digite o Id do livro:");
+            int idLivro;
+            while (!int.TryParse(Console.ReadLine(), out idLivro))
+            {
+                Console.Write("Número inválido, digite de novo: ");
+            }
+            LivroService livroService = new LivroService();
+            Livro livro = livroService.LerLivroPorID(idLivro);
+
+            if (livro != null) livro.EmprestarLivro(livro);
+            else Console.WriteLine("Ocorreu um erro, livro não pode ser emprestado");
+
+            //Estudante estudante = Estudante.LocalizarPorMatricula(); //adicionar trycatch
+            //estudante.LivroEmprestado == true;
+            //estudante.ExibirInformacoes();
+
+        }
+
+        public void ReceberDevolucao()
+        {
+            Console.WriteLine("Digite o Id do livro:");
+            int idLivro;
+            while (!int.TryParse(Console.ReadLine(), out idLivro))
+            {
+                Console.Write("Número inválido, digite de novo: ");
+            }
+            LivroService livroService = new LivroService();
+            Livro livro = livroService.LerLivroPorID(idLivro);
+
+            if (livro != null) livro.DevolverLivro(livro);
+            else Console.WriteLine("Ocorreu um erro, livro não pode ser devolvido");
+        }
+
+        public void RegistroUsuario() { }//implementar
+
         public void AtualizarRegistroUsuario()
         {
             Console.WriteLine("ATUALIZAR REGISTRO");
@@ -43,7 +78,7 @@ namespace UsuariosBiblioteca.Funcionarios
             }
 
 
-        } // provavelmente tem que receber algo
+        }
 
         private void AtualizarEstudante()
         {
@@ -63,7 +98,7 @@ namespace UsuariosBiblioteca.Funcionarios
             Console.Write("Curso: ");
             string cursonovo = Console.ReadLine();
 
-            //estudanteService.AlterarEstudantePorMatricula(estudante.Matricula, nomenovo, emailnovo, cursonovo);
+            estudanteService.AlterarEstudantePorMatricula(estudante.Matricula, nomenovo, emailnovo, cursonovo);
 
         }
 

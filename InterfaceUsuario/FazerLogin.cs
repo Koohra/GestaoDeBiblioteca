@@ -10,8 +10,8 @@ namespace SistemaBiblioteca
         internal static void EscolherUsuario()
         {
             Console.WriteLine("Selecione login desejado:");
-            Console.WriteLine("1- Estudante\n2- Professor\n3-Funcionário");
-            Console.WriteLine("\nOu digite 4 para SAIR");
+            Console.WriteLine("1- Estudante\n2- Professor\n3- Funcionário");
+            Console.WriteLine("Ou digite 4 para SAIR");
             int opcaoUsuario;
             while (!int.TryParse(Console.ReadLine(), out opcaoUsuario) || opcaoUsuario < 1 || opcaoUsuario > 4)
             {

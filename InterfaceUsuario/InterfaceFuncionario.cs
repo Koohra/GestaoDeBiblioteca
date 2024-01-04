@@ -13,7 +13,7 @@ namespace SistemaBiblioteca
         internal static void MenuAtendente(Atendente atendente)
         {
             Console.WriteLine("\nSelecione a ação desejada:");
-            Console.WriteLine("1- Liberar Empréstimo \n2- Verificar Livro \n3- Cadastrar Livro \n4- Atualizar Livro \n5- Atualizar dados de Usuário");
+            Console.WriteLine("1- Liberar Empréstimo \n2- Receber Livro \n3- Verificar Livro \n4- Cadastrar Livro \n5- Atualizar Livro \n6- Atualizar dados de Usuário");
 
             int acao;
             while (!int.TryParse(Console.ReadLine(), out acao))
@@ -24,26 +24,30 @@ namespace SistemaBiblioteca
             switch (acao)
             {
                 case 1:
-                    //atendente.LiberarEmprestimo(); precisa adicionar em atendente implementado
+                    atendente.PermitirEmprestimo();
                     return;
                 case 2:
+                    atendente.ReceberDevolucao();
+                    return;
+                case 3:
                     atendente.VerificarStatusLivro();
                     MenuAtendente(atendente);
                     return;
-                case 3:
+                case 4:
                     atendente.CadastrarLivro();
                     MenuAtendente(atendente);
                     return;
-                case 4:
+                case 5:
                     atendente.AtualizarNumeroLivros();
                     MenuAtendente(atendente);
                     return;
-                case 5:
+                case 6:
                     atendente.AtualizarRegistroUsuario();
                     MenuAtendente(atendente);
                     return;
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
+                    MenuAtendente(atendente);
                     return;
             }
         }

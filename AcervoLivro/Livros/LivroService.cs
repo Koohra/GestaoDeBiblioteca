@@ -193,6 +193,27 @@ namespace ControleDoAcervo.Livros
                 Console.WriteLine("Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: " + ex3.Message);
             }
         }
+
+        public void EmprestarLivro(int id, Dictionary<EstadoExemplar, int> exemplarAtualizado)
+        {
+            List<Livro>? livros = LerLivros();
+            Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
+
+            if (livroParaAtualizar != null)
+            {
+                livroParaAtualizar.Exemplares = exemplarAtualizado;
+
+                SalvarJsonLivro(livros);
+
+                Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
+                livroParaAtualizar.ExibirInformacoes();
+            }
+        }
+
+        public void ReceberLivro()
+        {
+
+        }
     }
 }
 

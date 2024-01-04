@@ -46,7 +46,7 @@ namespace UsuariosBiblioteca.Estudantes
             }
         }
 
-        public void SalvarJsonEstudantes(List<Professor> estudantes)
+        public void SalvarJsonEstudantes(List<Estudante> estudantes)
         {
 
             try
@@ -69,6 +69,35 @@ namespace UsuariosBiblioteca.Estudantes
             catch (Exception e)
             {
                 Console.WriteLine("Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: " + e.Message);
+            }
+        }
+
+        public void AlterarEstudantePorMatricula(string Matricula, string nome, string email, string curso)
+        {
+            try
+            {
+                List<Estudante>? estudantes = LerJsonEstudantes();
+                Estudante? estudanteParaAtualizar = estudantes.FirstOrDefault(estudante => estudante.Matricula == Matricula);
+
+                if (estudanteParaAtualizar != null)
+                {
+                    estudanteParaAtualizar.Nome = nome;
+                    estudanteParaAtualizar.Email = email;
+                    estudanteParaAtualizar.Curso = curso;
+
+                    SalvarJsonEstudantes(estudantes);
+
+                    Console.WriteLine($"Estudante com a matrícula {Matricula} atualizado com sucesso.");
+                    estudanteParaAtualizar.ExibirInformacoes();
+                }
+                else
+                {
+                    Console.WriteLine($"Estudante com a matrícula {Matricula} não foi encontrado.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Não foi possível alterar o estudante com a matrícula {Matricula}: {e}");
             }
         }
     }

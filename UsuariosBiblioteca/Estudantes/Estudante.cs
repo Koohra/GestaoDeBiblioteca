@@ -3,6 +3,7 @@ using ControleDoAcervo.Livros;
 using System.Globalization;
 using UsuariosBiblioteca.Funcionarios;
 using UsuariosBiblioteca.Interfaces;
+using UsuariosBiblioteca.Professores;
 
 namespace UsuariosBiblioteca.Estudantes
 {
@@ -127,7 +128,6 @@ namespace UsuariosBiblioteca.Estudantes
 
             return null;
         }
-
 
     }
 }

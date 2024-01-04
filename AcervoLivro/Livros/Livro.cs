@@ -1,6 +1,7 @@
 ﻿using ControleDoAcervo.Reservas;
 using System.Text;
 
+
 namespace ControleDoAcervo.Livros
 {
     public class Livro
@@ -182,6 +183,24 @@ namespace ControleDoAcervo.Livros
             Console.WriteLine($"Ano de publicação: {AnoPublicacao}");
             Console.WriteLine($"Setor: {Setor}");
             Console.WriteLine();
+        }
+
+        public void EmprestarLivro(Livro livro)
+        {
+            livro.Exemplares[EstadoExemplar.Emprestado] = livro.Exemplares[EstadoExemplar.Emprestado] +1;
+            livro.Exemplares[EstadoExemplar.Conservado] = livro.Exemplares[EstadoExemplar.Conservado] -1;
+
+            LivroService livroService = new LivroService();
+            livroService.EmprestarLivro(livro.Id, livro.Exemplares);
+        }
+
+        public void DevolverLivro(Livro livro)
+        {
+            livro.Exemplares[EstadoExemplar.Emprestado] = livro.Exemplares[EstadoExemplar.Emprestado] - 1;
+            livro.Exemplares[EstadoExemplar.Conservado] = livro.Exemplares[EstadoExemplar.Conservado] + 1;
+
+            LivroService livroService = new LivroService();
+            livroService.EmprestarLivro(livro.Id, livro.Exemplares);
         }
     }
 }

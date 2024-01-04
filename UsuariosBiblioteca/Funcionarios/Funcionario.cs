@@ -54,7 +54,7 @@ namespace UsuariosBiblioteca.Funcionarios
             LivroService livroService = new LivroService();
             Livro livro = livroService.LerLivroPorID(idLivro);
 
-            livro.ExibirInformacoes();
+            if (livro != null) { livro.ExibirInformacoes(); }
         }
 
         public void CadastrarLivro()
