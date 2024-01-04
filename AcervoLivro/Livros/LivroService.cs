@@ -39,8 +39,15 @@ namespace ControleDoAcervo.Livros
 
         private void SerializaJSON(List<Livro?> livros)
         {
+            try
+            {
             var json = JsonConvert.SerializeObject(livros, Formatting.Indented);
             File.WriteAllText(Caminho, json);
+
+            } catch(Exception ex)
+            {
+                Console.WriteLine($"Não foi possível salvar as alterações no JSON: {ex}");
+            }
         }
 
         public void CriarLivro(Livro novoLivro)
@@ -81,7 +88,7 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
-                List<Livro?> Livros = DeserializaJSON();
+                List<Livro> Livros = DeserializaJSON();
                 Livro? livro = Livros.FirstOrDefault(livro => livro.Id == id);
 
                 if (livro != null)
@@ -104,7 +111,7 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
-                List<Livro?> Livros = DeserializaJSON();
+                List<Livro> Livros = DeserializaJSON();
                 Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
 
                 if (livroParaAtualizar != null)
@@ -183,29 +190,28 @@ namespace ControleDoAcervo.Livros
 
         public void SalvarJsonLivro(List<Livro> livros, string? arquivoJson = "LivrosAcervo.json")
         {
-            Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Livros", arquivoJson);
-            Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "AcervoLivro");
+            //Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Livros", arquivoJson);
+            //Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "AcervoLivro");
             
             try
             {
                 if (File.Exists(Caminho)) // conferir se vai dar erro
                 {
                     // Serializa a lista de livros de volta para o formato JSON
-                    string json = JsonConvert.SerializeObject(livros, Formatting.Indented);
+                    //string json = JsonConvert.SerializeObject(livros, Formatting.Indented);
 
                     // Escreve o JSON de volta no arquivo
-                    File.WriteAllText(Caminho, json);
+                    //File.WriteAllText(Caminho, json);
 
+                    SerializaJSON(livros);
                     Console.WriteLine("Alterações salvas com sucesso no arquivo JSON.");
                 }
                 else
-                {
                     Console.WriteLine("Não foi encontrado nenhum arquivo JSON para ser atualizado.");
-                }
             }
-            catch (Exception ex3)
+            catch (Exception ex)
             {
-                Console.WriteLine("Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: " + ex3.Message);
+                Console.WriteLine($"Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: {ex.Message}");
             }
         }
     }

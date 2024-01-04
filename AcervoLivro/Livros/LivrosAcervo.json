@@ -1,20 +1,5 @@
 [
   {
-    "Id": 0,
-    "Titulo": "O ladrão de raios",
-    "Autor": "Rick Riordan",
-    "AnoPublicacao": 2010,
-    "Exemplares": {
-      "Perdido": 1,
-      "Conservado": 3,
-      "TotalmenteDanificado": 3,
-      "MalConservado": 4,
-      "Emprestado": 2
-    },
-    "Setor": 2,
-    "Reservas": []
-  },
-  {
     "Id": 1,
     "Titulo": "A maldição do titã",
     "Autor": "Rick Riordan",
@@ -64,5 +49,26 @@
     },
     "Setor": 2,
     "Reservas": []
+  },
+  {
+    "Id": 0,
+    "Titulo": "O ladrão de raios",
+    "Autor": "Rick Riordan",
+    "AnoPublicacao": 2010,
+    "Exemplares": {
+      "Perdido": 3,
+      "TotalmenteDanificado": 4,
+      "MalConservado": 2,
+      "Emprestado": 0,
+      "Conservado": 6
+    },
+    "Setor": 2,
+    "Reservas": [
+      {
+        "DataReserva": "2024-01-04T00:00:00",
+        "Matricula": "20191001",
+        "CargoUsuario": 1
+      }
+    ]
   }
 ]
