@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ControleDoAcervo.Reservas;
 
 namespace ControleDoAcervo.Livros
 {
@@ -74,7 +75,6 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
-                Console.WriteLine("\tTodos os livros do Sistema da Biblioteca");
                 return DeserializaJSON();
             }
             catch (Exception e)
@@ -190,19 +190,10 @@ namespace ControleDoAcervo.Livros
 
         public void SalvarJsonLivro(List<Livro> livros, string? arquivoJson = "LivrosAcervo.json")
         {
-            //Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Livros", arquivoJson);
-            //Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "AcervoLivro");
-            
             try
             {
                 if (File.Exists(Caminho)) // conferir se vai dar erro
                 {
-                    // Serializa a lista de livros de volta para o formato JSON
-                    //string json = JsonConvert.SerializeObject(livros, Formatting.Indented);
-
-                    // Escreve o JSON de volta no arquivo
-                    //File.WriteAllText(Caminho, json);
-
                     SerializaJSON(livros);
                     Console.WriteLine("Alterações salvas com sucesso no arquivo JSON.");
                 }
@@ -231,9 +222,36 @@ namespace ControleDoAcervo.Livros
             }
         }
 
-        public void ReceberLivro()
+        public void AtualizarExemplares(int id)
         {
+            List<Livro>? livros = LerLivros();
+            Livro? livroParaAtualizar = livros.FirstOrDefault(livro => livro.Id == id);
 
+            if (livroParaAtualizar != null)
+            {
+                livroParaAtualizar.Exemplares = Livro.ReceberEstadoExemplar();
+
+                SalvarJsonLivro(Livros);
+
+                Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
+                livroParaAtualizar.ExibirInformacoes();
+            }
+        }
+
+        public void ReservarLivro(int id, string matricula)
+        {
+            List<Livro>? livros = LerLivros();
+            Livro? livroParaReservar = livros.FirstOrDefault(livro => livro.Id == id);
+
+            if (livroParaReservar != null)
+            {
+                Reserva reserva = livroParaReservar.AdicionarReserva(matricula);
+                reserva.ExibirInformacoes();
+                SalvarJsonLivro(livros);
+
+                Console.WriteLine($"Livro com ID {id} reservado com sucesso.");
+                livroParaReservar.ExibirInformacoes();
+            }
         }
     }
 }

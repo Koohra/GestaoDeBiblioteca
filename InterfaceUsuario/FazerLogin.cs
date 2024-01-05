@@ -9,6 +9,8 @@ namespace SistemaBiblioteca
     {
         internal static void EscolherUsuario()
         {
+            Console.Clear();
+            Console.WriteLine("- SISTEMA DE BIBLIOTECA -");
             Console.WriteLine("Selecione login desejado:");
             Console.WriteLine("1- Estudante\n2- Professor\n3- Funcionário");
             Console.WriteLine("Ou digite 4 para SAIR");
@@ -54,7 +56,6 @@ namespace SistemaBiblioteca
                         VoltarMenu();
                     }
 
-                    Console.WriteLine($"Logado como {funcionarioLogado.Nome}");
                     if (funcionarioLogado.Cargo == Cargos.Atendente)
                     {
                         Atendente atendente = InterfaceFuncionario.TransformarAtendente(funcionarioLogado);

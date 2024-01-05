@@ -2,8 +2,8 @@
 {
     public enum Cargos
     {
-    Atendente = 1,
-    Bibliotecario = 2,
-    Diretor = 3
+        Atendente = 1,
+        Bibliotecario = 2,
+        Diretor = 3
     }
 }

@@ -19,6 +19,7 @@
 
         public void ExibirInformacoes()
         {
+            Console.WriteLine();
             Console.WriteLine($"Data da reserva: {DataReserva}");
             Console.WriteLine($"Matrícula: {Matricula}");
             Console.WriteLine($"Cargo do usuário: {CargoUsuario}");

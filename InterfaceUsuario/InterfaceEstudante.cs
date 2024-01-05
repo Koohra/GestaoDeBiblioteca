@@ -1,6 +1,7 @@
 ﻿using ControleDoAcervo.Livros;
 using ControleDoAcervo.Reservas;
 using UsuariosBiblioteca.Estudantes;
+using UsuariosBiblioteca.Funcionarios;
 
 namespace SistemaBiblioteca
 {
@@ -8,6 +9,8 @@ namespace SistemaBiblioteca
     {
         public static void MenuEstudante(Estudante estudanteLogado)
         {
+            Console.Clear();
+            Console.WriteLine($"Logado como {estudanteLogado.Nome} - {estudanteLogado.Matricula}");
 
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("1- Pesquisar Livro\n2- Reservar Livro\n3- Logout");
@@ -23,6 +26,8 @@ namespace SistemaBiblioteca
             {
                 case 1:
                     estudanteLogado.PesquisarLivro();
+                    Console.WriteLine($"\nPrecione [ENTER] para voltar");
+                    Console.ReadLine();
                     MenuEstudante(estudanteLogado);
                     return;
 
@@ -34,12 +39,12 @@ namespace SistemaBiblioteca
                     {
                         Console.Write("Número inválido, digite de novo: ");
                     }
-
+                    string matricula = estudanteLogado.Matricula;
                     LivroService livroService = new LivroService();
-                    Livro livroReservar = livroService.LerLivroPorID(idLivro);
-                    Reserva reserva = livroReservar.AdicionarReserva(estudanteLogado.Matricula);
-                    reserva.ExibirInformacoes();
-                    livroService.AlterarLivroPorID(livroReservar.Id, livroReservar);
+                    livroService.ReservarLivro(idLivro, matricula);
+
+                    Console.WriteLine($"\nPrecione [ENTER] para voltar");
+                    Console.ReadLine();
                     MenuEstudante(estudanteLogado);
                     return;
 

@@ -73,11 +73,9 @@ namespace UsuariosBiblioteca.Funcionarios
                 case 3:
                     AtualizarFuncionario();
                     return;
-                defaut:
+                default:
                     return;
             }
-
-
         }
 
         private void AtualizarEstudante()

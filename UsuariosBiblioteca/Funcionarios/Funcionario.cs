@@ -52,7 +52,7 @@ namespace UsuariosBiblioteca.Funcionarios
                 Console.Write("Número inválido, digite de novo: ");
             }
             LivroService livroService = new LivroService();
-            Livro livro = livroService.LerLivroPorID(idLivro);
+            Livro? livro = livroService.LerLivroPorID(idLivro);
 
             if (livro != null) { livro.ExibirInformacoes(); }
         }
@@ -71,25 +71,7 @@ namespace UsuariosBiblioteca.Funcionarios
                 Console.Write("Número inválido, digite de novo: ");
             }
             LivroService livroService = new LivroService();
-            Livro livro = livroService.LerLivroPorID(idLivro);
-            livro.AtualizarExemplares();
-        }
-
-        public void PesquisarLivro(string livroBuscado)
-        {
-            AcervoPublico acervoPublico = new AcervoPublico();
-            AcervoRestrito acervoRestrito = new AcervoRestrito();
-            ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
-            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome();
-            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome();
-            List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome();
-
-            List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).Concat(livrosForaDeEstoqueBuscados).ToList();
-
-            foreach (Livro livro in livrosBuscados)
-            {
-                livro.ExibirInformacoes();
-            }
+            livroService.AtualizarExemplares(idLivro);
         }
 
         public IUsuario? Login()
@@ -129,20 +111,25 @@ namespace UsuariosBiblioteca.Funcionarios
             Console.WriteLine($"Usuário desconectado.");
         }
 
-        void IUsuario.PesquisarLivro()
+        public void PesquisarLivro()
         {
-            AcervoPublico acervoPublico = new AcervoPublico();
-            AcervoRestrito acervoRestrito = new AcervoRestrito();
-            ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
-            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome();
-            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome();
-            List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome();
-
-            List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).Concat(livrosForaDeEstoqueBuscados).ToList();
-
-            foreach (Livro livro in livrosBuscados)
             {
-                livro.ExibirInformacoes();
+                Console.WriteLine("Digite o título do livro ou parte dele:");
+                string? parteTitulo = Console.ReadLine();
+
+                AcervoPublico acervoPublico = new AcervoPublico();
+                AcervoRestrito acervoRestrito = new AcervoRestrito();
+                ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
+                List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(parteTitulo);
+                List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome(parteTitulo);
+                List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome(parteTitulo);
+
+                List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosForaDeEstoqueBuscados).Concat(livrosRestritosBuscados).DistinctBy(livro => livro.Titulo).ToList();
+
+                foreach (Livro livro in livrosBuscados)
+                {
+                    livro.ExibirInformacoes();
+                }
             }
         }
 
@@ -192,7 +179,41 @@ namespace UsuariosBiblioteca.Funcionarios
             }
         }
 
+        public static Cargos SelecionarCargo()
+        {
+            Cargos novocargo;
+            Console.WriteLine("Cargo:");
+            Console.WriteLine("1- Atendente\n2- Bibliotecario\n3- Diretor");
+            int opcao;
+            while (!int.TryParse(Console.ReadLine(), out opcao))
+            {
+                Console.Write("Digite o número correspondente;");
+            }
+            switch (opcao)
+            {
+                case 1:
+                    novocargo = Cargos.Atendente;
+                    return novocargo;
+                case 2:
+                    novocargo = Cargos.Bibliotecario;
+                    return novocargo;
+                case 3:
+                    novocargo = Cargos.Diretor;
+                    return novocargo;
+                default:
+                    novocargo = Cargos.Bibliotecario;
+                    return novocargo;
+            }
+        }
 
+        public void Logout()
+        {
+            Console.Clear();
+            Console.WriteLine($"{this.Cargo} desconectado.");
+        }
     }
+
+
 }
+
 

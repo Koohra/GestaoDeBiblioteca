@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UsuariosBiblioteca.Funcionarios;
 using UsuariosBiblioteca.Professores;
 
 namespace SistemaBiblioteca
@@ -13,6 +14,9 @@ namespace SistemaBiblioteca
     {
         internal static void MenuProfessor(Professor professorLogado)
         {
+            Console.Clear();
+            Console.WriteLine($"Logado como professor {professorLogado.Nome}");
+
             Console.WriteLine("\nSelecione a ação desejada:");
             Console.WriteLine("1- Pesquisar Livro\n2- Reservar Livro\n3- Logout");
 
@@ -26,6 +30,8 @@ namespace SistemaBiblioteca
             {
                 case 1:
                     professorLogado.PesquisarLivro();
+                    Console.WriteLine($"\nPrecione [ENTER] para voltar");
+                    Console.ReadLine();
                     MenuProfessor(professorLogado);
                     return;
                   
@@ -37,12 +43,12 @@ namespace SistemaBiblioteca
                     {
                         Console.Write("Número inválido, digite de novo: ");
                     }
-
+                    string codigoCadastro = professorLogado.CodigoCadastro;
                     LivroService livroService = new LivroService();
-                    Livro livroReservar = livroService.LerLivroPorID(idLivro);
-                    Reserva reserva = livroReservar.AdicionarReserva(professorLogado.CodigoCadastro);
-                    reserva.ExibirInformacoes();
-                    livroService.AlterarLivroPorID(livroReservar.Id, livroReservar);
+                    livroService.ReservarLivro(idLivro, codigoCadastro);
+
+                    Console.WriteLine($"\nPrecione [ENTER] para voltar");
+                    Console.ReadLine();
                     MenuProfessor(professorLogado);
                     return;
                 case 3:

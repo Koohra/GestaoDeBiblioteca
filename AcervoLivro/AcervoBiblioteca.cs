@@ -129,13 +129,10 @@ namespace ControleDoAcervo
 
 
 
-        public virtual List<Livro> BuscarLivroPorParteDoNome()
+        public virtual List<Livro> BuscarLivroPorParteDoNome(string? parteTitulo)
         {   
             List<Livro> livrosEncontrados = new List<Livro>();
             Livros = livroService.LerLivros();
-
-            Console.WriteLine("Digite o título do livro ou parte dele:");
-            string? parteTitulo = Console.ReadLine();
 
             while (string.IsNullOrEmpty(parteTitulo))
             {
