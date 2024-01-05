@@ -37,12 +37,10 @@ namespace SistemaBiblioteca
                     {
                         Console.Write("Número inválido, digite de novo: ");
                     }
-
+                    string codigoCadastro = professorLogado.CodigoCadastro;
                     LivroService livroService = new LivroService();
-                    Livro livroReservar = livroService.LerLivroPorID(idLivro);
-                    Reserva reserva = livroReservar.AdicionarReserva(professorLogado.CodigoCadastro);
-                    reserva.ExibirInformacoes();
-                    livroService.AlterarLivroPorID(livroReservar.Id, livroReservar);
+                    livroService.ReservarLivro(idLivro, codigoCadastro);
+
                     MenuProfessor(professorLogado);
                     return;
                 case 3:

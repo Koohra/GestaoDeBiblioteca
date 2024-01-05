@@ -48,31 +48,16 @@
       "Conservado": 3
     },
     "Setor": 2,
-    "Reservas": []
-  },
-  {
-    "Id": 3,
-    "Titulo": "O ladrão de raios",
-    "Autor": "Rick Riordan",
-    "AnoPublicacao": 2010,
-    "Exemplares": {
-      "Perdido": 3,
-      "TotalmenteDanificado": 4,
-      "MalConservado": 2,
-      "Emprestado": 0,
-      "Conservado": 6
-    },
-    "Setor": 2,
     "Reservas": [
       {
         "DataReserva": "2024-01-04T00:00:00",
-        "Matricula": "20191001",
-        "CargoUsuario": 1
+        "Matricula": "p1001",
+        "CargoUsuario": 0
       }
     ]
   },
   {
-    "Id": 4,
+    "Id": 3,
     "Titulo": "A culpa é das estrelas",
     "Autor": "John Green",
     "AnoPublicacao": 2008,
@@ -87,7 +72,7 @@
     "Reservas": []
   },
   {
-    "Id": 6,
+    "Id": 4,
     "Titulo": "Joyland",
     "Autor": "Stepehn King",
     "AnoPublicacao": 2010,
@@ -119,6 +104,27 @@
         "DataReserva": "2024-01-04T00:00:00",
         "Matricula": "p1001",
         "CargoUsuario": 0
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "Titulo": "O ladrão de raios",
+    "Autor": "Rick Riordan",
+    "AnoPublicacao": 2010,
+    "Exemplares": {
+      "Perdido": 1,
+      "TotalmenteDanificado": 0,
+      "MalConservado": 0,
+      "Emprestado": 0,
+      "Conservado": 3
+    },
+    "Setor": 2,
+    "Reservas": [
+      {
+        "DataReserva": "2024-01-04T00:00:00",
+        "Matricula": "20191001",
+        "CargoUsuario": 1
       }
     ]
   }

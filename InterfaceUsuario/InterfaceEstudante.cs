@@ -34,14 +34,25 @@ namespace SistemaBiblioteca
                     {
                         Console.Write("Número inválido, digite de novo: ");
                     }
-
+                    string matricula = estudanteLogado.Matricula;
                     LivroService livroService = new LivroService();
-                    Livro livroReservar = livroService.LerLivroPorID(idLivro);
-                    Reserva reserva = livroReservar.AdicionarReserva(estudanteLogado.Matricula);
-                    reserva.ExibirInformacoes();
-                    livroService.AlterarLivroPorID(livroReservar.Id, livroReservar);
+                    livroService.ReservarLivro(idLivro, matricula);
+                    
                     MenuEstudante(estudanteLogado);
                     return;
+
+                    //public void AtualizarNumeroLivros() //tirar isso daqui
+                    //{
+                    //    Console.WriteLine("Digite o Id do livro:");
+                    //    int idLivro;
+                    //    while (!int.TryParse(Console.ReadLine(), out idLivro))
+                    //    {
+                    //        Console.Write("Número inválido, digite de novo: ");
+                    //    }
+                    //    LivroService livroService = new LivroService();
+                    //    livroService.AtualizarExemplares(idLivro);
+                    //}
+
 
                 case 3:
                     estudanteLogado.Logout();

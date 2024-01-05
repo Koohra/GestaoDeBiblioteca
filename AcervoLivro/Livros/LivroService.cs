@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ControleDoAcervo.Reservas;
 
 namespace ControleDoAcervo.Livros
 {
@@ -216,14 +217,14 @@ namespace ControleDoAcervo.Livros
 
         public void EmprestarLivro(int id, Dictionary<EstadoExemplar, int> exemplarAtualizado)
         {
-            //List<Livro>? livros = LerLivros();
+            List<Livro>? livros = LerLivros();
             Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
 
             if (livroParaAtualizar != null)
             {
                 livroParaAtualizar.Exemplares = exemplarAtualizado;
 
-                SalvarJsonLivro(Livros);
+                SalvarJsonLivro(livros);
 
                 Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
                 livroParaAtualizar.ExibirInformacoes();
@@ -245,6 +246,26 @@ namespace ControleDoAcervo.Livros
 
                 Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
                 livroParaAtualizar.ExibirInformacoes();
+            }
+        }
+
+        public void ReservarLivro(int id, string matricula)
+        {
+            List<Livro>? livros = LerLivros();
+            Livro? livroParaReservar = livros.FirstOrDefault(livro => livro.Id == id);
+
+            if (livroParaReservar != null)
+            {
+                Reserva reserva = livroParaReservar.AdicionarReserva(matricula);
+                reserva.ExibirInformacoes();
+                //livroParaAtualizar.Exemplares = exemplarAtualizado;
+                //colocar as funções de busca livro
+                //livroParaReservar.Exemplares = Livro.ReceberEstadoExemplar();
+
+                SalvarJsonLivro(livros);
+
+                Console.WriteLine($"Livro com ID {id} reservado com sucesso.");
+                livroParaReservar.ExibirInformacoes();
             }
         }
     }
