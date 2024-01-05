@@ -19,7 +19,7 @@ namespace SistemaBiblioteca
             
             while (!int.TryParse(Console.ReadLine(), out acao) || acao < 1 || acao > 3)
             {
-                Console.Write("Digite o número correspondente a ação.");
+                Console.Write("Digite o número correspondente a ação: ");
             }
 
             switch (acao)
