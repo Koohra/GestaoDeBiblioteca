@@ -41,11 +41,11 @@
     "Autor": "Stephen King",
     "AnoPublicacao": 1980,
     "Exemplares": {
-      "Perdido": 2,
+      "Perdido": 1,
       "TotalmenteDanificado": 0,
       "MalConservado": 0,
       "Emprestado": 1,
-      "Conservado": 2
+      "Conservado": 3
     },
     "Setor": 2,
     "Reservas": []
