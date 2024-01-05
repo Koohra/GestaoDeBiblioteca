@@ -52,7 +52,7 @@ namespace UsuariosBiblioteca.Funcionarios
                 Console.Write("Número inválido, digite de novo: ");
             }
             LivroService livroService = new LivroService();
-            Livro livro = livroService.LerLivroPorID(idLivro);
+            Livro? livro = livroService.LerLivroPorID(idLivro);
 
             if (livro != null) { livro.ExibirInformacoes(); }
         }
@@ -71,8 +71,7 @@ namespace UsuariosBiblioteca.Funcionarios
                 Console.Write("Número inválido, digite de novo: ");
             }
             LivroService livroService = new LivroService();
-            Livro livro = livroService.LerLivroPorID(idLivro);
-            livro.AtualizarExemplares();
+            livroService.AtualizarExemplares(idLivro);
         }
 
         public void PesquisarLivro(string livroBuscado)
@@ -200,6 +199,9 @@ namespace UsuariosBiblioteca.Funcionarios
                     return novocargo;
                 case 3:
                     novocargo = Cargos.Diretor;
+                    return novocargo;
+                default:
+                    novocargo = Cargos.Atendente;
                     return novocargo;
             }
         }

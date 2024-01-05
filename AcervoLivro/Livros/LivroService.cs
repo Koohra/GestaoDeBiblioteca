@@ -217,23 +217,36 @@ namespace ControleDoAcervo.Livros
 
         public void EmprestarLivro(int id, Dictionary<EstadoExemplar, int> exemplarAtualizado)
         {
-            List<Livro>? livros = LerLivros();
+            //List<Livro>? livros = LerLivros();
             Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
 
             if (livroParaAtualizar != null)
             {
                 livroParaAtualizar.Exemplares = exemplarAtualizado;
 
-                SalvarJsonLivro(livros);
+                SalvarJsonLivro(Livros);
 
                 Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
                 livroParaAtualizar.ExibirInformacoes();
             }
         }
 
-        public void ReceberLivro()
+        public void AtualizarExemplares(int id)
         {
+            List<Livro>? livros = LerLivros();
+            Livro? livroParaAtualizar = livros.FirstOrDefault(livro => livro.Id == id);
 
+            if (livroParaAtualizar != null)
+            {
+                //livroParaAtualizar.Exemplares = exemplarAtualizado;
+                //colocar as funções de busca livro
+                livroParaAtualizar.Exemplares = Livro.ReceberEstadoExemplar();
+
+                SalvarJsonLivro(Livros);
+
+                Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
+                livroParaAtualizar.ExibirInformacoes();
+            }
         }
     }
 }
