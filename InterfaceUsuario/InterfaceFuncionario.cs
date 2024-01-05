@@ -13,7 +13,8 @@ namespace SistemaBiblioteca
         internal static void MenuAtendente(Atendente atendente)
         {
             Console.WriteLine("\nSelecione a ação desejada:");
-            Console.WriteLine("1- Liberar Empréstimo \n2- Receber Livro \n3- Verificar Livro \n4- Cadastrar Livro \n5- Atualizar Livro \n6- Atualizar dados de Usuário");
+            Console.WriteLine("1- Liberar Empréstimo \n2- Receber Livro \n3- Pesquisar livros \n4- Verificar Livro \n5- Cadastrar Livro " +
+                "\n6- Atualizar Livro \n7- Atualizar dados de Usuário");
 
             int acao;
             while (!int.TryParse(Console.ReadLine(), out acao))
@@ -30,18 +31,21 @@ namespace SistemaBiblioteca
                     atendente.ReceberDevolucao();
                     return;
                 case 3:
+                    //atendente.PesquisarLivro();
+                    return;
+                case 4:
                     atendente.VerificarStatusLivro();
                     MenuAtendente(atendente);
                     return;
-                case 4:
+                case 5:
                     atendente.CadastrarLivro();
                     MenuAtendente(atendente);
                     return;
-                case 5:
+                case 6:
                     atendente.AtualizarNumeroLivros();
                     MenuAtendente(atendente);
                     return;
-                case 6:
+                case 7:
                     atendente.AtualizarRegistroUsuario();
                     MenuAtendente(atendente);
                     return;

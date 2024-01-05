@@ -131,7 +131,19 @@ namespace UsuariosBiblioteca.Funcionarios
 
         void IUsuario.PesquisarLivro()
         {
-            throw new NotImplementedException();
+            AcervoPublico acervoPublico = new AcervoPublico();
+            AcervoRestrito acervoRestrito = new AcervoRestrito();
+            ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome();
+            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome();
+            List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome();
+
+            List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).Concat(livrosForaDeEstoqueBuscados).ToList();
+
+            foreach (Livro livro in livrosBuscados)
+            {
+                livro.ExibirInformacoes();
+            }
         }
 
         public static Funcionario LocalizarPorCodigo()
