@@ -11,7 +11,7 @@ namespace ControleDoAcervo
         public override List<Livro> BuscarLivroPorParteDoNome(string? parteTitulo)
         {
             List<Livro> livrosEncontrados = new List<Livro>();
-            LivrosPublicos = livroService.LerLivros();
+            LivrosPublicos = livroService.LerLivros().Where(livro => livro.Setor == Acervo.Publico).ToList();
 
             while (string.IsNullOrEmpty(parteTitulo))
             {

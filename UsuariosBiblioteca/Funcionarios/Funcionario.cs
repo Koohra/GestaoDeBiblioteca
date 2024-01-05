@@ -116,16 +116,17 @@ namespace UsuariosBiblioteca.Funcionarios
             {
                 Console.WriteLine("Digite o título do livro ou parte dele:");
                 string? parteTitulo = Console.ReadLine();
+                AcervoBiblioteca acervoBiblioteca = new AcervoBiblioteca();
+                //AcervoPublico acervoPublico = new AcervoPublico();
+                //AcervoRestrito acervoRestrito = new AcervoRestrito();
+                //ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
+                //List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(parteTitulo);
+                //List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome(parteTitulo);
+                //List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome(parteTitulo);
 
-                AcervoPublico acervoPublico = new AcervoPublico();
-                AcervoRestrito acervoRestrito = new AcervoRestrito();
-                ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
-                List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(parteTitulo);
-                List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome(parteTitulo);
-                List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome(parteTitulo);
+                //List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosForaDeEstoqueBuscados).Concat(livrosRestritosBuscados).DistinctBy(livro => livro.Titulo).ToList();
 
-                List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosForaDeEstoqueBuscados).Concat(livrosRestritosBuscados).DistinctBy(livro => livro.Titulo).ToList();
-
+                List<Livro> livrosBuscados = acervoBiblioteca.BuscarLivroPorParteDoNome(parteTitulo);
                 foreach (Livro livro in livrosBuscados)
                 {
                     livro.ExibirInformacoes();
