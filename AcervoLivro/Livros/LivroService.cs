@@ -190,19 +190,10 @@ namespace ControleDoAcervo.Livros
 
         public void SalvarJsonLivro(List<Livro> livros, string? arquivoJson = "LivrosAcervo.json")
         {
-            //Caminho = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Livros", arquivoJson);
-            //Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "AcervoLivro");
-            
             try
             {
                 if (File.Exists(Caminho)) // conferir se vai dar erro
                 {
-                    // Serializa a lista de livros de volta para o formato JSON
-                    //string json = JsonConvert.SerializeObject(livros, Formatting.Indented);
-
-                    // Escreve o JSON de volta no arquivo
-                    //File.WriteAllText(Caminho, json);
-
                     SerializaJSON(livros);
                     Console.WriteLine("Alterações salvas com sucesso no arquivo JSON.");
                 }
@@ -238,8 +229,6 @@ namespace ControleDoAcervo.Livros
 
             if (livroParaAtualizar != null)
             {
-                //livroParaAtualizar.Exemplares = exemplarAtualizado;
-                //colocar as funções de busca livro
                 livroParaAtualizar.Exemplares = Livro.ReceberEstadoExemplar();
 
                 SalvarJsonLivro(Livros);
@@ -258,10 +247,6 @@ namespace ControleDoAcervo.Livros
             {
                 Reserva reserva = livroParaReservar.AdicionarReserva(matricula);
                 reserva.ExibirInformacoes();
-                //livroParaAtualizar.Exemplares = exemplarAtualizado;
-                //colocar as funções de busca livro
-                //livroParaReservar.Exemplares = Livro.ReceberEstadoExemplar();
-
                 SalvarJsonLivro(livros);
 
                 Console.WriteLine($"Livro com ID {id} reservado com sucesso.");
