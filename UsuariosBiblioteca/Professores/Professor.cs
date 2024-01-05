@@ -1,8 +1,6 @@
 ﻿using ControleDoAcervo;
 using ControleDoAcervo.Livros;
 using System.Globalization;
-using UsuariosBiblioteca.Funcionarios;
-using System.Linq;
 using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Professores
@@ -18,6 +16,14 @@ namespace UsuariosBiblioteca.Professores
 
         public Professor() { }
 
+        private static void CodificarSenha(string senha)
+        {
+            for(int i = 0; i < senha.Length; i++)
+            {
+                Console.Write("*");
+            }
+        }
+
         private static string LerSenha()
         {
             string senha = "";
@@ -27,10 +33,15 @@ namespace UsuariosBiblioteca.Professores
             {
                 key = Console.ReadKey(true);
 
-                if (key.Key != ConsoleKey.Enter)
+                if (key.Key != ConsoleKey.Enter && key.Key != ConsoleKey.Backspace)
                 {
                     senha += key.KeyChar;
                     Console.Write("*");
+                }
+                else if (key.Key == ConsoleKey.Backspace && senha.Length > 0)
+                {
+                    senha = senha.Substring(0, senha.Length - 1);
+                    Console.Write("\b \b"); 
                 }
             } while (key.Key != ConsoleKey.Enter);
 
@@ -41,7 +52,7 @@ namespace UsuariosBiblioteca.Professores
         public IUsuario Login()
         {
             ProfessorService professorService = new ProfessorService();
-            List<Professor> professores = professorService.LerJsonProfessores() ?? new List<Professor>();
+            List<Professor> professores = professorService.LerJSONProfessores() ?? new List<Professor>();
 
             while (true)
             {
@@ -125,8 +136,8 @@ namespace UsuariosBiblioteca.Professores
 
             AcervoPublico acervoPublico = new AcervoPublico();
             AcervoRestrito acervoRestrito = new AcervoRestrito();
-            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(parteTitulo);
-            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome(parteTitulo);
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorNome(parteTitulo);
+            List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorNome(parteTitulo);
 
             List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosRestritosBuscados).DistinctBy(livro => livro.Titulo).ToList();
 
@@ -151,7 +162,7 @@ namespace UsuariosBiblioteca.Professores
         public static Professor LocalizarPorCodigo()
         {
             ProfessorService professorService = new ProfessorService();
-            List<Professor> professores = professorService.LerJsonProfessores() ?? new List<Professor>();
+            List<Professor> professores = professorService.LerJSONProfessores() ?? new List<Professor>();
 
             Console.WriteLine("Código de cadastro:");
             string codigoCadastro = Console.ReadLine()!;

@@ -1,7 +1,5 @@
 ﻿using ControleDoAcervo.Livros;
-using ControleDoAcervo.Reservas;
 using UsuariosBiblioteca.Estudantes;
-using UsuariosBiblioteca.Funcionarios;
 
 namespace SistemaBiblioteca
 {
@@ -36,11 +34,10 @@ namespace SistemaBiblioteca
 
                     Console.WriteLine("Digite o ID do livro que deseja reservar:");
                     while (!int.TryParse(Console.ReadLine(), out idLivro))
-                    {
                         Console.Write("Número inválido, digite de novo: ");
-                    }
+
                     string matricula = estudanteLogado.Matricula;
-                    LivroService livroService = new LivroService();
+                    LivroService livroService = new();
                     livroService.ReservarLivro(idLivro, matricula);
 
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");

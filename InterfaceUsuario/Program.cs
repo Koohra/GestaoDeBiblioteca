@@ -1,25 +1,11 @@
-﻿using UsuariosBiblioteca.Professores;
-using UsuariosBiblioteca.Funcionarios;
-using ControleDoAcervo.Livros;
-using UsuariosBiblioteca.Estudantes;
-
-namespace SistemaBiblioteca
+﻿namespace SistemaBiblioteca
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("BEM VINDO À BIBLIOTECA");
+            Console.WriteLine("\tBEM VINDO A BIBLIOTECA");
             FazerLogin.EscolherUsuario();
-
-            //LivroService livroService = new LivroService();
-            //livroService.LerLivros();
-
-            //Dictionary<EstadoExemplar, int> meuTeste = Livro.ReceberEstadoExemplar();
-
-            //Livro livroTeste = new Livro("Um novo teste", "Minha mente", 2024, meuTeste);
-            //livroTeste.AtualizarExemplares();
-            
         }
     }
 }

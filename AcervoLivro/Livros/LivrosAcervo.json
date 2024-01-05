@@ -1,131 +1,167 @@
 [
-  {
-    "Id": 0,
-    "Titulo": "A maldição do titã",
-    "Autor": "Rick Riordan",
-    "AnoPublicacao": 2012,
-    "Exemplares": {
-      "Perdido": 1,
-      "Conservado": 1,
-      "TotalmenteDanificado": 3,
-      "MalConservado": 4,
-      "Emprestado": 2
+    {
+        "Id": 0,
+        "Titulo": "A maldição do titã",
+        "Autor": "Rick Riordan",
+        "AnoPublicacao": 2012,
+        "Exemplares": {
+            "Perdido": 1,
+            "Conservado": 1,
+            "TotalmenteDanificado": 3,
+            "MalConservado": 4,
+            "Emprestado": 2
+        },
+        "Setor": 1,
+        "Reservas": []
     },
-    "Setor": 1,
-    "Reservas": []
-  },
-  {
-    "Id": 1,
-    "Titulo": "O mar de monstros",
-    "Autor": "Rick Riordan",
-    "AnoPublicacao": 2011,
-    "Exemplares": {
-      "Perdido": 2,
-      "TotalmenteDanificado": 4,
-      "MalConservado": 5,
-      "Emprestado": 1,
-      "Conservado": 0
+    {
+        "Id": 1,
+        "Titulo": "O mar de monstros",
+        "Autor": "Rick Riordan",
+        "AnoPublicacao": 2011,
+        "Exemplares": {
+            "Perdido": 2,
+            "TotalmenteDanificado": 4,
+            "MalConservado": 5,
+            "Emprestado": 1,
+            "Conservado": 0
+        },
+        "Setor": 0,
+        "Reservas": []
     },
-    "Setor": 0,
-    "Reservas": [
-      {
-        "DataReserva": "2024-01-02T00:00:00",
-        "Matricula": "20191001",
-        "CargoUsuario": 1
-      }
-    ]
-  },
-  {
-    "Id": 2,
-    "Titulo": "Cujo",
-    "Autor": "Stephen King",
-    "AnoPublicacao": 1981,
-    "Exemplares": {
-      "Perdido": 1,
-      "TotalmenteDanificado": 0,
-      "MalConservado": 0,
-      "Emprestado": 1,
-      "Conservado": 3
+    {
+        "Id": 2,
+        "Titulo": "Cujo",
+        "Autor": "Stephen King",
+        "AnoPublicacao": 1981,
+        "Exemplares": {
+            "Perdido": 1,
+            "TotalmenteDanificado": 0,
+            "MalConservado": 0,
+            "Emprestado": 0,
+            "Conservado": 4
+        },
+        "Setor": 2,
+        "Reservas": []
     },
-    "Setor": 2,
-    "Reservas": [
-      {
-        "DataReserva": "2024-01-04T00:00:00",
-        "Matricula": "p1001",
-        "CargoUsuario": 0
-      }
-    ]
-  },
-  {
-    "Id": 3,
-    "Titulo": "A culpa é das estrelas",
-    "Autor": "John Green",
-    "AnoPublicacao": 2012,
-    "Exemplares": {
-      "Perdido": 0,
-      "TotalmenteDanificado": 1,
-      "MalConservado": 2,
-      "Emprestado": 1,
-      "Conservado": 5
+    {
+        "Id": 3,
+        "Titulo": "O Código Da Vinci",
+        "Autor": "Dan Brown",
+        "AnoPublicacao": 2003,
+        "Exemplares": {
+            "Perdido": 0,
+            "TotalmenteDanificado": 1,
+            "MalConservado": 2,
+            "Emprestado": 3,
+            "Conservado": 4
+        },
+        "Setor": 1,
+        "Reservas": []
     },
-    "Setor": 2,
-    "Reservas": []
-  },
-  {
-    "Id": 4,
-    "Titulo": "Joyland",
-    "Autor": "Stepehn King",
-    "AnoPublicacao": 2013,
-    "Exemplares": {
-      "Perdido": 0,
-      "TotalmenteDanificado": 0,
-      "MalConservado": 2,
-      "Emprestado": 3,
-      "Conservado": 4
+    {
+        "Id": 4,
+        "Titulo": "1984",
+        "Autor": "George Orwell",
+        "AnoPublicacao": 1949,
+        "Exemplares": {
+            "Perdido": 0,
+            "TotalmenteDanificado": 0,
+            "MalConservado": 1,
+            "Emprestado": 2,
+            "Conservado": 7
+        },
+        "Setor": 0,
+        "Reservas": []
     },
-    "Setor": 2,
-    "Reservas": []
-  },
-  {
-    "Id": 5,
-    "Titulo": "Deixe a neve cair",
-    "Autor": "John Green",
-    "AnoPublicacao": 2008,
-    "Exemplares": {
-      "Perdido": 1,
-      "TotalmenteDanificado": 2,
-      "MalConservado": 3,
-      "Emprestado": 2,
-      "Conservado": 3
+    {
+        "Id": 5,
+        "Titulo": "A Revolução dos Bichos",
+        "Autor": "George Orwell",
+        "AnoPublicacao": 1945,
+        "Exemplares": {
+            "Perdido": 0,
+            "TotalmenteDanificado": 0,
+            "MalConservado": 1,
+            "Emprestado": 3,
+            "Conservado": 6
+        },
+        "Setor": 2,
+        "Reservas": []
     },
-    "Setor": 2,
-    "Reservas": [
-      {
-        "DataReserva": "2024-01-04T00:00:00",
-        "Matricula": "p1001",
-        "CargoUsuario": 0
-      }
-    ]
-  },
-  {
-    "Id": 6,
-    "Titulo": "O ladrão de raios",
-    "Autor": "Rick Riordan",
-    "AnoPublicacao": 2010,
-    "Exemplares": {
-      "Perdido": 1,
-      "TotalmenteDanificado": 0,
-      "MalConservado": 0,
-      "Emprestado": 0,
-      "Conservado": 3
+    {
+        "Id": 6,
+        "Titulo": "O Senhor dos Anéis: A Sociedade do Anel",
+        "Autor": "J.R.R. Tolkien",
+        "AnoPublicacao": 1954,
+        "Exemplares": {
+            "Perdido": 1,
+            "TotalmenteDanificado": 0,
+            "MalConservado": 2,
+            "Emprestado": 4,
+            "Conservado": 3
+        },
+        "Setor": 1,
+        "Reservas": []
     },
-    "Setor": 2,
-    "Reservas": [
-      {
-        "DataReserva": "2024-01-04T00:00:00",
-        "Matricula": "20191001",
-        "CargoUsuario": 1
-      }
-    ]
-  }
+    {
+        "Id": 7,
+        "Titulo": "A Menina que Roubava Livros",
+        "Autor": "Markus Zusak",
+        "AnoPublicacao": 2005,
+        "Exemplares": {
+            "Perdido": 0,
+            "TotalmenteDanificado": 0,
+            "MalConservado": 1,
+            "Emprestado": 2,
+            "Conservado": 5
+        },
+        "Setor": 0,
+        "Reservas": []
+    },
+    {
+        "Id": 8,
+        "Titulo": "A Arte da Guerra",
+        "Autor": "Sun Tzu",
+        "AnoPublicacao": -500,
+        "Exemplares": {
+            "Perdido": 1,
+            "TotalmenteDanificado": 0,
+            "MalConservado": 0,
+            "Emprestado": 3,
+            "Conservado": 6
+        },
+        "Setor": 2,
+        "Reservas": []
+    },
+    {
+        "Id": 9,
+        "Titulo": "As Crônicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa",
+        "Autor": "C.S. Lewis",
+        "AnoPublicacao": 1950,
+        "Exemplares": {
+            "Perdido": 0,
+            "TotalmenteDanificado": 1,
+            "MalConservado": 1,
+            "Emprestado": 4,
+            "Conservado": 3
+        },
+        "Setor": 1,
+        "Reservas": []
+    },
+    {
+        "Id": 10,
+        "Titulo": "Dom Quixote",
+        "Autor": "Miguel de Cervantes",
+        "AnoPublicacao": 1605,
+        "Exemplares": {
+            "Perdido": 2,
+            "TotalmenteDanificado": 0,
+            "MalConservado": 3,
+            "Emprestado": 2,
+            "Conservado": 2
+        },
+        "Setor": 0,
+        "Reservas": []
+    }
 ]

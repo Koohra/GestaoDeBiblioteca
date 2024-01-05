@@ -1,6 +1,4 @@
-﻿using UsuariosBiblioteca.Interfaces;
-
-namespace UsuariosBiblioteca.Funcionarios
+﻿namespace UsuariosBiblioteca.Funcionarios
 {
     public class Bibliotecario : Funcionario
     {
@@ -8,7 +6,5 @@ namespace UsuariosBiblioteca.Funcionarios
         {
             Cargo = Cargos.Bibliotecario;
         }
-
-        
     }
 }

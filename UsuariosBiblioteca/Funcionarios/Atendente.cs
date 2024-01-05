@@ -1,65 +1,65 @@
 ﻿using ControleDoAcervo.Livros;
 using UsuariosBiblioteca.Estudantes;
-using UsuariosBiblioteca.Interfaces;
 using UsuariosBiblioteca.Professores;
 
 namespace UsuariosBiblioteca.Funcionarios
 {
     public class Atendente : Funcionario
     {
-
-
         public Atendente(string codigoCadastro, string nome, string email, string senha) : base(codigoCadastro, nome, email, senha)
         {
             Cargo = Cargos.Atendente;
         }
 
-        public void PermitirEmprestimo() {
+        public static void PermitirEmprestimo() {
 
-            Console.WriteLine("Digite o Id do livro:");
+            Console.Write("Digite o ID do livro: ");
             int idLivro;
+
             while (!int.TryParse(Console.ReadLine(), out idLivro))
             {
                 Console.Write("Número inválido, digite de novo: ");
             }
-            LivroService livroService = new LivroService();
-            Livro livro = livroService.LerLivroPorID(idLivro);
 
-            if (livro != null) livro.EmprestarLivro(livro);
-            else Console.WriteLine("Ocorreu um erro, livro não pode ser emprestado");
+            LivroService livroService = new();
+            Livro? livro = livroService.LerLivroPorID(idLivro);
 
-            //Estudante estudante = Estudante.LocalizarPorMatricula(); //adicionar trycatch
-            //estudante.LivroEmprestado == true;
-            //estudante.ExibirInformacoes();
-
+            if (livro != null) 
+                Livro.EmprestarLivro(livro);
+            else 
+                Console.WriteLine("Livro não pode ser emprestado.");
         }
 
-        public void ReceberDevolucao()
+        public static void ReceberDevolucao()
         {
-            Console.WriteLine("Digite o Id do livro:");
+            Console.Write("Digite o ID do livro: ");
             int idLivro;
+
             while (!int.TryParse(Console.ReadLine(), out idLivro))
             {
                 Console.Write("Número inválido, digite de novo: ");
             }
-            LivroService livroService = new LivroService();
-            Livro livro = livroService.LerLivroPorID(idLivro);
 
-            if (livro != null) livro.DevolverLivro(livro);
-            else Console.WriteLine("Ocorreu um erro, livro não pode ser devolvido");
+            LivroService livroService = new();
+            Livro? livro = livroService.LerLivroPorID(idLivro);
+
+            if (livro != null) 
+                Livro.DevolverLivro(livro);
+            else 
+                Console.WriteLine("Ocorreu um erro: Livro não pode ser devolvido.");
         }
-
-        public void RegistroUsuario() { }//implementar
 
         public void AtualizarRegistroUsuario()
         {
             Console.WriteLine("ATUALIZAR REGISTRO");
             Console.WriteLine("Selecione tipo de usuário:");
             Console.WriteLine("1- Estudante\n2- Professor\n3-Funcionário");
+
             int tipousuario;
-            while (!int.TryParse(Console.ReadLine(), out tipousuario))
+
+            while (!int.TryParse(Console.ReadLine(), out tipousuario) || tipousuario < 1 || tipousuario > 3)
             {
-                Console.Write("Digite o número correspondente ao usuário");
+                Console.Write("Digite o número correspondente ao usuário: ");
             }
 
             switch (tipousuario)
@@ -78,70 +78,68 @@ namespace UsuariosBiblioteca.Funcionarios
             }
         }
 
-        private void AtualizarEstudante()
+        private static void AtualizarEstudante()
         {
             EstudanteService estudanteService = new EstudanteService();
-            List<Estudante> estudantes = estudanteService.LerJsonEstudantes() ?? new List<Estudante>();
+            List<Estudante> estudantes = estudanteService.LerJSONEstudantes() ?? [];
 
             Console.WriteLine("EDITAR DADOS: ESTUDANTE");
-            Estudante estudante = Estudante.LocalizarPorMatricula(); //adicionar trycatch
-            estudante.ExibirInformacoes();
+            Estudante? estudante = Estudante.LocalizarPorMatricula();
+            estudante!.ExibirInformacoes();
 
             Console.Write("Nome: ");
-            string nomenovo = Console.ReadLine();
+            string nomenovo = Console.ReadLine()!;
 
             Console.Write("E-mail: ");
-            string emailnovo = Console.ReadLine();
+            string emailnovo = Console.ReadLine()!;
 
             Console.Write("Curso: ");
-            string cursonovo = Console.ReadLine();
+            string cursonovo = Console.ReadLine()!;
 
             estudanteService.AlterarEstudantePorMatricula(estudante.Matricula, nomenovo, emailnovo, cursonovo);
-
         }
 
-        private void AtualizarProfessor()
+        private static void AtualizarProfessor()
         {
-            ProfessorService professorService = new ProfessorService();
-            List<Professor> professores = professorService.LerJsonProfessores() ?? new List<Professor>();
+            ProfessorService professorService = new();
+            List<Professor> professores = professorService.LerJSONProfessores() ?? [];
 
             Console.WriteLine("EDITAR DADOS: PROFESSOR");
-            Professor professor = Professor.LocalizarPorCodigo(); //adicionar trycatch
+            Professor professor = Professor.LocalizarPorCodigo();
             professor.ExibirInformacoes();
 
             Console.Write("Nome: ");
-            string nomenovo = Console.ReadLine();
+            string nomenovo = Console.ReadLine()!;
 
             Console.Write("E-mail: ");
-            string emailnovo = Console.ReadLine();
+            string emailnovo = Console.ReadLine()!;
 
             Console.Write("Senha: ");
-            string senhanova = Console.ReadLine();
+            string senhanova = Console.ReadLine()!;
 
-            professorService.AlterarProfessorPorCodigo(professor.CodigoCadastro, nomenovo, emailnovo, senhanova);
+            professorService.AlterarProfessorPorCodigo(professor.CodigoCadastro!, nomenovo, emailnovo, senhanova);
         }
 
-        private void AtualizarFuncionario()
+        private static void AtualizarFuncionario()
         {
-            FuncionarioService funcionarioService = new FuncionarioService();
-            List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
+            FuncionarioService funcionarioService = new();
 
             Console.WriteLine("EDITAR DADOS: FUNCIONÁRIO");
-            Funcionario funcionario = Funcionario.LocalizarPorCodigo(); //adicionar trycatch
+            Funcionario funcionario = LocalizarPorCodigo();
             funcionario.ExibirInformacoes();
 
             Console.Write("Nome: ");
-            string nomenovo = Console.ReadLine();
+            string nomenovo = Console.ReadLine()!;
 
             Console.Write("E-mail: ");
-            string emailnovo = Console.ReadLine();
+            string emailnovo = Console.ReadLine()!;
 
-            Cargos cargonovo = funcionario.MudarCargo();
+            Cargos cargonovo = SelecionarCargo();
 
             Console.Write("Senha: ");
-            string senhanova = Console.ReadLine();
+            string senhanova = Console.ReadLine()!;
 
-            funcionarioService.AlterarFuncionarioPorCodigo(funcionario.CodigoCadastro, nomenovo, emailnovo, cargonovo, senhanova);
+            funcionarioService.AlterarFuncionarioPorCodigo(funcionario.CodigoCadastro!, nomenovo, emailnovo, cargonovo, senhanova);
 
         }
     }

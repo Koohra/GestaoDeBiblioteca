@@ -7,8 +7,8 @@ namespace UsuariosBiblioteca.Estudantes
 {
     public class EstudanteService
     {
-        public string? Caminho { get; set; }
-        public List<Estudante> Estudantes { get; private set; } = new List<Estudante>();
+        private string? Caminho { get; set; }
+        public List<Estudante> Estudantes { get; private set; } = [];
 
         public EstudanteService(string? arquivoJson = "ListaDeEstudantes.json")
         {
@@ -16,7 +16,7 @@ namespace UsuariosBiblioteca.Estudantes
             Caminho = Caminho.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "UsuariosBiblioteca");
         }
 
-        public List<Estudante>? LerJsonEstudantes()
+        public List<Estudante>? LerJSONEstudantes()
         {
             try
             {
@@ -34,41 +34,34 @@ namespace UsuariosBiblioteca.Estudantes
                 }
                 else
                 {
-                    Console.WriteLine("O arquivo json não foi encontrado");
+                    Console.WriteLine("O arquivo JSON não foi encontrado.");
                 }
                 
                 return Estudantes;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Erro ao ler o json de Estudantes: {e}");
-                return new List<Estudante>();
+                Console.WriteLine($"Erro ao ler o JSON de Estudantes: {e}");
+                return null;
             }
         }
 
-        public void SalvarJsonEstudantes(List<Estudante> estudantes)
+        public void SalvarJSONEstudantes(List<Estudante> estudantes)
         {
-
             try
             {
-                if (File.Exists(Caminho)) // conferir se vai dar erro
+                if (File.Exists(Caminho))
                 {
-                    // Serializa a lista de professores de volta para o formato JSON
                     string json = JsonConvert.SerializeObject(estudantes, Formatting.Indented);
-
-                    // Escreve o JSON de volta no arquivo
                     File.WriteAllText(Caminho, json);
-
                     Console.WriteLine("Alterações salvas com sucesso no arquivo JSON.");
                 }
                 else
-                {
                     Console.WriteLine("Não foi encontrado nenhum arquivo JSON para ser atualizado.");
-                }
             }
             catch (Exception e)
             {
-                Console.WriteLine("Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: " + e.Message);
+                Console.WriteLine($"Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: {e} ");
             }
         }
 
@@ -76,7 +69,7 @@ namespace UsuariosBiblioteca.Estudantes
         {
             try
             {
-                List<Estudante>? estudantes = LerJsonEstudantes();
+                List<Estudante>? estudantes = LerJSONEstudantes();
                 Estudante? estudanteParaAtualizar = estudantes.FirstOrDefault(estudante => estudante.Matricula == Matricula);
 
                 if (estudanteParaAtualizar != null)
@@ -85,15 +78,13 @@ namespace UsuariosBiblioteca.Estudantes
                     estudanteParaAtualizar.Email = email;
                     estudanteParaAtualizar.Curso = curso;
 
-                    SalvarJsonEstudantes(estudantes);
+                    SalvarJSONEstudantes(estudantes);
 
                     Console.WriteLine($"Estudante com a matrícula {Matricula} atualizado com sucesso.");
                     estudanteParaAtualizar.ExibirInformacoes();
                 }
                 else
-                {
                     Console.WriteLine($"Estudante com a matrícula {Matricula} não foi encontrado.");
-                }
             }
             catch (Exception e)
             {

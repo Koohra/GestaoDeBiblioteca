@@ -1,9 +1,6 @@
 ﻿using ControleDoAcervo;
 using ControleDoAcervo.Livros;
-using System.Globalization;
-using UsuariosBiblioteca.Funcionarios;
 using UsuariosBiblioteca.Interfaces;
-using UsuariosBiblioteca.Professores;
 
 namespace UsuariosBiblioteca.Estudantes
 {
@@ -22,7 +19,7 @@ namespace UsuariosBiblioteca.Estudantes
         public IUsuario? Login()
         {
             EstudanteService estudanteService = new EstudanteService();
-            List<Estudante> estudantes = estudanteService.LerJsonEstudantes(); //?? new List<Estudante>();
+            List<Estudante> estudantes = estudanteService.LerJSONEstudantes(); //?? new List<Estudante>();
 
 
             while (true)
@@ -74,18 +71,20 @@ namespace UsuariosBiblioteca.Estudantes
             Console.WriteLine($"Curso: {Curso}");
             Console.WriteLine();
         }
+
         public void Logout()
         {
             Console.Clear();
             Console.WriteLine($"Usuário desconectado.");
         }
+
         public void PesquisarLivro()
         {
             Console.WriteLine("Digite o título do livro ou parte dele:");
             string? parteTitulo = Console.ReadLine();
 
             AcervoPublico acervoPublico = new AcervoPublico();
-            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(parteTitulo);
+            List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorNome(parteTitulo);
 
             foreach (Livro livro in livrosPublicosBuscados)
             {
@@ -93,44 +92,23 @@ namespace UsuariosBiblioteca.Estudantes
             }
         }
 
-        private int VerificarDisponibilidade(Livro livro)
-        {
-            int exemplaresDisponiveis = livro.Exemplares
-                .Where(e => e.Key == EstadoExemplar.Conservado && e.Value > 0)
-                .Sum(e => e.Value);
-
-            return exemplaresDisponiveis;
-        }
-
-        public static Estudante LocalizarPorMatricula()
+        public static Estudante? LocalizarPorMatricula()
         {
             EstudanteService estudanteService = new EstudanteService();
-            List<Estudante> estudantes = estudanteService.LerJsonEstudantes() ?? new List<Estudante>();
+            List<Estudante> estudantes = estudanteService.LerJSONEstudantes() ?? [];
 
-            //int matricula;
             Console.WriteLine("Digite o número da matrícula:");
-            //while (!int.TryParse(Console.ReadLine(), out matricula))
-            //{
-            //    Console.Write("Formato inválido, digite de novo: ");
-            //}
-            string matricula = Console.ReadLine();
-            //Estudante estudante = estudantes.FirstOrDefault(e => e.Matricula == matricula);
+            string? matricula = Console.ReadLine();
+            
+            Estudante? estudante = estudantes.FirstOrDefault(e => e.Matricula == matricula);
 
-            //if (estudante != null)
-            //{
-            //    return estudante;
-            //}
-
-            foreach (Estudante estudante in estudantes)
+            if (estudante != null)
+                return estudante;
+            else
             {
-                if (estudante.Matricula == matricula)
-                {
-                    return estudante;
-                }
+                Console.WriteLine("Não existe estudante com esta matrícula.");
+                return null;
             }
-
-            return null;
         }
-
     }
 }
