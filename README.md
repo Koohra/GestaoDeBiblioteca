@@ -35,15 +35,9 @@ Bem-vindo ao repositório do projeto Sistema de Gestão de Biblioteca! Aqui, apr
 - **Atualização de Dados:**
   - Os dados são manipulados através de arquivos JSON para Livros, Funcionários e Estudantes.
 
-### Documentação do Projeto 📄
-
-- [Documentação Detalhada](https://www.canva.com/design/DAF2Ocil80Y/ZkbyOB1s1WjI3qKBEWbsiA/view)
-- [Notion](https://www.notion.so/Sistema-de-Gest-o-de-Biblioteca-183224ccc67340fea83b50ae4c3eee5c?pvs=4)
-- [Diagrama de Classes](https://www.notion.so/Mermaid-f5ff8a018d9b480ea8a665056b3c0401)
-
 ## 👥 Membros do Projeto
 
-- [Ângela](https://github.com/angelar)
+- [Ângela](https://github.com/angelafrocha)
 - [Camila Zambanini](https://github.com/czambanini)
 - [Herlon R Ludwig](https://github.com/herlonrl)
 - [Kaique Ramos](https://github.com/KaiqueRamoss)
@@ -52,6 +46,6 @@ Bem-vindo ao repositório do projeto Sistema de Gestão de Biblioteca! Aqui, apr
 - [Suellen Seiberlick Reis](https://github.com/suellensr)
 
 ## 📝 Conclusão
-Dúvidas ou sugestões? Entre em contato conosco! 📧
+Dúvidas, sugestões ou quer saber mais? Entre em contato conosco! 📧
 
 **Divirta-se explorando e desenvolvendo o Sistema de Gestão de Biblioteca!** 📖✨
