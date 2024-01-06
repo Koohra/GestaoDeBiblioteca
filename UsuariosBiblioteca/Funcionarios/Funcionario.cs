@@ -1,8 +1,5 @@
 ﻿using ControleDoAcervo;
 using ControleDoAcervo.Livros;
-using System;
-using System.Text.Json.Serialization;
-using UsuariosBiblioteca.Estudantes;
 using UsuariosBiblioteca.Interfaces;
 
 namespace UsuariosBiblioteca.Funcionarios
@@ -15,8 +12,6 @@ namespace UsuariosBiblioteca.Funcionarios
         public Cargos Cargo { get; set; }
         public string? Senha { get; set; }
 
-
-
         public Funcionario() { }
 
         public Funcionario(string codigoCadastro, string nome, string email, string senha)
@@ -26,6 +21,7 @@ namespace UsuariosBiblioteca.Funcionarios
             Email = email;
             Senha = senha;
         }
+
         public Funcionario(string codigoCadastro, string nome, string email, Cargos cargo, string senha)
         {
             CodigoCadastro = codigoCadastro;
@@ -34,75 +30,98 @@ namespace UsuariosBiblioteca.Funcionarios
             Cargo = cargo;
             Senha = senha;
         }
+
+        private static string LerSenha()
+        {
+            string senha = "";
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(true);
+
+                if (key.Key != ConsoleKey.Enter && key.Key != ConsoleKey.Backspace)
+                {
+                    senha += key.KeyChar;
+                    Console.Write("*");
+                }
+                else if (key.Key == ConsoleKey.Backspace && senha.Length > 0)
+                {
+                    senha = senha.Substring(0, senha.Length - 1);
+                    Console.Write("\b \b");
+                }
+            } while (key.Key != ConsoleKey.Enter);
+
+            Console.WriteLine();
+            return senha;
+        }
+
         public void ExibirInformacoes()
         {
             Console.WriteLine($"Codigo cadastro: {CodigoCadastro}");
             Console.WriteLine($"Nome: {Nome}");
             Console.WriteLine($"Email: {Email} ");
-            Console.WriteLine($"Cargo: {Cargo}");
-            Console.WriteLine();
+            Console.WriteLine($"Cargo: {Cargo}\n");
         }
 
-        public void VerificarStatusLivro()
+        public static void VerificarStatusLivro()
         {
-            Console.WriteLine("Digite o Id do livro:");
+            Console.Write("Digite o ID do livro: ");
             int idLivro;
+
             while (!int.TryParse(Console.ReadLine(), out idLivro))
-            {
                 Console.Write("Número inválido, digite de novo: ");
-            }
-            LivroService livroService = new LivroService();
+
+            LivroService livroService = new();
             Livro? livro = livroService.LerLivroPorID(idLivro);
 
-            if (livro != null) { livro.ExibirInformacoes(); }
+            if (livro != null)
+                livro.ExibirInformacoes();
         }
 
-        public void CadastrarLivro()
+        public static void CadastrarLivro()
         {
             AcervoBiblioteca.AdicionarLivro();
         }
 
-        public void AtualizarNumeroLivros()
+        public static void AtualizarNumeroLivros()
         {
-            Console.WriteLine("Digite o Id do livro:");
+            Console.Write("Digite o ID do livro: ");
             int idLivro;
+
             while (!int.TryParse(Console.ReadLine(), out idLivro))
-            {
                 Console.Write("Número inválido, digite de novo: ");
-            }
-            LivroService livroService = new LivroService();
+
+            LivroService livroService = new();
             livroService.AtualizarExemplares(idLivro);
         }
 
         public IUsuario? Login()
         {
-            FuncionarioService funcionarioService = new FuncionarioService();
-            List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
+            FuncionarioService funcionarioService = new();
+            List<Funcionario>? funcionarios = funcionarioService.LerJSONFuncionarios();
 
-            Console.WriteLine("Código de cadastro:");
+            Console.Write("Código de cadastro: ");
             string codigoCadastro = Console.ReadLine()!;
-            Console.WriteLine("Senha:");
-            string senha = Console.ReadLine()!;
 
-            foreach (Funcionario funcionario in listaFuncionarios)
+            Console.Write("Senha: ");
+            string senha = LerSenha();
+
+            Funcionario? funcionario = funcionarios.FirstOrDefault(funcionario => funcionario.CodigoCadastro == codigoCadastro && funcionario.Senha == senha);
+
+            if (funcionario == null)
             {
-                if (funcionario.CodigoCadastro == codigoCadastro && funcionario.Senha == senha)
-                {
-                    return funcionario;
-                }
-            }
+                Console.WriteLine("Código de cadastro ou senha incorreta. Tentar novamente? Digite 'S' para tentar novamente");
+                char continuar = Console.ReadKey().KeyChar;
+                Console.WriteLine("");
 
-            Console.WriteLine("Código de cadastro ou senha incorreta. Tentar novamente? Digite 'S' para tentar novamente");
-            char continuar = Console.ReadKey().KeyChar;
-            Console.WriteLine("");
-
-            if (continuar == 'S' || continuar == 's')
-            {
+                if (char.ToUpper(continuar) == 'S') { }
                 Login();
             }
+            else
+                return funcionario;
 
             return null;
-
         }
 
         void IUsuario.Logout()
@@ -113,108 +132,45 @@ namespace UsuariosBiblioteca.Funcionarios
 
         public void PesquisarLivro()
         {
-            {
-                Console.WriteLine("Digite o título do livro ou parte dele:");
-                string? parteTitulo = Console.ReadLine();
-                AcervoBiblioteca acervoBiblioteca = new AcervoBiblioteca();
-                //AcervoPublico acervoPublico = new AcervoPublico();
-                //AcervoRestrito acervoRestrito = new AcervoRestrito();
-                //ForaDeEstoque foraDeEstoque = new ForaDeEstoque();
-                //List<Livro> livrosPublicosBuscados = acervoPublico.BuscarLivroPorParteDoNome(parteTitulo);
-                //List<Livro> livrosRestritosBuscados = acervoRestrito.BuscarLivroPorParteDoNome(parteTitulo);
-                //List<Livro> livrosForaDeEstoqueBuscados = foraDeEstoque.BuscarLivroPorParteDoNome(parteTitulo);
+            Console.Write("Digite o título do livro ou parte dele: ");
+            string? parteTitulo = Console.ReadLine();
+            AcervoBiblioteca acervoBiblioteca = new();
 
-                //List<Livro> livrosBuscados = livrosPublicosBuscados.Concat(livrosForaDeEstoqueBuscados).Concat(livrosRestritosBuscados).DistinctBy(livro => livro.Titulo).ToList();
-
-                List<Livro> livrosBuscados = acervoBiblioteca.BuscarLivroPorParteDoNome(parteTitulo);
-                foreach (Livro livro in livrosBuscados)
-                {
-                    livro.ExibirInformacoes();
-                }
-            }
+            List<Livro> livrosBuscados = acervoBiblioteca.BuscarLivroPorNome(parteTitulo);
+            foreach (Livro livro in livrosBuscados)
+                livro.ExibirInformacoes();
         }
 
-        public static Funcionario LocalizarPorCodigo()
+        public static Funcionario? LocalizarPorCodigo()
         {
-            FuncionarioService funcionarioService = new FuncionarioService();
-            List<Funcionario> listaFuncionarios = funcionarioService.RetornarLista();
+            FuncionarioService funcionarioService = new();
+            List<Funcionario>? funcionarios = funcionarioService.LerJSONFuncionarios();
 
             Console.WriteLine("Código de cadastro:");
             string codigoCadastro = Console.ReadLine()!;
 
-            foreach (Funcionario funcionario in listaFuncionarios)
-            {
-                if (funcionario.CodigoCadastro == codigoCadastro)
-                {
-                    return funcionario;
-                }
-            }
-            return null;
-        }
-
-        public Cargos MudarCargo()
-        {
-            Cargos novocargo;
-            Console.WriteLine("Cargo:");
-            Console.WriteLine("1- Atendente\n2- Bibliotecario\n3- Diretor");
-            int opcao;
-            while (!int.TryParse(Console.ReadLine(), out opcao))
-            {
-                Console.Write("Digite o número correspondente;");
-            }
-            switch (opcao)
-            {
-                case 1:
-                    novocargo = Cargos.Atendente;
-                    return novocargo;
-                case 2:
-                    novocargo = Cargos.Bibliotecario;
-                    return novocargo;
-                case 3:
-                    novocargo = Cargos.Diretor;
-                    return novocargo;
-                default:
-                    Console.Write("Entrada não identificada, sera mantido o cargo atual;");
-                    novocargo = Cargo;
-                    return novocargo;
-            }
+            return funcionarios?.FirstOrDefault(funcionario => funcionario.CodigoCadastro == codigoCadastro);
         }
 
         public static Cargos SelecionarCargo()
         {
-            Cargos novocargo;
-            Console.WriteLine("Cargo:");
-            Console.WriteLine("1- Atendente\n2- Bibliotecario\n3- Diretor");
-            int opcao;
-            while (!int.TryParse(Console.ReadLine(), out opcao))
+            Cargos novoCargo;
+            bool deuCerto;
+
+            Console.WriteLine("Cargos: Atendente, Bibliotecario ou Diretor?");
+            do
             {
-                Console.Write("Digite o número correspondente;");
-            }
-            switch (opcao)
-            {
-                case 1:
-                    novocargo = Cargos.Atendente;
-                    return novocargo;
-                case 2:
-                    novocargo = Cargos.Bibliotecario;
-                    return novocargo;
-                case 3:
-                    novocargo = Cargos.Diretor;
-                    return novocargo;
-                default:
-                    novocargo = Cargos.Bibliotecario;
-                    return novocargo;
-            }
+                Console.Write("Escreva o nome do cargo: ");
+                deuCerto = Enum.TryParse<Cargos>(Console.ReadLine(), out novoCargo);
+            } while (!deuCerto);
+
+            return novoCargo;
         }
 
         public void Logout()
         {
             Console.Clear();
-            Console.WriteLine($"{this.Cargo} desconectado.");
+            Console.WriteLine($"{Cargo} desconectado.");
         }
     }
-
-
 }
-
-

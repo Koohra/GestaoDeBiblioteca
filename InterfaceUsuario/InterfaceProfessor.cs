@@ -1,11 +1,4 @@
 ﻿using ControleDoAcervo.Livros;
-using ControleDoAcervo.Reservas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UsuariosBiblioteca.Funcionarios;
 using UsuariosBiblioteca.Professores;
 
 namespace SistemaBiblioteca
@@ -22,9 +15,7 @@ namespace SistemaBiblioteca
 
             int acao;
             while (!int.TryParse(Console.ReadLine(), out acao))
-            {
                 Console.Write("Digite o número correspondente a ação");
-            }
 
             switch (acao)
             {
@@ -43,18 +34,20 @@ namespace SistemaBiblioteca
                     {
                         Console.Write("Número inválido, digite de novo: ");
                     }
-                    string codigoCadastro = professorLogado.CodigoCadastro;
-                    LivroService livroService = new LivroService();
+                    string codigoCadastro = professorLogado.CodigoCadastro!;
+                    LivroService livroService = new();
                     livroService.ReservarLivro(idLivro, codigoCadastro);
 
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuProfessor(professorLogado);
                     return;
+
                 case 3:
                     professorLogado.Logout();
                     FazerLogin.EscolherUsuario();
                     return;
+
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
                     MenuProfessor(professorLogado);

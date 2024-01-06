@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UsuariosBiblioteca.Funcionarios;
+﻿using UsuariosBiblioteca.Funcionarios;
 
 namespace SistemaBiblioteca
 {
@@ -28,14 +22,14 @@ namespace SistemaBiblioteca
             switch (acao)
             {
                 case 1:
-                    atendente.PermitirEmprestimo();
+                    Atendente.PermitirEmprestimo();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuAtendente(atendente);
                     return;
 
                 case 2:
-                    atendente.ReceberDevolucao();
+                    Atendente.ReceberDevolucao();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuAtendente(atendente);
@@ -49,21 +43,21 @@ namespace SistemaBiblioteca
                     return;
 
                 case 4:
-                    atendente.VerificarStatusLivro();
+                    Funcionario.VerificarStatusLivro();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuAtendente(atendente);
                     return;
 
                 case 5:
-                    atendente.CadastrarLivro();
+                    Funcionario.CadastrarLivro();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuAtendente(atendente);
                     return;
 
                 case 6:
-                    atendente.AtualizarNumeroLivros();
+                    Funcionario.AtualizarNumeroLivros();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuAtendente(atendente);
@@ -98,9 +92,7 @@ namespace SistemaBiblioteca
 
             int acao;
             while (!int.TryParse(Console.ReadLine(), out acao))
-            {
                 Console.Write("Digite o número correspondente a ação");
-            }
 
             switch (acao)
             {
@@ -121,21 +113,21 @@ namespace SistemaBiblioteca
                     return;
 
                 case 3:
-                    diretor.VerificarStatusLivro();
+                    Funcionario.VerificarStatusLivro();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuDiretor(diretor);
                     return;
 
                 case 4:
-                    diretor.CadastrarLivro();
+                    Funcionario.CadastrarLivro();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuDiretor(diretor);
                     return;
 
                 case 5:
-                    diretor.AtualizarNumeroLivros();
+                    Funcionario.AtualizarNumeroLivros();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuDiretor(diretor);
@@ -162,9 +154,7 @@ namespace SistemaBiblioteca
 
             int acao;
             while (!int.TryParse(Console.ReadLine(), out acao))
-            {
                 Console.Write("Digite o número correspondente a ação");
-            }
 
             switch (acao)
             {
@@ -176,21 +166,21 @@ namespace SistemaBiblioteca
                     return;
 
                 case 2:
-                    bibliotecario.VerificarStatusLivro();
+                    Funcionario.VerificarStatusLivro();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuBibliotecario(bibliotecario);
                     return;
 
                 case 3:
-                    bibliotecario.CadastrarLivro();
+                    Funcionario.CadastrarLivro();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuBibliotecario(bibliotecario);
                     return;
 
                 case 4:
-                    bibliotecario.AtualizarNumeroLivros();
+                    Funcionario.AtualizarNumeroLivros();
                     Console.WriteLine($"\nPrecione [ENTER] para voltar");
                     Console.ReadLine();
                     MenuBibliotecario(bibliotecario);
@@ -220,42 +210,41 @@ namespace SistemaBiblioteca
             string senha = Console.ReadLine()!;
             Cargos cargo = Funcionario.SelecionarCargo();
 
-            Funcionario funcionario = new Funcionario(codigo, nome, email, cargo, senha);
+            Funcionario funcionario = new(codigo, nome, email, cargo, senha);
             return funcionario;
         }
 
         public static Atendente TransformarAtendente(Funcionario funcionario)
         {
-            string? codigo = funcionario.CodigoCadastro;
-            string? nome = funcionario.Nome;
-            string? email = funcionario.Email;
-            string? senha = funcionario.Senha;
+            string codigo = funcionario.CodigoCadastro!;
+            string nome = funcionario.Nome!;
+            string email = funcionario.Email!;
+            string senha = funcionario.Senha!;
 
-            Atendente atendente = new Atendente(codigo, nome, email, senha);
+            Atendente atendente = new(codigo, nome, email, senha);
             return atendente;
         }
 
         public static Diretor TransformarDiretor(Funcionario funcionario)
         {
-            string? codigo = funcionario.CodigoCadastro;
-            string? nome = funcionario.Nome;
-            string? email = funcionario.Email;
-            string? senha = funcionario.Senha;
+            string codigo = funcionario.CodigoCadastro!;
+            string nome = funcionario.Nome!;
+            string email = funcionario.Email!;
+            string senha = funcionario.Senha!;
 
-            Diretor diretor = new Diretor(codigo, nome, email, senha);
+            Diretor diretor = new(codigo, nome, email, senha);
             return diretor;
         }
 
         public static Bibliotecario TransformarBibliotecario(Funcionario funcionario) 
         {
-            string? codigo = funcionario.CodigoCadastro;
-            string? nome = funcionario.Nome;
-            string? email = funcionario.Email;
-            string? senha = funcionario.Senha;
+            string codigo = funcionario.CodigoCadastro!;
+            string nome = funcionario.Nome!;
+            string email = funcionario.Email!;
+            string senha = funcionario.Senha!;
 
-            Bibliotecario bibliotecario = new Bibliotecario(codigo, nome, email, senha);
+            Bibliotecario bibliotecario = new(codigo, nome, email, senha);
             return bibliotecario;
         }
-
     }
 }

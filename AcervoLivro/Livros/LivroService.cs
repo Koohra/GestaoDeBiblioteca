@@ -17,34 +17,48 @@ namespace ControleDoAcervo.Livros
 
         private bool VerificaSeLivroJaExiste(Livro livro)
         {
-            List<Livro> Livros = DeserializaJSON();
-            Livro? livroIgual = Livros.FirstOrDefault(l => l.Titulo == livro.Titulo && l.Autor == livro.Autor && l.Reservas == livro.Reservas);
-            if (livroIgual != null)
-                return true;
-            return false;
-        }
-
-        private List<Livro> DeserializaJSON()
-        {
-            var json = File.ReadAllText(Caminho);
-            JArray livrosJSON = JArray.Parse(json);
-
-            foreach (var livroJSON in livrosJSON)
+            try
             {
-                Livro? livro = JsonConvert.DeserializeObject<Livro?>(livroJSON.ToString());
-                if (livro != null)
-                    Livros.Add(livro);
+                List<Livro> Livros = DeserializaJSON();
+                Livro? livroIgual = Livros.FirstOrDefault(l => l.Titulo == livro.Titulo && l.Autor == livro.Autor && l.Reservas == livro.Reservas);
+                if (livroIgual != null)
+                    return true;
+                return false;
+            } catch (Exception ex)
+            {
+                Console.WriteLine($"Não foi possível verificar se livro já existe: {ex}");
+                return false;
             }
-            return Livros.DistinctBy(livro => livro.Titulo).ToList();
         }
 
-        private void SerializaJSON(List<Livro?> livros)
+        private List<Livro>? DeserializaJSON()
         {
             try
             {
-            var json = JsonConvert.SerializeObject(livros, Formatting.Indented);
-            File.WriteAllText(Caminho, json);
+                var json = File.ReadAllText(Caminho);
+                JArray livrosJSON = JArray.Parse(json);
 
+                foreach (var livroJSON in livrosJSON)
+                {
+                    Livro? livro = JsonConvert.DeserializeObject<Livro?>(livroJSON.ToString());
+                    if (livro != null)
+                        Livros.Add(livro);
+                }
+                return Livros.DistinctBy(livro => livro.Titulo).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocorreu um erro ao desserializar o arquivo JSON de Livros: {ex}");
+                return null;
+            }
+        }
+
+        private void SerializaJSON(List<Livro>? livros)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(livros, Formatting.Indented);
+                File.WriteAllText(Caminho, json);
             } catch(Exception ex)
             {
                 Console.WriteLine($"Não foi possível salvar as alterações no JSON: {ex}");
@@ -71,7 +85,7 @@ namespace ControleDoAcervo.Livros
             }
         }
 
-        public List<Livro> LerLivros()
+        public List<Livro>? LerLivros()
         {
             try
             {
@@ -130,9 +144,7 @@ namespace ControleDoAcervo.Livros
                     livroParaAtualizar.ExibirInformacoes();
                 }
                 else
-                {
                     Console.WriteLine($"Livro com ID {id} não foi encontrado.");
-                }
             }
             catch (Exception e)
             {
@@ -144,7 +156,7 @@ namespace ControleDoAcervo.Livros
         {
             try
             {
-                List<Livro?> Livros = DeserializaJSON();
+                List<Livro>? Livros = DeserializaJSON();
                 var livroParaDeletar = Livros.FirstOrDefault(livro => livro.Id == id);
 
                 if (livroParaDeletar != null)
@@ -162,17 +174,15 @@ namespace ControleDoAcervo.Livros
             }
         }
 
-        public void DeletarLivroTitulo(string titulo, string autor, int anoPublicacao)
+        public void DeletarLivroTitulo(string titulo)
         {
             try
             {
-                List<Livro?> Livros = DeserializaJSON();
+                List<Livro>? Livros = DeserializaJSON();
 
                 foreach (var livro in Livros)
                 {
-                    if (livro.Titulo.Equals(titulo, StringComparison.OrdinalIgnoreCase) &&
-                        livro.Autor.Equals(titulo, StringComparison.OrdinalIgnoreCase) &&
-                        livro.AnoPublicacao.Equals(anoPublicacao))
+                    if (livro.Titulo.Equals(titulo, StringComparison.OrdinalIgnoreCase))
                     {
                         Livros.Remove(livro);
                         SerializaJSON(Livros);
@@ -188,69 +198,70 @@ namespace ControleDoAcervo.Livros
             }
         }
 
-        public void SalvarJsonLivro(List<Livro> livros, string? arquivoJson = "LivrosAcervo.json")
+        public void EmprestarLivro(int id, Dictionary<EstadoExemplar, int> exemplarAtualizado)
         {
             try
             {
-                if (File.Exists(Caminho)) // conferir se vai dar erro
+                List<Livro>? livros = LerLivros();
+                Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
+
+                if (livroParaAtualizar != null)
                 {
+                    livroParaAtualizar.Exemplares = exemplarAtualizado;
                     SerializaJSON(livros);
-                    Console.WriteLine("Alterações salvas com sucesso no arquivo JSON.");
+                    Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
+                    livroParaAtualizar.ExibirInformacoes();
                 }
-                else
-                    Console.WriteLine("Não foi encontrado nenhum arquivo JSON para ser atualizado.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: {ex.Message}");
-            }
-        }
-
-        public void EmprestarLivro(int id, Dictionary<EstadoExemplar, int> exemplarAtualizado)
-        {
-            List<Livro>? livros = LerLivros();
-            Livro? livroParaAtualizar = Livros.FirstOrDefault(livro => livro.Id == id);
-
-            if (livroParaAtualizar != null)
-            {
-                livroParaAtualizar.Exemplares = exemplarAtualizado;
-
-                SalvarJsonLivro(livros);
-
-                Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
-                livroParaAtualizar.ExibirInformacoes();
+                Console.WriteLine($"Õcorreu um erro ao emprestar um livro: {ex}");
             }
         }
 
         public void AtualizarExemplares(int id)
         {
-            List<Livro>? livros = LerLivros();
-            Livro? livroParaAtualizar = livros.FirstOrDefault(livro => livro.Id == id);
-
-            if (livroParaAtualizar != null)
+            try
             {
-                livroParaAtualizar.Exemplares = Livro.ReceberEstadoExemplar();
+                List<Livro>? livros = LerLivros();
+                Livro? livroParaAtualizar = livros.FirstOrDefault(livro => livro.Id == id);
 
-                SalvarJsonLivro(Livros);
+                if (livroParaAtualizar != null)
+                {
+                    livroParaAtualizar.Exemplares = Livro.ReceberEstadoExemplar();
 
-                Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
-                livroParaAtualizar.ExibirInformacoes();
+                    SerializaJSON(Livros);
+
+                    Console.WriteLine($"Livro com ID {id} atualizado com sucesso.");
+                    livroParaAtualizar.ExibirInformacoes();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocorreu um erro ao atualizar os exemplares: {ex}");
             }
         }
 
         public void ReservarLivro(int id, string matricula)
         {
-            List<Livro>? livros = LerLivros();
-            Livro? livroParaReservar = livros.FirstOrDefault(livro => livro.Id == id);
-
-            if (livroParaReservar != null)
+            try
             {
-                Reserva reserva = livroParaReservar.AdicionarReserva(matricula);
-                reserva.ExibirInformacoes();
-                SalvarJsonLivro(livros);
+                List<Livro>? livros = LerLivros();
+                Livro? livroParaReservar = livros.FirstOrDefault(livro => livro.Id == id);
 
-                Console.WriteLine($"Livro com ID {id} reservado com sucesso.");
-                livroParaReservar.ExibirInformacoes();
+                if (livroParaReservar != null)
+                {
+                    Reserva reserva = livroParaReservar.AdicionarReserva(matricula);
+                    reserva.ExibirInformacoes();
+                    SerializaJSON(livros);
+
+                    Console.WriteLine($"Livro com ID {id} reservado com sucesso.");
+                    livroParaReservar.ExibirInformacoes();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocorreu um erro ao reservar um livro: {ex}");
             }
         }
     }

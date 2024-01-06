@@ -6,59 +6,46 @@ using UsuariosBiblioteca.Professores;
 
 public class FuncionarioService
 {
-    private string arquivoJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Funcionarios", "ListaDosFuncionarios.json");
-    private List<Funcionario> listaFuncionarios;
+    private string CaminhoJSON {  get; set; }
+    private List<Funcionario>? Funcionarios { get; set; } = [];
 
     public FuncionarioService()
     {
-        arquivoJson = arquivoJson.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "UsuariosBiblioteca");
-        listaFuncionarios = InicializarFuncionarios();
+        CaminhoJSON = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Funcionarios", "ListaDosFuncionarios.json");
+        CaminhoJSON = CaminhoJSON.Replace("InterfaceUsuario\\bin\\Debug\\net8.0", "UsuariosBiblioteca");
+        Funcionarios = LerJSONFuncionarios();
     }
-
-    internal List<Funcionario> RetornarLista()
-    {
-        listaFuncionarios = InicializarFuncionarios();
-        return listaFuncionarios;
-    }
-
-    private List<Funcionario> InicializarFuncionarios()
+    public List<Funcionario>? LerJSONFuncionarios()
     {
         try
         {
-            string json = File.ReadAllText(arquivoJson);
-            Funcionario[] arrayFuncionarios = JsonConvert.DeserializeObject<Funcionario[]>(json);
-            return new List<Funcionario>(arrayFuncionarios);
+            string conteudoJSON = File.ReadAllText(CaminhoJSON);
+            Funcionarios = JsonConvert.DeserializeObject<List<Funcionario>?>(conteudoJSON);
+            return Funcionarios;
         }
         catch (Exception ex)
         {
             Console.WriteLine("Ocorreu um erro na inicialização dos funcionários: " + ex.Message);
-            return new List<Funcionario>();
+            return null;
         }
     }
 
-    public void SalvarJsonFuncionarios(List<Funcionario> listaFuncionarios)
+    public void SalvarJSONFuncionarios(List<Funcionario> listaFuncionarios)
     {
-
         try
         {
-            if (File.Exists(arquivoJson)) // conferir se vai dar erro
+            if (File.Exists(CaminhoJSON))
             {
-                // Serializa a lista de professores de volta para o formato JSON
                 string json = JsonConvert.SerializeObject(listaFuncionarios, Formatting.Indented);
-
-                // Escreve o JSON de volta no arquivo
-                File.WriteAllText(arquivoJson, json);
-
+                File.WriteAllText(CaminhoJSON, json);
                 Console.WriteLine("Alterações salvas com sucesso no arquivo JSON.");
             }
             else
-            {
                 Console.WriteLine("Não foi encontrado nenhum arquivo JSON para ser atualizado.");
-            }
         }
-        catch (Exception ex3)
+        catch (Exception ex)
         {
-            Console.WriteLine("Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: " + ex3.Message);
+            Console.WriteLine($"Ocorreu um erro ao tentar salvar as alterações no arquivo JSON: {ex}");
         }
     }
 
@@ -66,33 +53,38 @@ public class FuncionarioService
     {
         try
         {
-            foreach (var funcionario in listaFuncionarios)
+            foreach (var funcionario in Funcionarios!)
             {
                 funcionario.ExibirInformacoes();
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Ocorreu um erro ao exibir os detalhes dos funcionários: " + ex.Message);
+            Console.WriteLine($"Ocorreu um erro ao exibir os detalhes dos funcionários: {ex}");
         }
     }
 
     public void AdicionarNovoFuncionario(Funcionario novoFuncionario)
     {
-        listaFuncionarios.Add(novoFuncionario);
+        try
+        {
+            Funcionarios?.Add(novoFuncionario);
+            string novoJson = JsonConvert.SerializeObject(Funcionarios, Formatting.Indented);
+            File.WriteAllText(CaminhoJSON, novoJson);
 
-        string novoJson = JsonConvert.SerializeObject(listaFuncionarios, Formatting.Indented);
-        File.WriteAllText(arquivoJson, novoJson);
-
-        Console.WriteLine("Novo funcionário adicionado com sucesso!");
+            Console.WriteLine("Novo funcionário adicionado com sucesso!");
+        } catch(Exception ex)
+        {
+            Console.WriteLine($"Ocorreu um erro ao adicionar um novo funcionário: {ex}");
+        }
     }
 
     public void AlterarFuncionarioPorCodigo(string CodigoCadastro, string nome, string email, Cargos cargo, string senha)
     {
         try
         {
-            List<Funcionario>? funcionarios = InicializarFuncionarios();
-            Funcionario? funcionarioParaAtualizar = funcionarios.FirstOrDefault(funcionario => funcionario.CodigoCadastro == CodigoCadastro);
+            List<Funcionario>? funcionarios = LerJSONFuncionarios();
+            Funcionario? funcionarioParaAtualizar = funcionarios?.FirstOrDefault(funcionario => funcionario.CodigoCadastro == CodigoCadastro);
 
             if (funcionarioParaAtualizar != null)
             {
@@ -101,25 +93,17 @@ public class FuncionarioService
                 funcionarioParaAtualizar.Cargo = cargo;
                 funcionarioParaAtualizar.Senha = senha;
 
-                //string novoJson = JsonConvert.SerializeObject(listaFuncionarios, Formatting.Indented);
-                //File.WriteAllText(arquivoJson, novoJson);
-                SalvarJsonFuncionarios(funcionarios);
+                SalvarJSONFuncionarios(funcionarios!);
 
                 Console.WriteLine($"Funcionário com código {CodigoCadastro} atualizado com sucesso.");
                 funcionarioParaAtualizar.ExibirInformacoes();
             }
             else
-            {
                 Console.WriteLine($"Funcionário com código {CodigoCadastro} não foi encontrado.");
-            }
         }
         catch (Exception e)
         {
             Console.WriteLine($"Não foi possível alterar o funcionário com código {CodigoCadastro}: {e}");
         }
     }
-
-
 }
-
-

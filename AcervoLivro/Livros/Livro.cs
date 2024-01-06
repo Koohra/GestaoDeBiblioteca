@@ -1,7 +1,6 @@
 ﻿using ControleDoAcervo.Reservas;
 using System.Text;
 
-
 namespace ControleDoAcervo.Livros
 {
     public class Livro
@@ -11,7 +10,7 @@ namespace ControleDoAcervo.Livros
         public string Titulo { get; internal set; }
         public string Autor { get; internal set; }
         public int AnoPublicacao { get; internal set; }
-        public Dictionary<EstadoExemplar, int> Exemplares { get; set; }
+        public Dictionary<EstadoExemplar, int> Exemplares { get; internal set; }
         public Acervo Setor { get; internal set; }
         public List<Reserva> Reservas { get; internal set; }
 
@@ -32,7 +31,6 @@ namespace ControleDoAcervo.Livros
                 + exemplares.GetValueOrDefault(EstadoExemplar.MalConservado, 0)
                 + exemplares.GetValueOrDefault(EstadoExemplar.Emprestado, 0);
 
-            //int quantidadeLivrosDisponiveis = exemplares[EstadoExemplar.Conservado] + exemplares[EstadoExemplar.MalConservado];  //exemplares.Values.Sum()
             foreach (var (estado, quantidade) in exemplares)
             {
                 if (estado == EstadoExemplar.Conservado && quantidade >= 2)
@@ -71,12 +69,10 @@ namespace ControleDoAcervo.Livros
                     foreach (char caracter in estadoNome)
                     {
                         if (char.IsUpper(caracter) && resultado.Length > 0)
-                        {
                             resultado.Append(' ');
-                        }
+
                         resultado.Append(char.ToLower(caracter));
                         estadoNome = resultado.ToString();
-
                     }
 
                     do
@@ -88,9 +84,7 @@ namespace ControleDoAcervo.Livros
                             esperaQuantidade = false;
                         }
                         else
-                        {
                             Console.WriteLine("Esta não é uma quantidade válida.");
-                        }
                     } while (esperaQuantidade);
                 }
             }
@@ -157,7 +151,6 @@ namespace ControleDoAcervo.Livros
                     .ThenBy(reserva => reserva.DataReserva)
                     .ToList();
 
-            
             return novaReserva;
         }
 
@@ -170,9 +163,7 @@ namespace ControleDoAcervo.Livros
                 return reservaRemovida;
             }
             else
-            {
-                throw new InvalidOperationException("Não á reserva para remover.");
-            }
+                throw new InvalidOperationException("Não há reserva para remover.");
         }
 
         public void ExibirInformacoes()
@@ -181,20 +172,19 @@ namespace ControleDoAcervo.Livros
             Console.WriteLine($"Título: {Titulo}");
             Console.WriteLine($"Autor: {Autor}");
             Console.WriteLine($"Ano de publicação: {AnoPublicacao}");
-            Console.WriteLine($"Setor: {Setor}");
-            Console.WriteLine();
+            Console.WriteLine($"Setor: {Setor}\n");
         }
 
-        public void EmprestarLivro(Livro livro)
+        public static void EmprestarLivro(Livro livro)
         {
-            livro.Exemplares[EstadoExemplar.Emprestado] = livro.Exemplares[EstadoExemplar.Emprestado] +1;
-            livro.Exemplares[EstadoExemplar.Conservado] = livro.Exemplares[EstadoExemplar.Conservado] -1;
+            livro.Exemplares[EstadoExemplar.Emprestado] = livro.Exemplares[EstadoExemplar.Emprestado] + 1;
+            livro.Exemplares[EstadoExemplar.Conservado] = livro.Exemplares[EstadoExemplar.Conservado] - 1;
 
             LivroService livroService = new LivroService();
             livroService.EmprestarLivro(livro.Id, livro.Exemplares);
         }
 
-        public void DevolverLivro(Livro livro)
+        public static void DevolverLivro(Livro livro)
         {
             livro.Exemplares[EstadoExemplar.Emprestado] = livro.Exemplares[EstadoExemplar.Emprestado] - 1;
             livro.Exemplares[EstadoExemplar.Conservado] = livro.Exemplares[EstadoExemplar.Conservado] + 1;

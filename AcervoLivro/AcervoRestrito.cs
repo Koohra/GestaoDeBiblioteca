@@ -4,13 +4,13 @@ namespace ControleDoAcervo
 {
     public  class AcervoRestrito: AcervoBiblioteca
     {
-        public static List<Livro> LivrosRestritos { get; private set; } = new List<Livro>();
+        public static List<Livro> LivrosRestritos { get; private set; } = [];
 
         public AcervoRestrito() { }
 
-        public override List<Livro> BuscarLivroPorParteDoNome(string? parteTitulo)
+        public override List<Livro> BuscarLivroPorNome(string? parteTitulo)
         {
-            List<Livro> livrosEncontrados = new List<Livro>();
+            List<Livro> livrosEncontrados = new();
             LivrosRestritos = livroService.LerLivros().Where(livro => livro.Setor == Acervo.Restrito).ToList();
 
             while (string.IsNullOrEmpty(parteTitulo))
@@ -24,11 +24,7 @@ namespace ControleDoAcervo
                 foreach (var livro in LivrosRestritos)
                 {
                     if (livro.Titulo.Contains(parteTitulo, StringComparison.OrdinalIgnoreCase))
-                    {
                         livrosEncontrados.Add(livro);
-                    }
-
-                    //ExibirInformacoesLivros(livrosEncontrados);
                 }
             }
             catch (Exception e)
@@ -38,7 +34,5 @@ namespace ControleDoAcervo
 
             return livrosEncontrados;
         }
-        public override void VerificarDisponibilidade(Livro livro) { }
-        //Acho que não faz sentido, pq quando não está disponível, já está fora de estoque
     }
 }

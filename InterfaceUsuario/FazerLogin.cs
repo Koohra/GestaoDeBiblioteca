@@ -1,5 +1,4 @@
-﻿using System.Reflection.Emit;
-using UsuariosBiblioteca.Estudantes;
+﻿using UsuariosBiblioteca.Estudantes;
 using UsuariosBiblioteca.Funcionarios;
 using UsuariosBiblioteca.Professores;
 
@@ -13,55 +12,48 @@ namespace SistemaBiblioteca
             Console.WriteLine("- SISTEMA DE BIBLIOTECA -");
             Console.WriteLine("Selecione login desejado:");
             Console.WriteLine("1- Estudante\n2- Professor\n3- Funcionário");
-            Console.WriteLine("Ou digite 4 para SAIR");
+            Console.WriteLine("Ou digite 4 para sair.");
+
             int opcaoUsuario;
             while (!int.TryParse(Console.ReadLine(), out opcaoUsuario) || opcaoUsuario < 1 || opcaoUsuario > 4)
-            {
                 Console.Write("Digite o número correspondente ao seu login.\n");
-            }
 
             switch (opcaoUsuario)
             {
                 case 1:
                     Console.WriteLine("\nLOGIN DE ESTUDANTE");
 
-                    Estudante estudante = new Estudante();
+                    Estudante estudante = new();
                     Estudante? estudanteLogado = estudante.Login() as Estudante;
 
                     if (estudanteLogado != null)
-                    {
                         InterfaceEstudante.MenuEstudante(estudanteLogado);
-                    }
                     return;
 
                 case 2:
                     Console.WriteLine("\nLOGIN DE PROFESSOR");
-                    Professor professor = new Professor();
+                    Professor professor = new();
                     Professor? professorLogado = professor.Login() as Professor;
 
                     if (professorLogado != null)
-                    {
                         InterfaceProfessor.MenuProfessor(professorLogado);
-                    }
                     return;
 
                 case 3:
                     Console.WriteLine("\nLOGIN DE FUNCIONÁRIO");
 
-                    Funcionario funcionario = new Funcionario();
-                    Funcionario funcionarioLogado = funcionario.Login() as Funcionario;
+                    Funcionario funcionario = new();
+                    Funcionario? funcionarioLogado = funcionario.Login() as Funcionario;
 
                     if (funcionarioLogado == null)
-                    {
                         VoltarMenu();
-                    }
 
-                    if (funcionarioLogado.Cargo == Cargos.Atendente)
+                    if (funcionarioLogado?.Cargo == Cargos.Atendente)
                     {
                         Atendente atendente = InterfaceFuncionario.TransformarAtendente(funcionarioLogado);
                         InterfaceFuncionario.MenuAtendente(atendente);
                     }
-                    else if (funcionarioLogado.Cargo == Cargos.Bibliotecario)
+                    else if (funcionarioLogado?.Cargo == Cargos.Bibliotecario)
                     {
                         Bibliotecario bibliotecario = InterfaceFuncionario.TransformarBibliotecario(funcionarioLogado);
                         InterfaceFuncionario.MenuBibliotecario(bibliotecario);
@@ -77,8 +69,9 @@ namespace SistemaBiblioteca
                     Console.WriteLine("Agradecemos por usar nossos serviços. Até mais!");
                     Environment.Exit(0);
                     return;
+
                 default:
-                    Console.WriteLine("Número digitado não corresponde a nenhuma das opções");
+                    Console.WriteLine("Número digitado não corresponde a nenhuma das opções.");
                     return;
             }
         }
@@ -100,10 +93,12 @@ namespace SistemaBiblioteca
                     Console.Clear();
                     EscolherUsuario();
                     return;
+
                 case 2:
                     Console.WriteLine("Obrigado por usar nossos serviços. Até mais!");
                     Environment.Exit(0);
                     return;
+
                 default:
                     Console.WriteLine("Número digitado não corresponde a nenhuma das opções.");
                     break;
