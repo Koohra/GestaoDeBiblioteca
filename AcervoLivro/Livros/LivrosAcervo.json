@@ -32,6 +32,16 @@
         "DataReserva": "2024-01-02T00:00:00",
         "Matricula": "20191001",
         "CargoUsuario": 1
+      },
+      {
+        "DataReserva": "2024-01-05T00:00:00",
+        "Matricula": "20191001",
+        "CargoUsuario": 1
+      },
+      {
+        "DataReserva": "2024-01-05T00:00:00",
+        "Matricula": "p1004",
+        "CargoUsuario": 0
       }
     ]
   },

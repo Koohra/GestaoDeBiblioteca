@@ -24,34 +24,34 @@
     "QuantidadeDeLivrosEmprestados": 0
   },
   {
-    "CodigoCadastro": "1004",
+    "CodigoCadastro": "p1004",
     "Nome": "Eduarda Carvalho",
     "Email": "eduarda.carvalho@example.com",
-    "Senha": null,
-    "ProximaAlteracaoDeSenha": "17/01/2023",
+    "Senha": "12345@",
+    "ProximaAlteracaoDeSenha": "05/02/2024",
     "QuantidadeDeLivrosEmprestados": 0
   },
   {
-    "CodigoCadastro": "1005",
+    "CodigoCadastro": "p1005",
     "Nome": "Lucas Ferreira",
     "Email": "Lucas.Ferreira@example.com",
-    "Senha": null,
+    "Senha": "12345@",
     "ProximaAlteracaoDeSenha": "15/01/2023",
     "QuantidadeDeLivrosEmprestados": 0
   },
   {
-    "CodigoCadastro": "1006",
+    "CodigoCadastro": "p1006",
     "Nome": "Matheus Barbosa",
     "Email": "matheus.barbosa@example.com",
-    "Senha": null,
+    "Senha": "12345@",
     "ProximaAlteracaoDeSenha": "13/01/2023",
     "QuantidadeDeLivrosEmprestados": 0
   },
   {
-    "CodigoCadastro": "1007",
+    "CodigoCadastro": "p1007",
     "Nome": "Gabriel Viana",
     "Email": "gabriel.viana@example.com",
-    "Senha": null,
+    "Senha": "12345@",
     "ProximaAlteracaoDeSenha": "18/01/2023",
     "QuantidadeDeLivrosEmprestados": 0
   },
@@ -59,7 +59,7 @@
     "CodigoCadastro": "p1008",
     "Nome": "Helena Junqueira",
     "Email": "helena.junqueira@example.com",
-    "Senha": null,
+    "Senha": "12345@",
     "ProximaAlteracaoDeSenha": "12/01/2023",
     "QuantidadeDeLivrosEmprestados": 0
   },
@@ -67,7 +67,7 @@
     "CodigoCadastro": "p1009",
     "Nome": "Victor Dias",
     "Email": "victor.dias@example.com",
-    "Senha": null,
+    "Senha": "12345@",
     "ProximaAlteracaoDeSenha": "21/01/2023",
     "QuantidadeDeLivrosEmprestados": 0
   },
@@ -75,8 +75,8 @@
     "CodigoCadastro": "p1010",
     "Nome": "Marlon Fernandes",
     "Email": "marlon.fernandes@example.com",
-    "Senha": null,
-    "ProximaAlteracaoDeSenha": "15/01/2023",
+    "Senha": "12345@",
+    "ProximaAlteracaoDeSenha": "15/01/2022",
     "QuantidadeDeLivrosEmprestados": 0
   }
 ]
